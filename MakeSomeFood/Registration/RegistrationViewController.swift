@@ -2,13 +2,13 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
 
-    private var scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
 
-    private var contentView: UIView = {
+    private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
@@ -17,30 +17,21 @@ class RegistrationViewController: UIViewController {
     private let nameTextFieldView: TextFieldView = {
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
-        textfieldView.layer.cornerRadius = 12
-        textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
-        textfieldView.layer.borderWidth = 1
-        textfieldView.placeholderLabel.text = "Name"
+        textfieldView.floatingLabel.text = "Name"
         return textfieldView
     }()
 
     private let emailTextFieldView: TextFieldView = {
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
-        textfieldView.layer.cornerRadius = 12
-        textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
-        textfieldView.layer.borderWidth = 1
-        textfieldView.placeholderLabel.text = "E-mail"
+        textfieldView.floatingLabel.text = "E-mail"
         return textfieldView
     }()
 
     private let passwordTextFieldView: TextFieldView = {
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
-        textfieldView.layer.cornerRadius = 12
-        textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
-        textfieldView.layer.borderWidth = 1
-        textfieldView.placeholderLabel.text = "Password"
+        textfieldView.floatingLabel.text = "Password"
         return textfieldView
     }()
 
@@ -59,7 +50,7 @@ class RegistrationViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Agreement"
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.tintColor = UIColor(named: "gray")
         label.font = UIFont(name: "Montserrat-Regular", size: 16)
         return label
@@ -67,26 +58,29 @@ class RegistrationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-
-    func setupLayout() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        scrollView.addSubview(emailTextFieldView)
-        scrollView.addSubview(passwordTextFieldView)
-        scrollView.addSubview(registrationButton)
-        scrollView.addSubview(agreementLabel)
+        setupLayout()
+        setConstraints()
     }
 }
 
 extension RegistrationViewController {
-    func setConstraint() {
+    func setupLayout() {
+        view.backgroundColor = .white
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(nameTextFieldView)
+        contentView.addSubview(emailTextFieldView)
+        contentView.addSubview(passwordTextFieldView)
+        contentView.addSubview(registrationButton)
+//        contentView.addSubview(agreementLabel)
+    }
+
+    func setConstraints() {
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
@@ -96,27 +90,23 @@ extension RegistrationViewController {
             nameTextFieldView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 112),
             nameTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             nameTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            nameTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
             emailTextFieldView.topAnchor.constraint(equalTo: nameTextFieldView.bottomAnchor, constant: 16),
             emailTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             emailTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            emailTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
             passwordTextFieldView.topAnchor.constraint(equalTo: emailTextFieldView.bottomAnchor, constant: 16),
             passwordTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwordTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            passwordTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
             registrationButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 32),
             registrationButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             registrationButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             registrationButton.heightAnchor.constraint(equalToConstant: 56),
 
-
-            agreementLabel.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8),
-            agreementLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            agreementLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+//            agreementLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+//            agreementLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+//            agreementLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
 }

@@ -1,14 +1,19 @@
 import UIKit
 
+//Как сделать выезжающую клавиатуру?
+//Добавить таб бар?
+//Добавить навигейшн бар?
+//Использование текст филда?
+
 class LoginViewController: UIViewController {
 
-    private var scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
 
-    private var contentView: UIView = {
+    private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
@@ -17,20 +22,14 @@ class LoginViewController: UIViewController {
     private let emailTextFieldView: TextFieldView = {
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
-        textfieldView.layer.cornerRadius = 12
-        textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
-        textfieldView.layer.borderWidth = 1
-        textfieldView.placeholderLabel.text = "E-mail"
+        textfieldView.floatingLabel.text = "E-mail"
         return textfieldView
     }()
 
     private let passwordTextFieldView: TextFieldView = {
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
-        textfieldView.layer.cornerRadius = 12
-        textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
-        textfieldView.layer.borderWidth = 1
-        textfieldView.placeholderLabel.text = "Password"
+        textfieldView.floatingLabel.text = "Password"
         return textfieldView
     }()
 
@@ -73,48 +72,57 @@ class LoginViewController: UIViewController {
         return button
     }()
 
+    private let agreementLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Agreement"
+        label.textAlignment = .left
+        label.tintColor = UIColor(named: "gray")
+        label.font = UIFont(name: "Montserrat-Regular", size: 16)
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Login"
         setupLayout()
         setupConstraint()
-    }
-
-
-    func setupLayout() {
-        view.backgroundColor = .white
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        scrollView.addSubview(emailTextFieldView)
-        scrollView.addSubview(passwordTextFieldView)
-        scrollView.addSubview(enterButton)
-        registrationStackView.addArrangedSubview(registrationLabel)
-        registrationStackView.addArrangedSubview(registrationButton)
-        scrollView.addSubview(registrationStackView)
+        registrationButton.addTarget(self, action: #selector(registrationButtonAction), for: .touchUpInside)
     }
 }
 
 extension LoginViewController {
+    func setupLayout() {
+        view.backgroundColor = .white
+        view.addSubview(scrollView)
+        view.addSubview(contentView)
+        contentView.addSubview(emailTextFieldView)
+        contentView.addSubview(passwordTextFieldView)
+        contentView.addSubview(enterButton)
+        registrationStackView.addArrangedSubview(registrationLabel)
+        registrationStackView.addArrangedSubview(registrationButton)
+        contentView.addSubview(registrationStackView)
+    }
+
     func setupConstraint() {
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 
-            emailTextFieldView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 200),
+            emailTextFieldView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 112),
             emailTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             emailTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            emailTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
             passwordTextFieldView.topAnchor.constraint(equalTo: emailTextFieldView.bottomAnchor, constant: 16),
             passwordTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwordTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            passwordTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
             enterButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 32),
             enterButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -122,10 +130,12 @@ extension LoginViewController {
             enterButton.heightAnchor.constraint(equalToConstant: 56),
 
             registrationStackView.topAnchor.constraint(equalTo: enterButton.bottomAnchor, constant: 34),
-            registrationStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+            registrationStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
         ])
     }
+
+    @objc func registrationButtonAction() {
+        let homeVC = RegistrationViewController()
+        self.present(homeVC, animated: true)
+    }
 }
-
-
-

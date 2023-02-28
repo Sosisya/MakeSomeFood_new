@@ -36,22 +36,23 @@ class ScreensaverViewController: UIViewController {
         setLayout()
         setConstraint()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let homeVC = HomeTableViewController()
+            self.present(homeVC, animated: true)
+        }
+    }
+}
 
+extension ScreensaverViewController {
     func setLayout() {
         view.addSubview(screensaverImageView)
         view.addSubview(upperNameLabel)
         view.addSubview(lowerNameLabel)
     }
 
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            self.performSegue(withIdentifier: "toAuth", sender: self)
-//        }
-//    }
-}
-
-extension ScreensaverViewController {
     func setConstraint() {
         NSLayoutConstraint.activate([
             screensaverImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -65,6 +66,3 @@ extension ScreensaverViewController {
         ])
     }
 }
-
-
-

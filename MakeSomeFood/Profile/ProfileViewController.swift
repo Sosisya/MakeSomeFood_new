@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "camera"), for: .normal)
-        button.setTitleColor(UIColor(named: "white"), for: .normal)
+        button.tintColor =  UIColor(named: "white")
         button.backgroundColor = UIColor(named: "orange")
         button.layer.cornerRadius = 21
         return button
@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController {
         textfieldView.layer.cornerRadius = 12
         textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
         textfieldView.layer.borderWidth = 1
-        textfieldView.placeholderLabel.text = "Name"
+        textfieldView.floatingLabel.text = "Name"
         return textfieldView
     }()
 
@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
         textfieldView.layer.cornerRadius = 12
         textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
         textfieldView.layer.borderWidth = 1
-        textfieldView.placeholderLabel.text = "E-mail"
+        textfieldView.floatingLabel.text = "E-mail"
         return textfieldView
     }()
 
@@ -48,6 +48,7 @@ class ProfileViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         button.backgroundColor = UIColor(named: "orange")
         button.layer.cornerRadius = 12
+        button.isHidden = true
         return button
     }()
 
@@ -59,6 +60,7 @@ class ProfileViewController: UIViewController {
         button.setTitleColor(UIColor(named: "coral"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         button.backgroundColor = UIColor(named: "grayFill")
+        button.tintColor =  UIColor(named: "coral")
         button.layer.cornerRadius = 12
         return button
     }()
@@ -90,35 +92,31 @@ extension ProfileViewController {
             takePhotoButton.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 64),
             takePhotoButton.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor, constant: 64),
             takePhotoButton.heightAnchor.constraint(equalToConstant: 44),
-            takePhotoButton.widthAnchor.constraint(equalToConstant: 44)
+            takePhotoButton.widthAnchor.constraint(equalToConstant: 44),
 
+            nameTextFieldView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 24),
+            nameTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            nameTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            nameTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
+            emailTextFieldView.topAnchor.constraint(equalTo: nameTextFieldView.bottomAnchor, constant: 16),
+            emailTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            emailTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            emailTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
+            saveButton.topAnchor.constraint(equalTo: emailTextFieldView.bottomAnchor, constant: 32),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            saveButton.heightAnchor.constraint(equalToConstant: 56),
+
+            exitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
+            exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            exitButton.heightAnchor.constraint(equalToConstant: 56)
         ])
-
     }
 }
 
 
-import SwiftUI
-struct ListProvider: PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-            .previewDevice("iPhone 14 Pro Max")
-            .previewDisplayName("iPhone 14 Pro Max")
-    }
 
-    struct ContainterView: UIViewControllerRepresentable {
-        let listVC = ProfileViewController()
-        func makeUIViewController(context:
-                                  UIViewControllerRepresentableContext<ListProvider.ContainterView>) -> ProfileViewController {
-            return listVC
-        }
-
-        func updateUIViewController(_ uiViewController:
-                                    ListProvider.ContainterView.UIViewControllerType, context:
-                                    UIViewControllerRepresentableContext<ListProvider.ContainterView>) {
-        }
-    }
-}
 
