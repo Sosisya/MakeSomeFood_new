@@ -29,19 +29,19 @@ class HeaderView: UITableViewHeaderFooterView {
         commonInit()
     }
 
-    func commonInit() {
+   private func commonInit() {
         setupLayout()
         setupContsraints()
     }
 }
 
 extension HeaderView {
-    func setupLayout() {
+    private func setupLayout() {
         addSubview(headerLabel)
         addSubview(headerButton)
     }
 
-    func setupContsraints() {
+    private func setupContsraints() {
         NSLayoutConstraint.activate([
             headerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),

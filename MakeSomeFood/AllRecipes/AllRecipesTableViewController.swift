@@ -4,8 +4,7 @@ class AllRecipesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
-        tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
+        configureTableView()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -20,8 +19,11 @@ class AllRecipesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as! RecipeTableViewCell
         return cell
     }
-
-
 }
 
-
+extension AllRecipesTableViewController {
+    private func configureTableView() {
+        tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
+        tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
+    }
+}

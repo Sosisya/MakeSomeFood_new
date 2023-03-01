@@ -1,7 +1,5 @@
 import UIKit
 
-//Вопрос работы
-
 class HomeTableViewController: UITableViewController {
 
     enum Section: Int, CaseIterable {
@@ -11,8 +9,15 @@ class HomeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Home"
+        configureNavigationBar()
+        configureTableView()
+    }
 
+    private func configureNavigationBar() {
+        title = "Home"
+    }
+
+    private func configureTableView() {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
         tableView.register(CategorieTableViewCell.self, forCellReuseIdentifier: "CategorieTableViewCell")
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
@@ -50,10 +55,26 @@ extension HomeTableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+//        switch Section(rawValue: indexPath.row) {
+//        case .specilRecipe:
+//            return UITableView.automaticDimension
+//        case .categories:
+//            return 88.0
+//        default:
+//            fatalError()
+//        }
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+//        switch Section(rawValue: indexPath.row) {
+//        case .specilRecipe:
+//            return UITableView.automaticDimension
+//        case .categories:
+//            return 88.0
+//        default:
+//            fatalError()
+//        }
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

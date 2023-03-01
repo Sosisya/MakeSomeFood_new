@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBar.tabBar.unselectedItemTintColor = UIColor(named: "black")
         tabBar.viewControllers = [
             configureHomeController(),
+            configureSearchController(),
+            configureFavouritesController(),
             configureLoginController()
         ]
         return tabBar
@@ -37,11 +39,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return loginNavVC
     }
 
+    func configureSearchController() -> UIViewController {
+        let searchNavVC = UINavigationController(rootViewController: SearchCollectionViewController())
+        configureNavigationController(searchNavVC)
+        searchNavVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
+        return searchNavVC
+    }
+
+    func configureFavouritesController() -> UIViewController {
+        let favouritesNavVC = UINavigationController(rootViewController: FavouritesTableViewController())
+        configureNavigationController(favouritesNavVC)
+        favouritesNavVC.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "heart"), tag: 3)
+        return favouritesNavVC
+    }
+
     func configureNavigationController(_ navVC: UINavigationController) {
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes =  [
-            .font: UIFont(name: "Montserrat-Medium", size: 17),
-            .foregroundColor: UIColor.red
+            .font: UIFont(name: "Montserrat-SemiBold", size: 24),
+            .foregroundColor: UIColor(named: "black")
         ]
         navVC.navigationBar.standardAppearance = appearance
         navVC.navigationBar.scrollEdgeAppearance = appearance

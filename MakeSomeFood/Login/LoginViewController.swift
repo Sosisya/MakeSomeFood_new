@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    private var registrationStackView: UIStackView = {
+    private let registrationStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -84,15 +84,15 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Login"
         setupLayout()
         setupConstraint()
-        registrationButton.addTarget(self, action: #selector(registrationButtonAction), for: .touchUpInside)
+        configureButton()
+        configureNavigationBar()
     }
 }
 
 extension LoginViewController {
-    func setupLayout() {
+    public func setupLayout() {
         view.backgroundColor = .white
         view.addSubview(scrollView)
         view.addSubview(contentView)
@@ -104,7 +104,7 @@ extension LoginViewController {
         contentView.addSubview(registrationStackView)
     }
 
-    func setupConstraint() {
+    public func setupConstraint() {
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -134,8 +134,16 @@ extension LoginViewController {
         ])
     }
 
+    private func configureButton() {
+        registrationButton.addTarget(self, action: #selector(registrationButtonAction), for: .touchUpInside)
+    }
+
     @objc func registrationButtonAction() {
         let homeVC = RegistrationViewController()
         self.present(homeVC, animated: true)
+    }
+
+    private func configureNavigationBar() {
+        title = ""
     }
 }

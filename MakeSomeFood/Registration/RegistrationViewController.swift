@@ -64,7 +64,7 @@ class RegistrationViewController: UIViewController {
 }
 
 extension RegistrationViewController {
-    func setupLayout() {
+   private func setupLayout() {
         view.backgroundColor = .white
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -75,7 +75,7 @@ extension RegistrationViewController {
 //        contentView.addSubview(agreementLabel)
     }
 
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -110,5 +110,3 @@ extension RegistrationViewController {
         ])
     }
 }
-
-

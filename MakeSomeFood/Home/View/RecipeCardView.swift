@@ -1,24 +1,32 @@
 import UIKit
 
+
 class RecipeCardView: UIView {
 
-    private let containerView: UIView = {
+    private let shadowView: UIView = {
+        let shadowView = UIView()
+        shadowView.translatesAutoresizingMaskIntoConstraints = false
+        shadowView.backgroundColor = UIColor(named: "white")
+        shadowView.layer.shadowColor = UIColor(named: "black")!.cgColor
+        shadowView.layer.shadowOpacity = 0.5 // 0.06
+        shadowView.layer.shadowRadius = 10
+        shadowView.layer.shadowOffset = CGSize(width: 0, height: 12)
+        return shadowView
+    }()
+
+    private let conteinerView: UIView = {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = UIColor(named: "white")
+        containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 12
-        containerView.layer.masksToBounds = false
-        containerView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        containerView.layer.shadowRadius = 1
-        containerView.layer.shadowOpacity = 0.5
         return containerView
     }()
 
     private let recipeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
         imageView.image = UIImage(named: "recipe")
         return imageView
     }()
@@ -70,13 +78,6 @@ class RecipeCardView: UIView {
         return label
     }()
 
-//    var hasLargeImage: Bool = false {
-//        didSet {
-//            let height: CGFloat = hasLargeImage ? Spec.maxHeighOfImage : Spec.minHeighOfImage
-//            coverImageHeight.constant = height
-//        }
-//    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -94,27 +95,32 @@ class RecipeCardView: UIView {
 }
 
 extension RecipeCardView {
-    func setupLayout() {
-        addSubview(containerView)
-        containerView.addSubview(recipeImageView)
-        containerView.addSubview(likeButton)
-        containerView.addSubview(nameOfRecipeLabel)
+    private func setupLayout() {
+        addSubview(shadowView)
+        shadowView.addSubview(conteinerView)
+        conteinerView.addSubview(recipeImageView)
+        conteinerView.addSubview(likeButton)
+        conteinerView.addSubview(nameOfRecipeLabel)
         tagsStackView.addArrangedSubview(categoryTagLabel)
         tagsStackView.addArrangedSubview(areaTagLabel)
-        containerView.addSubview(tagsStackView)
-        clipsToBounds = true
+        conteinerView.addSubview(tagsStackView)
     }
 
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: topAnchor),
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
+            shadowView.topAnchor.constraint(equalTo: topAnchor),
+            shadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            shadowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
 
-            recipeImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            recipeImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            recipeImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            shadowView.topAnchor.constraint(equalTo: shadowView.topAnchor),
+            shadowView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
+            shadowView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
+            shadowView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
+
+            recipeImageView.topAnchor.constraint(equalTo: conteinerView.topAnchor),
+            recipeImageView.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor),
+            recipeImageView.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor),
             recipeImageView.heightAnchor.constraint(equalToConstant: 230),
 
             likeButton.topAnchor.constraint(equalTo: recipeImageView.topAnchor, constant: 8),
@@ -123,13 +129,13 @@ extension RecipeCardView {
             likeButton.widthAnchor.constraint(equalToConstant: 44),
 
             nameOfRecipeLabel.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: 8),
-            nameOfRecipeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,constant: 16),
-            nameOfRecipeLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            nameOfRecipeLabel.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor,constant: 16),
+            nameOfRecipeLabel.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor, constant: -16),
 
             tagsStackView.topAnchor.constraint(equalTo: nameOfRecipeLabel.bottomAnchor, constant: 6),
-            tagsStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            tagsStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            tagsStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -12)
+            tagsStackView.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor, constant: 16),
+            tagsStackView.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor, constant: -16),
+            tagsStackView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: -12)
         ])
     }
 }

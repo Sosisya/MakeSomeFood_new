@@ -25,11 +25,11 @@ class RecipeTableViewCell: UITableViewCell {
 }
 
 extension RecipeTableViewCell {
-    func setupLayout() {
+    private func setupLayout() {
         contentView.addSubview(recipeView)
     }
 
-    func setupConstraits() {
+    private func setupConstraits() {
         NSLayoutConstraint.activate([
             recipeView.topAnchor.constraint(equalTo: contentView.topAnchor),
             recipeView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

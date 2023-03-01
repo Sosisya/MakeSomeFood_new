@@ -70,8 +70,10 @@ class ProfileViewController: UIViewController {
         setupLayout()
         setupConstraint()
     }
+}
 
-    func setupLayout() {
+extension ProfileViewController {
+   private func setupLayout() {
         view.addSubview(profileImageView)
         view.addSubview(takePhotoButton)
         view.addSubview(nameTextFieldView)
@@ -79,10 +81,8 @@ class ProfileViewController: UIViewController {
         view.addSubview(saveButton)
         view.addSubview(exitButton)
     }
-}
 
-extension ProfileViewController {
-    func setupConstraint() {
+   private func setupConstraint() {
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -116,7 +116,3 @@ extension ProfileViewController {
         ])
     }
 }
-
-
-
-

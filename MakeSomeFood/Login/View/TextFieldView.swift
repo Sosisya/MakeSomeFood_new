@@ -2,7 +2,7 @@ import UIKit
 //Как сделать плавающий текст филд если у меня нет констраинтов?
 class TextFieldView: UIView, UITextFieldDelegate {
 
-    let containerView: UIView = {
+    private let containerView: UIView = {
         let containerView = UIView()
         containerView.layer.masksToBounds = false
         containerView.layer.cornerRadius = 12
@@ -12,7 +12,7 @@ class TextFieldView: UIView, UITextFieldDelegate {
         return containerView
     }()
 
-    let textField: UITextField = {
+    private let textField: UITextField = {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
