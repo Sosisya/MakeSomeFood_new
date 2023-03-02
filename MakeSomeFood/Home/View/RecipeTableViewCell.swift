@@ -1,5 +1,8 @@
 import UIKit
 
+//УЗНАТЬ ПРО ОбРЕЗКУ ФОТО ПРИ УСТАНОВЛКЕ ВЫСОТЫ
+
+
 class RecipeTableViewCell: UITableViewCell {
 
     private var recipeView: RecipeCardView = {

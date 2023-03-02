@@ -75,115 +75,42 @@ extension TextFieldView {
         ])
     }
 
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-            floatTitle()
-//            performAnimation(transform: CGAffineTransform(scaleX: 1, y: 1))
-        }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        floatTitle()
+        performAnimation(transform: CGAffineTransform(scaleX: 1, y: 1))
+    }
 
-        func floatTitle() {
-            floatingLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-            topLabelConstraint?.constant = 8
-            containerView.layer.borderColor = UIColor(named: "black")?.cgColor
-        }
+    func floatTitle() {
+        floatingLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
+        topLabelConstraint?.constant = 8
+        containerView.layer.borderColor = UIColor(named: "black")?.cgColor
+    }
 
-//        private func performAnimation(transform: CGAffineTransform) {
-//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-//                self.textFieldLabel.transform = transform
-//                self.layoutIfNeeded()
-//            }, completion: nil)
-//        }
+    private func performAnimation(transform: CGAffineTransform) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            self.floatingLabel.transform = transform
+            self.layoutIfNeeded()
+        }, completion: nil)
+    }
 
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            if textField.text?.isEmpty ?? false {
-                configureEndEditing()
-            }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text?.isEmpty ?? false {
+            configureEndEditing()
         }
+    }
 
-        func unfloatTitle() {
-//            textField.placeholder = nil
-//            topLabelCostraint.constant = 20
-//            leadingLabelCostraint.constant = 12
-//            textFieldLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-            containerView.layer.borderColor = UIColor(named: "grayTextField")?.cgColor
-        }
+    func unfloatTitle() {
+        textField.placeholder = nil
+        topLabelConstraint?.constant = 20
+        floatingLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
+        containerView.layer.borderColor = UIColor(named: "grayTextField")?.cgColor
+    }
 
-        private func configureEndEditing() {
-            unfloatTitle()
-//            performAnimation(transform: CGAffineTransform(scaleX: 1, y: 1))
-        }
+    private func configureEndEditing() {
+        unfloatTitle()
+        performAnimation(transform: CGAffineTransform(scaleX: 1, y: 1))
+    }
 }
 
-
-
-//import UIKit
-//
-//class TextFieldView: UIView, UITextFieldDelegate {
-//
-//    @IBOutlet weak var contentView: UIView!
-//    @IBOutlet weak var textFieldLabel: UILabel!
-//    @IBOutlet weak var textField: UITextField!
-//    @IBOutlet weak var leadingLabelCostraint: NSLayoutConstraint!
-//    @IBOutlet weak var topLabelCostraint: NSLayoutConstraint!
-//
-//    var onReturnButtonTapped: () -> Bool = { true }
-//
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        textField.delegate = self
-//        setShapes()
-//    }
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        onReturnButtonTapped()
-//    }
-//
-//    func setShapes() {
-//        contentView.layer.masksToBounds = true
-//        contentView.layer.borderWidth = 1
-//        contentView.layer.borderColor = UIColor(named: "grayTextField")?.cgColor
-//        contentView.layer.cornerRadius = 12
-//        textField.font = UIFont(name: "Montserrat-Regular", size: 16)
-//        textField.textColor = UIColor(named: "black")
-//    }
-//
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        floatTitle()
-//        performAnimation(transform: CGAffineTransform(scaleX: 1, y: 1))
-//    }
-//
-//    func floatTitle() {
-//        textFieldLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-//        topLabelCostraint.constant = 8
-//        leadingLabelCostraint.constant = 12
-//        contentView.layer.borderColor = UIColor(named: "black")?.cgColor
-//    }
-//
-//    private func performAnimation(transform: CGAffineTransform) {
-//        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-//            self.textFieldLabel.transform = transform
-//            self.layoutIfNeeded()
-//        }, completion: nil)
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField.text?.isEmpty ?? false {
-//            configureEndEditing()
-//        }
-//    }
-//
-//    func unfloatTitle() {
-//        textField.placeholder = nil
-//        topLabelCostraint.constant = 20
-//        leadingLabelCostraint.constant = 12
-//        textFieldLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-//        contentView.layer.borderColor = UIColor(named: "grayTextField")?.cgColor
-//    }
-//
-//    private func configureEndEditing() {
-//        unfloatTitle()
-//        performAnimation(transform: CGAffineTransform(scaleX: 1, y: 1))
-//    }
-//
-//}
 
 

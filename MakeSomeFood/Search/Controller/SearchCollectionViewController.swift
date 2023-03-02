@@ -1,13 +1,4 @@
-//
-//  SearchCollectionViewController.swift
-//  MakeSomeFood
-//
-//  Created by Луиза Самойленко on 01.03.2023.
-//
-
 import UIKit
-
-private let reuseIdentifier = "Cell"
 
 class SearchCollectionViewController: UICollectionViewController {
 
@@ -18,12 +9,12 @@ class SearchCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 
         // Do any additional setup after loading the view.
     }
 
-    /*
+    /*configureNavigationBar()
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -47,7 +38,7 @@ class SearchCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
     
         // Configure the cell
     
