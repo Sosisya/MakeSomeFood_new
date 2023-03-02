@@ -3,9 +3,9 @@ import UIKit
 class RecipeTableViewCell: UITableViewCell {
 
     private var recipeView: RecipeCardView = {
-        let view = RecipeCardView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        let recipeView = RecipeCardView()
+        recipeView.translatesAutoresizingMaskIntoConstraints = false
+        return recipeView
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

@@ -136,11 +136,17 @@ extension LoginViewController {
 
     private func configureButton() {
         registrationButton.addTarget(self, action: #selector(registrationButtonAction), for: .touchUpInside)
+        enterButton.addTarget(self, action: #selector(enterButtonAction), for: .touchUpInside)
     }
 
     @objc func registrationButtonAction() {
-        let homeVC = RegistrationViewController()
-        self.present(homeVC, animated: true)
+        let registrationVC = RegistrationViewController()
+        self.present(registrationVC, animated: true)
+    }
+
+    @objc func enterButtonAction() {
+        let profileVC = ProfileViewController()
+        self.present(profileVC, animated: true)
     }
 
     private func configureNavigationBar() {

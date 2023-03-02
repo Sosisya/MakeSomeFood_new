@@ -1,11 +1,11 @@
 import UIKit
 
-
 class RecipeCardView: UIView {
 
     private let shadowView: UIView = {
         let shadowView = UIView()
         shadowView.translatesAutoresizingMaskIntoConstraints = false
+        shadowView.layer.masksToBounds = false
         shadowView.backgroundColor = UIColor(named: "white")
         shadowView.layer.shadowColor = UIColor(named: "black")!.cgColor
         shadowView.layer.shadowOpacity = 0.5 // 0.06
@@ -16,9 +16,10 @@ class RecipeCardView: UIView {
 
     private let conteinerView: UIView = {
         let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = .red
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 12
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         return containerView
     }()
 
@@ -113,10 +114,10 @@ extension RecipeCardView {
             shadowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
 
-            shadowView.topAnchor.constraint(equalTo: shadowView.topAnchor),
-            shadowView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
-            shadowView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
-            shadowView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
+            conteinerView.topAnchor.constraint(equalTo: shadowView.topAnchor),
+            conteinerView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
+            conteinerView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
+            conteinerView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
 
             recipeImageView.topAnchor.constraint(equalTo: conteinerView.topAnchor),
             recipeImageView.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor),

@@ -17,7 +17,7 @@ class CategorieTableViewCell: UITableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "black")
-        view.alpha = 0.4
+        view.alpha = 0.36
         return view
     }()
 

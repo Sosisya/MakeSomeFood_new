@@ -5,6 +5,8 @@ class ProfileViewController: UIViewController {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 12
         imageView.image = UIImage(named: "profile")
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -67,6 +69,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupLayout()
         setupConstraint()
     }
