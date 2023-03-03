@@ -82,6 +82,8 @@ class LoginViewController: UIViewController {
         return label
     }()
 
+    private let tap = UITapGestureRecognizer(target: LoginViewController.self, action: #selector(UIInputViewController.dismissKeyboard))
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -152,4 +154,8 @@ extension LoginViewController {
     private func configureNavigationBar() {
         title = ""
     }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+     }
 }

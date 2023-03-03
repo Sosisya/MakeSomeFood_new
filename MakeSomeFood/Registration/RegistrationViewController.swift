@@ -14,6 +14,16 @@ class RegistrationViewController: UIViewController {
         return contentView
     }()
 
+    private let registrationLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Montserrat-SemiBold", size: 24)
+        label.textColor = UIColor(named: "black")
+        label.text = "Registration"
+        label.textAlignment = .center
+        return label
+    }()
+
     private let nameTextFieldView: TextFieldView = {
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +78,7 @@ extension RegistrationViewController {
         view.backgroundColor = .white
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(registrationLabel)
         contentView.addSubview(nameTextFieldView)
         contentView.addSubview(emailTextFieldView)
         contentView.addSubview(passwordTextFieldView)
@@ -87,7 +98,11 @@ extension RegistrationViewController {
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 
-            nameTextFieldView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 112),
+            registrationLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 60),
+            registrationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            registrationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+
+            nameTextFieldView.topAnchor.constraint(equalTo: registrationLabel.bottomAnchor, constant: 24),
             nameTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             nameTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 

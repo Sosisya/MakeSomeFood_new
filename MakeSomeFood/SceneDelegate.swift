@@ -53,6 +53,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return favouritesNavVC
     }
 
+    func configureRegistrationController() -> UIViewController {
+        let registrationNavVC = UINavigationController(rootViewController: RegistrationViewController())
+        configureNavigationController(registrationNavVC)
+        return registrationNavVC
+    }
+//
+//    func configureViewController() -> UIViewController {
+//        let loginNavVC = UINavigationController(rootViewController: LoginViewController())
+//        configureNavigationController(loginNavVC)
+//        loginNavVC.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "heart"), tag: 4)
+//        return loginNavVC
+//    }
+
     func configureNavigationController(_ navVC: UINavigationController) {
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes =  [

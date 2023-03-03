@@ -43,9 +43,9 @@ extension HeaderView {
 
     private func setupContsraints() {
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            headerLabel.topAnchor.constraint(equalTo: topAnchor),
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
 
             headerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             headerButton.leadingAnchor.constraint(equalTo: headerLabel.trailingAnchor, constant: 16),

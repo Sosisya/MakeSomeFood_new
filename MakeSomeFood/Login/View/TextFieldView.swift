@@ -31,6 +31,8 @@ class TextFieldView: UIView, UITextFieldDelegate {
 
     let topConstraint: CGFloat = 16
     var topLabelConstraint: NSLayoutConstraint?
+    var onReturnButtonTapped: () -> Bool = { true }
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,10 +67,10 @@ extension TextFieldView {
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             containerView.heightAnchor.constraint(equalToConstant: 56),
 
-            textField.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            textField.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
             textField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
             textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
-            textField.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            textField.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
 
             topLabelConstraint!,
             floatingLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),

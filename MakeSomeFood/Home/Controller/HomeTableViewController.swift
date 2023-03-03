@@ -3,6 +3,7 @@ import UIKit
 class HomeTableViewController: UITableViewController {
 
     enum Section: Int, CaseIterable {
+        case greeting
         case specilRecipe
         case categories
     }
@@ -18,10 +19,11 @@ class HomeTableViewController: UITableViewController {
     }
 
     private func configureTableView() {
+        tableView.register(GreetingTableViewCell.self, forCellReuseIdentifier: "GreetingTableViewCell")
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
         tableView.register(CategorieTableViewCell.self, forCellReuseIdentifier: "CategorieTableViewCell")
-        tableView.register(GreetingHeaderView.self, forHeaderFooterViewReuseIdentifier: "GreetingHeaderView")
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
+        tableView.separatorStyle = .none
     }
 }
 
@@ -32,6 +34,8 @@ extension HomeTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section(rawValue: section) {
+        case .greeting:
+            return 1
         case .specilRecipe:
             return 1
         case .categories:
@@ -43,6 +47,9 @@ extension HomeTableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Section(rawValue: indexPath.section) {
+        case .greeting:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GreetingTableViewCell", for: indexPath) as! GreetingTableViewCell
+            return cell
         case .specilRecipe:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as! RecipeTableViewCell
             return cell
@@ -64,6 +71,8 @@ extension HomeTableViewController {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch Section(rawValue: section) {
+        case .greeting:
+            return nil
         case.specilRecipe:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
             return header
@@ -76,10 +85,31 @@ extension HomeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        UITableView.automaticDimension
+        //        UITableView.automaticDimension
+        switch Section(rawValue: section) {
+        case .greeting:
+            return 0
+        case .specilRecipe:
+            return UITableView.automaticDimension
+        case .categories:
+            return UITableView.automaticDimension
+        default:
+            fatalError()
+        }
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        UITableView.automaticDimension
+        //        UITableView.automaticDimension
+        switch Section(rawValue: section) {
+        case .greeting:
+            return 0
+        case .specilRecipe:
+            return UITableView.automaticDimension
+        case .categories:
+            return UITableView.automaticDimension
+        default:
+            fatalError()
+        }
     }
 }
+
