@@ -1,10 +1,4 @@
 import UIKit
-
-//Как сделать выезжающую клавиатуру?
-//Добавить таб бар?
-//Добавить навигейшн бар?
-//Использование текст филда?
-
 class LoginViewController: UIViewController {
 
     private let scrollView: UIScrollView = {

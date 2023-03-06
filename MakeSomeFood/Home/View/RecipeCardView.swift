@@ -1,7 +1,7 @@
 import UIKit
 
 class RecipeCardView: UIView {
-
+    
     private let shadowView: UIView = {
         let shadowView = UIView()
         shadowView.translatesAutoresizingMaskIntoConstraints = false

@@ -1,7 +1,5 @@
 import UIKit
 
-// 8 строчка кодаб почему если включит маск ту баундс то он работает
-
 class CategorieTableViewCell: UITableViewCell {
 
     private let categorieImageView: UIImageView = {

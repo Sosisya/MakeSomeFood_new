@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E16671829B5F07A0096475C /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E16671729B5F07A0096475C /* RecipeCollectionViewCell.swift */; };
+		8E16CC3E29B5AE5700707E78 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21329A482DF001D1106 /* Montserrat-Black.ttf */; };
 		8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */; };
 		8E40DF4429A770A3001A7E8B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4329A770A3001A7E8B /* HeaderView.swift */; };
 		8E40DF4629AA2F0A001A7E8B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */; };
@@ -19,7 +21,6 @@
 		8E46D22229A482E0001D1106 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21029A482DF001D1106 /* Montserrat-ExtraLightItalic.ttf */; };
 		8E46D22329A482E0001D1106 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21129A482DF001D1106 /* Montserrat-LightItalic.ttf */; };
 		8E46D22429A482E0001D1106 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21229A482DF001D1106 /* Montserrat-ExtraBoldItalic.ttf */; };
-		8E46D22529A482E0001D1106 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21329A482DF001D1106 /* Montserrat-Black.ttf */; };
 		8E46D22629A482E0001D1106 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21429A482DF001D1106 /* Montserrat-Thin.ttf */; };
 		8E46D22729A482E0001D1106 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21529A482DF001D1106 /* Montserrat-ThinItalic.ttf */; };
 		8E46D22829A482E0001D1106 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21629A482DF001D1106 /* Montserrat-Bold.ttf */; };
@@ -41,12 +42,16 @@
 		8E46D24A29A69251001D1106 /* RecipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E46D24929A69251001D1106 /* RecipeCardView.swift */; };
 		8E46D24C29A69AB5001D1106 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E46D24B29A69AB5001D1106 /* RecipeTableViewCell.swift */; };
 		8E46D25029A69EF1001D1106 /* CategorieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E46D24F29A69EF1001D1106 /* CategorieTableViewCell.swift */; };
+		8E4F4A5C29B5AF9700678DE2 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F4A5B29B5AF9700678DE2 /* TagCollectionViewCell.swift */; };
 		8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */; };
 		8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */; };
 		8EFF463829B1F27B00AD3CC9 /* GreetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF463729B1F27B00AD3CC9 /* GreetingTableViewCell.swift */; };
+		8EFF463B29B22F0D00AD3CC9 /* CookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF463A29B22F0D00AD3CC9 /* CookingViewController.swift */; };
+		8EFF463F29B22FCB00AD3CC9 /* CookingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E16671729B5F07A0096475C /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesTableViewController.swift; sourceTree = "<group>"; };
 		8E40DF4329A770A3001A7E8B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -83,9 +88,12 @@
 		8E46D24929A69251001D1106 /* RecipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardView.swift; sourceTree = "<group>"; };
 		8E46D24B29A69AB5001D1106 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		8E46D24F29A69EF1001D1106 /* CategorieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieTableViewCell.swift; sourceTree = "<group>"; };
+		8E4F4A5B29B5AF9700678DE2 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
 		8EFF463729B1F27B00AD3CC9 /* GreetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingTableViewCell.swift; sourceTree = "<group>"; };
+		8EFF463A29B22F0D00AD3CC9 /* CookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingViewController.swift; sourceTree = "<group>"; };
+		8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +134,7 @@
 		8E41FA4729A47E6F0068C678 /* MakeSomeFood */ = {
 			isa = PBXGroup;
 			children = (
+				8EFF463929B22EAA00AD3CC9 /* Cooking */,
 				8E46D23929A4C331001D1106 /* Screensaver */,
 				8E46D24429A6919B001D1106 /* Home */,
 				8EDB329F29AF9B6100DA5B61 /* Search */,
@@ -240,9 +249,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8E4F4A5A29B5AF6D00678DE2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E4F4A5B29B5AF9700678DE2 /* TagCollectionViewCell.swift */,
+				8E16671729B5F07A0096475C /* RecipeCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8EDB329F29AF9B6100DA5B61 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				8E4F4A5A29B5AF6D00678DE2 /* View */,
 				8EDB32A229AF9B9B00DA5B61 /* Controller */,
 			);
 			path = Search;
@@ -278,6 +297,31 @@
 				8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8EFF463929B22EAA00AD3CC9 /* Cooking */ = {
+			isa = PBXGroup;
+			children = (
+				8EFF463D29B22FA600AD3CC9 /* View */,
+				8EFF463C29B22F9C00AD3CC9 /* Controller */,
+			);
+			path = Cooking;
+			sourceTree = "<group>";
+		};
+		8EFF463C29B22F9C00AD3CC9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8EFF463A29B22F0D00AD3CC9 /* CookingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8EFF463D29B22FA600AD3CC9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,10 +387,10 @@
 				8E46D22129A482E0001D1106 /* Montserrat-Light.ttf in Resources */,
 				8E46D22E29A482E0001D1106 /* Montserrat-Italic.ttf in Resources */,
 				8E46D22D29A482E0001D1106 /* Montserrat-SemiBoldItalic.ttf in Resources */,
-				8E46D22529A482E0001D1106 /* Montserrat-Black.ttf in Resources */,
 				8E46D22929A482E0001D1106 /* Montserrat-BlackItalic.ttf in Resources */,
 				8E46D23129A482E0001D1106 /* Montserrat-Regular.ttf in Resources */,
 				8E46D22C29A482E0001D1106 /* Montserrat-ExtraBold.ttf in Resources */,
+				8E16CC3E29B5AE5700707E78 /* Montserrat-Black.ttf in Resources */,
 				8E46D22229A482E0001D1106 /* Montserrat-ExtraLightItalic.ttf in Resources */,
 				8E46D22F29A482E0001D1106 /* Montserrat-MediumItalic.ttf in Resources */,
 				8E41FA5529A47E710068C678 /* LaunchScreen.storyboard in Resources */,
@@ -373,8 +417,10 @@
 				8E46D24C29A69AB5001D1106 /* RecipeTableViewCell.swift in Sources */,
 				8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */,
 				8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */,
+				8EFF463F29B22FCB00AD3CC9 /* CookingHeaderView.swift in Sources */,
 				8E46D24029A5D1C4001D1106 /* RegistrationViewController.swift in Sources */,
 				8E46D24A29A69251001D1106 /* RecipeCardView.swift in Sources */,
+				8EFF463B29B22F0D00AD3CC9 /* CookingViewController.swift in Sources */,
 				8E41FA4D29A47E6F0068C678 /* LoginViewController.swift in Sources */,
 				8E46D25029A69EF1001D1106 /* CategorieTableViewCell.swift in Sources */,
 				8E46D23C29A4CB2C001D1106 /* TextFieldView.swift in Sources */,
@@ -382,7 +428,9 @@
 				8E41FA4929A47E6F0068C678 /* AppDelegate.swift in Sources */,
 				8E40DF4629AA2F0A001A7E8B /* TestViewController.swift in Sources */,
 				8E46D24329A617E8001D1106 /* ProfileViewController.swift in Sources */,
+				8E4F4A5C29B5AF9700678DE2 /* TagCollectionViewCell.swift in Sources */,
 				8E46D23829A4C328001D1106 /* ScreensaverViewController.swift in Sources */,
+				8E16671829B5F07A0096475C /* RecipeCollectionViewCell.swift in Sources */,
 				8E41FA4B29A47E6F0068C678 /* SceneDelegate.swift in Sources */,
 				8E40DF4429A770A3001A7E8B /* HeaderView.swift in Sources */,
 			);

@@ -4,7 +4,7 @@ import UIKit
 
 
 class RecipeTableViewCell: UITableViewCell {
-
+    
     private var recipeView: RecipeCardView = {
         let recipeView = RecipeCardView()
         recipeView.translatesAutoresizingMaskIntoConstraints = false

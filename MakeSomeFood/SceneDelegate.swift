@@ -68,7 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func configureNavigationController(_ navVC: UINavigationController) {
         let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes =  [
+        appearance.titleTextAttributes = [
             .font: UIFont(name: "Montserrat-SemiBold", size: 24),
             .foregroundColor: UIColor(named: "black")
         ]

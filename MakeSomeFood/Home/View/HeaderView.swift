@@ -1,6 +1,7 @@
 import UIKit
 
 class HeaderView: UITableViewHeaderFooterView {
+
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -10,7 +11,7 @@ class HeaderView: UITableViewHeaderFooterView {
         return label
     }()
 
-    private let headerButton: UIButton = {
+    let headerButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("All recipes", for: .normal)
@@ -33,6 +34,8 @@ class HeaderView: UITableViewHeaderFooterView {
         setupLayout()
         setupContsraints()
     }
+
+
 }
 
 extension HeaderView {
