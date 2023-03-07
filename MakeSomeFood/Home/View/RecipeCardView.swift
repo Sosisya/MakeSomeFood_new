@@ -13,7 +13,7 @@ class RecipeCardView: UIView {
     
     private let shadowView: UIView = {
         let shadowView = UIView()
-        shadowView.translatesAutoresizingMaskIntoConstraints = false
+        shadowView.translates()
         shadowView.layer.masksToBounds = false
         shadowView.backgroundColor = .clear
         shadowView.layer.shadowColor = UIColor(named: "black")!.cgColor
@@ -28,13 +28,13 @@ class RecipeCardView: UIView {
         containerView.backgroundColor = UIColor(named: "white")
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 12
-        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translates()
         return containerView
     }()
 
     private let recipeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translates()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.image = UIImage(named: "recipe")
@@ -43,7 +43,7 @@ class RecipeCardView: UIView {
 
     private let likeButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.translates()
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = UIColor(named: "white")
         button.backgroundColor = UIColor(named: "orange")
@@ -53,7 +53,7 @@ class RecipeCardView: UIView {
 
     private let nameOfRecipeLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.translates()
         label.text = "Name of recipe"
         label.font = UIFont(name: "Montserrat-Medium", size: 16)
         label.tintColor = UIColor(named: "black")
@@ -62,7 +62,7 @@ class RecipeCardView: UIView {
 
     private let tagsStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translates()
         stackView.spacing = 8
         stackView.axis = .horizontal
         stackView.distribution = .fill
@@ -70,21 +70,29 @@ class RecipeCardView: UIView {
         return stackView
     }()
 
-    private let categoryTagLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    private let categoryTagLabel: LabelWithInsets = {
+        let label = LabelWithInsets()
+        label.translates()
         label.text = "category"
         label.font = UIFont(name: "Montserrat-Medium", size: 13)
         label.textColor = UIColor(named: "green")
+        label.rounded()
+        label.layer.borderWidth = 1
+        label.layer.borderColor = label.textColor.cgColor
         return label
     }()
 
-    private let areaTagLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    private let areaTagLabel: LabelWithInsets = {
+        let label = LabelWithInsets()
+        label.translates()
+        label.layer.cornerRadius = 12
         label.text = "area"
         label.font = UIFont(name: "Montserrat-Medium", size: 13)
         label.textColor = UIColor(named: "orange")
+        label.rounded()
+        label.layer.borderWidth = 1
+        label.layer.borderColor = label.textColor.cgColor
+        label.layer.masksToBounds = true
         return label
     }()
 

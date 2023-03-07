@@ -4,7 +4,7 @@ class CategorieTableViewCell: UITableViewCell {
 
     private let categorieImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translates()
         imageView.layer.masksToBounds =  true
         imageView.layer.cornerRadius = 12
         imageView.image = UIImage(named: "recipe")
@@ -14,7 +14,7 @@ class CategorieTableViewCell: UITableViewCell {
 
     private let shadowView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.translates()
         view.layer.cornerRadius = 12
         view.backgroundColor = UIColor(named: "black")
         view.alpha = 0.36
@@ -23,7 +23,7 @@ class CategorieTableViewCell: UITableViewCell {
 
     private let categorieLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.translates()
         label.text = "Category"
         label.font = UIFont(name: "Montserrat-SemiBold", size: 24)
         label.textColor = UIColor(named: "white")

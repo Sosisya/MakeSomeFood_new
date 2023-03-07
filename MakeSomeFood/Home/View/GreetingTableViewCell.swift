@@ -4,13 +4,13 @@ class GreetingTableViewCell: UITableViewCell {
     
     private let containerView: UIView = {
          let view = UIView()
-         view.translatesAutoresizingMaskIntoConstraints = false
+         view.translates()
          return view
      }()
 
      private let greetingLabel: UILabel = {
          let label = UILabel()
-         label.translatesAutoresizingMaskIntoConstraints = false
+         label.translates()
          label.text = "Hello, guest!"
          label.textColor = UIColor(named: "black")
          label.font = UIFont(name: "Montserrat-SemiBold", size: 24)
@@ -19,7 +19,7 @@ class GreetingTableViewCell: UITableViewCell {
 
      private let profileImage: UIImageView = {
          let imageView = UIImageView()
-         imageView.translatesAutoresizingMaskIntoConstraints = false
+         imageView.translates()
          imageView.image = UIImage(named: "profile")
          imageView.contentMode = .scaleAspectFill
          imageView.layer.masksToBounds = true

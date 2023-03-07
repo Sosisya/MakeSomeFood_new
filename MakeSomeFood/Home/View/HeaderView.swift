@@ -4,21 +4,22 @@ class HeaderView: UITableViewHeaderFooterView {
 
     private let headerLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Special"
-        label.font = UIFont(name: "Montserrat-Medium", size: 22)
-        label.tintColor = UIColor(named: "black")
+        label.translates()
+        label.font = .montserratMedium22()
+        label.tintColor = .specialBlack
         return label
     }()
 
     let headerButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("All recipes", for: .normal)
-        button.tintColor = UIColor(named: "green")
-        button.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 13)
+        button.translates()
+        button.tintColor = .specialGreen
+        button.titleLabel?.font = .montserratMedium13()
         return button
     }()
+
+    private var buttonAction: () -> Void = {}
+
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -30,12 +31,30 @@ class HeaderView: UITableViewHeaderFooterView {
         commonInit()
     }
 
-   private func commonInit() {
+    private func commonInit() {
         setupLayout()
+        configureButton()
         setupContsraints()
     }
+    
+    func configure(title: String, actionTitle: String? = nil, action: @escaping () -> Void = {}) {
+        headerLabel.text = title
+        if let actionTitle = actionTitle {
+            headerButton.isHidden = false
+            headerButton.setTitle(actionTitle, for: .normal)
+        } else {
+            headerButton.isHidden = true
+        }
+        buttonAction = action
+    }
 
+    func configureButton() {
+        headerButton.addTarget(self, action: #selector(headerButtonTapped), for: .touchUpInside)
+    }
 
+    @objc func headerButtonTapped() {
+        buttonAction()
+    }
 }
 
 extension HeaderView {

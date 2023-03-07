@@ -25,8 +25,6 @@ class HomeTableViewController: UITableViewController {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         tableView.separatorStyle = .none
     }
-
-   
 }
 
 extension HomeTableViewController {
@@ -77,10 +75,14 @@ extension HomeTableViewController {
             return nil
         case.specilRecipe:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
-            header.headerButton.addTarget(self, action: #selector(openVC), for: .touchUpInside)
+            header.configure(title: "Special", actionTitle: "All recipes") {
+                let recipeVC = CookingViewController()
+                self.present(recipeVC, animated: true)
+            }
             return header
         case .categories:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
+            header.configure(title: "Categories")
             return header
         default:
             fatalError()
@@ -111,10 +113,5 @@ extension HomeTableViewController {
         default:
             fatalError()
         }
-    }
-
-    @objc func openVC() {
-        let recipeVC = CookingViewController()
-        self.present(recipeVC, animated: true)
     }
 }

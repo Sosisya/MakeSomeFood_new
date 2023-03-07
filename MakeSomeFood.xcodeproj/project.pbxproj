@@ -12,6 +12,10 @@
 		8E3E5EC029B737850063553B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EBF29B737850063553B /* UIColor+Extension.swift */; };
 		8E3E5EC229B737C40063553B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC129B737C40063553B /* UIFont+Extension.swift */; };
 		8E3E5EC429B737EA0063553B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC329B737EA0063553B /* UIView+Extension.swift */; };
+		8E3E5EC629B7998C0063553B /* NameOfRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC529B7998C0063553B /* NameOfRecipeTableViewCell.swift */; };
+		8E3E5EC829B79B390063553B /* LabelWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC729B79B390063553B /* LabelWithInsets.swift */; };
+		8E3E5ECA29B7A58D0063553B /* IngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC929B7A58D0063553B /* IngredientsTableViewCell.swift */; };
+		8E3E5ECC29B7A5D90063553B /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */; };
 		8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */; };
 		8E40DF4429A770A3001A7E8B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4329A770A3001A7E8B /* HeaderView.swift */; };
 		8E40DF4629AA2F0A001A7E8B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */; };
@@ -58,6 +62,10 @@
 		8E3E5EBF29B737850063553B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8E3E5EC129B737C40063553B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		8E3E5EC329B737EA0063553B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8E3E5EC529B7998C0063553B /* NameOfRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfRecipeTableViewCell.swift; sourceTree = "<group>"; };
+		8E3E5EC729B79B390063553B /* LabelWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithInsets.swift; sourceTree = "<group>"; };
+		8E3E5EC929B7A58D0063553B /* IngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewCell.swift; sourceTree = "<group>"; };
+		8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesTableViewController.swift; sourceTree = "<group>"; };
 		8E40DF4329A770A3001A7E8B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +124,7 @@
 		8E3E5EBE29B7376D0063553B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8E3E5EC729B79B390063553B /* LabelWithInsets.swift */,
 				8E3E5EBF29B737850063553B /* UIColor+Extension.swift */,
 				8E3E5EC129B737C40063553B /* UIFont+Extension.swift */,
 				8E3E5EC329B737EA0063553B /* UIView+Extension.swift */,
@@ -337,6 +346,9 @@
 			isa = PBXGroup;
 			children = (
 				8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */,
+				8E3E5EC529B7998C0063553B /* NameOfRecipeTableViewCell.swift */,
+				8E3E5EC929B7A58D0063553B /* IngredientsTableViewCell.swift */,
+				8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -432,16 +444,19 @@
 				8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */,
 				8E46D24629A691D9001D1106 /* HomeTableViewController.swift in Sources */,
 				8E46D24C29A69AB5001D1106 /* RecipeTableViewCell.swift in Sources */,
+				8E3E5EC629B7998C0063553B /* NameOfRecipeTableViewCell.swift in Sources */,
 				8E3E5EC029B737850063553B /* UIColor+Extension.swift in Sources */,
 				8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */,
 				8E3E5EC229B737C40063553B /* UIFont+Extension.swift in Sources */,
 				8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */,
 				8EFF463F29B22FCB00AD3CC9 /* CookingHeaderView.swift in Sources */,
+				8E3E5ECA29B7A58D0063553B /* IngredientsTableViewCell.swift in Sources */,
 				8E46D24029A5D1C4001D1106 /* RegistrationViewController.swift in Sources */,
 				8E46D24A29A69251001D1106 /* RecipeCardView.swift in Sources */,
 				8EFF463B29B22F0D00AD3CC9 /* CookingViewController.swift in Sources */,
 				8E41FA4D29A47E6F0068C678 /* LoginViewController.swift in Sources */,
 				8E46D25029A69EF1001D1106 /* CategorieTableViewCell.swift in Sources */,
+				8E3E5EC829B79B390063553B /* LabelWithInsets.swift in Sources */,
 				8E46D23C29A4CB2C001D1106 /* TextFieldView.swift in Sources */,
 				8EFF463829B1F27B00AD3CC9 /* GreetingTableViewCell.swift in Sources */,
 				8E41FA4929A47E6F0068C678 /* AppDelegate.swift in Sources */,
@@ -452,6 +467,7 @@
 				8E46D23829A4C328001D1106 /* ScreensaverViewController.swift in Sources */,
 				8E16671829B5F07A0096475C /* RecipeCollectionViewCell.swift in Sources */,
 				8E41FA4B29A47E6F0068C678 /* SceneDelegate.swift in Sources */,
+				8E3E5ECC29B7A5D90063553B /* InstructionsTableViewCell.swift in Sources */,
 				8E40DF4429A770A3001A7E8B /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

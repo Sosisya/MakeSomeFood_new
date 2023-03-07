@@ -4,18 +4,20 @@ class CookingViewController: UIViewController {
 
     private let cookingHeaderView: CookingHeaderView =  {
         let view = CookingHeaderView()
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.translates()
         return view
     }()
 
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translates()
         return tableView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLayout()
+        setupConstraints()
         configureTableView()
     }
 

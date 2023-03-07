@@ -2,9 +2,14 @@ import UIKit
 
 class CookingHeaderView: UIView {
 
+    struct Spec {
+        static let alphaOfShadowView = 0.3
+        static let likeButtonImage = UIImage(systemName: "heart")
+    }
+
     private let recipeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translates()
         imageView.image = UIImage(named: "recipe")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
@@ -13,27 +18,27 @@ class CookingHeaderView: UIView {
 
     private let shadowView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "black")
-        view.alpha = 0.3
+        view.translates()
+        view.backgroundColor = .specialBlack
+        view.alpha = Spec.alphaOfShadowView
         return view
     }()
 
     private let likeButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.tintColor = UIColor(named: "white")
-        button.backgroundColor = UIColor(named: "orange")
-        button.layer.cornerRadius = 21
+        button.translates()
+        button.setImage(Spec.likeButtonImage, for: .normal)
+        button.tintColor = .specialWhite
+        button.backgroundColor = .specialOrange
+        button.rounded(radius: 21)
         return button
     }()
 
     private let bottomView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "white")
-        view.layer.cornerRadius = 12
+        view.translates()
+        view.backgroundColor = .specialWhite
+        view.rounded()
         view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         return view
     }()
@@ -56,10 +61,11 @@ class CookingHeaderView: UIView {
 
 extension CookingHeaderView {
     private func setupLayout() {
+        backgroundColor = .specialWhite
         addSubview(recipeImageView)
         recipeImageView.addSubview(shadowView)
-        shadowView.addSubview(likeButton)
-        shadowView.addSubview(bottomView)
+        recipeImageView.addSubview(bottomView)
+        recipeImageView.addSubview(likeButton)
     }
 
     private func setupConstraints() {
