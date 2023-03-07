@@ -16,6 +16,8 @@
 		8E3E5EC829B79B390063553B /* LabelWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC729B79B390063553B /* LabelWithInsets.swift */; };
 		8E3E5ECA29B7A58D0063553B /* IngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC929B7A58D0063553B /* IngredientsTableViewCell.swift */; };
 		8E3E5ECC29B7A5D90063553B /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */; };
+		8E3E5ECE29B7A77A0063553B /* CookingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5ECD29B7A77A0063553B /* CookingFooterView.swift */; };
+		8E3E5ED029B7A9160063553B /* CookingHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5ECF29B7A9160063553B /* CookingHeaderTableViewCell.swift */; };
 		8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */; };
 		8E40DF4429A770A3001A7E8B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4329A770A3001A7E8B /* HeaderView.swift */; };
 		8E40DF4629AA2F0A001A7E8B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */; };
@@ -66,6 +68,8 @@
 		8E3E5EC729B79B390063553B /* LabelWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithInsets.swift; sourceTree = "<group>"; };
 		8E3E5EC929B7A58D0063553B /* IngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewCell.swift; sourceTree = "<group>"; };
 		8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsTableViewCell.swift; sourceTree = "<group>"; };
+		8E3E5ECD29B7A77A0063553B /* CookingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingFooterView.swift; sourceTree = "<group>"; };
+		8E3E5ECF29B7A9160063553B /* CookingHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesTableViewController.swift; sourceTree = "<group>"; };
 		8E40DF4329A770A3001A7E8B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -346,7 +350,9 @@
 			isa = PBXGroup;
 			children = (
 				8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */,
+				8E3E5ECD29B7A77A0063553B /* CookingFooterView.swift */,
 				8E3E5EC529B7998C0063553B /* NameOfRecipeTableViewCell.swift */,
+				8E3E5ECF29B7A9160063553B /* CookingHeaderTableViewCell.swift */,
 				8E3E5EC929B7A58D0063553B /* IngredientsTableViewCell.swift */,
 				8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */,
 			);
@@ -449,11 +455,13 @@
 				8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */,
 				8E3E5EC229B737C40063553B /* UIFont+Extension.swift in Sources */,
 				8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */,
+				8E3E5ED029B7A9160063553B /* CookingHeaderTableViewCell.swift in Sources */,
 				8EFF463F29B22FCB00AD3CC9 /* CookingHeaderView.swift in Sources */,
 				8E3E5ECA29B7A58D0063553B /* IngredientsTableViewCell.swift in Sources */,
 				8E46D24029A5D1C4001D1106 /* RegistrationViewController.swift in Sources */,
 				8E46D24A29A69251001D1106 /* RecipeCardView.swift in Sources */,
 				8EFF463B29B22F0D00AD3CC9 /* CookingViewController.swift in Sources */,
+				8E3E5ECE29B7A77A0063553B /* CookingFooterView.swift in Sources */,
 				8E41FA4D29A47E6F0068C678 /* LoginViewController.swift in Sources */,
 				8E46D25029A69EF1001D1106 /* CategorieTableViewCell.swift in Sources */,
 				8E3E5EC829B79B390063553B /* LabelWithInsets.swift in Sources */,
