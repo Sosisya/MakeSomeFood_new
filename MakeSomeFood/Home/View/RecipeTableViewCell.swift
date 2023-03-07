@@ -7,7 +7,7 @@ class RecipeTableViewCell: UITableViewCell {
     
     private var recipeView: RecipeCardView = {
         let recipeView = RecipeCardView()
-        recipeView.translatesAutoresizingMaskIntoConstraints = false
+        recipeView.translates()
         return recipeView
     }()
 
@@ -24,6 +24,10 @@ class RecipeTableViewCell: UITableViewCell {
     private func commonInit() {
         setupLayout()
         setupConstraits()
+    }
+
+    func setHasLargeImage(_ hasLargeImage: Bool) {
+        recipeView.hasLargeImage = hasLargeImage
     }
 }
 

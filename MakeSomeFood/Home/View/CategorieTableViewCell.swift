@@ -6,6 +6,7 @@ class CategorieTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds =  true
+        imageView.layer.cornerRadius = 12
         imageView.image = UIImage(named: "recipe")
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -14,6 +15,7 @@ class CategorieTableViewCell: UITableViewCell {
     private let shadowView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 12
         view.backgroundColor = UIColor(named: "black")
         view.alpha = 0.36
         return view

@@ -83,20 +83,22 @@ extension RegistrationViewController {
         contentView.addSubview(emailTextFieldView)
         contentView.addSubview(passwordTextFieldView)
         contentView.addSubview(registrationButton)
-//        contentView.addSubview(agreementLabel)
+        contentView.addSubview(agreementLabel)
     }
 
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+
 
             registrationLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 60),
             registrationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -119,9 +121,9 @@ extension RegistrationViewController {
             registrationButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             registrationButton.heightAnchor.constraint(equalToConstant: 56),
 
-//            agreementLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-//            agreementLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-//            agreementLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            agreementLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            agreementLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            agreementLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
 }

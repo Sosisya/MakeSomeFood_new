@@ -2,6 +2,19 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+
+    private let contentView: UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = .red
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    }()
+
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,18 +90,31 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController {
    private func setupLayout() {
-        view.addSubview(profileImageView)
-        view.addSubview(takePhotoButton)
-        view.addSubview(nameTextFieldView)
-        view.addSubview(emailTextFieldView)
-        view.addSubview(saveButton)
-        view.addSubview(exitButton)
+       view.addSubview(scrollView)
+       scrollView.addSubview(contentView)
+       contentView.addSubview(profileImageView)
+       contentView.addSubview(takePhotoButton)
+       contentView.addSubview(nameTextFieldView)
+       contentView.addSubview(emailTextFieldView)
+       contentView.addSubview(saveButton)
+       contentView.addSubview(exitButton)
     }
 
    private func setupConstraint() {
         NSLayoutConstraint.activate([
-            profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
-            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            
+            profileImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 24),
+            profileImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             profileImageView.heightAnchor.constraint(equalToConstant: 100),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
 
@@ -98,23 +124,23 @@ extension ProfileViewController {
             takePhotoButton.widthAnchor.constraint(equalToConstant: 44),
 
             nameTextFieldView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 24),
-            nameTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            nameTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            nameTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            nameTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             nameTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
             emailTextFieldView.topAnchor.constraint(equalTo: nameTextFieldView.bottomAnchor, constant: 16),
-            emailTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            emailTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            emailTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            emailTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             emailTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
             saveButton.topAnchor.constraint(equalTo: emailTextFieldView.bottomAnchor, constant: 32),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             saveButton.heightAnchor.constraint(equalToConstant: 56),
 
-            exitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
-            exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            exitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
+            exitButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            exitButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             exitButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }

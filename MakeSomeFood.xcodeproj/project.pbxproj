@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8E16671829B5F07A0096475C /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E16671729B5F07A0096475C /* RecipeCollectionViewCell.swift */; };
 		8E16CC3E29B5AE5700707E78 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21329A482DF001D1106 /* Montserrat-Black.ttf */; };
+		8E3E5EC029B737850063553B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EBF29B737850063553B /* UIColor+Extension.swift */; };
+		8E3E5EC229B737C40063553B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC129B737C40063553B /* UIFont+Extension.swift */; };
+		8E3E5EC429B737EA0063553B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EC329B737EA0063553B /* UIView+Extension.swift */; };
 		8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */; };
 		8E40DF4429A770A3001A7E8B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4329A770A3001A7E8B /* HeaderView.swift */; };
 		8E40DF4629AA2F0A001A7E8B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */; };
@@ -52,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		8E16671729B5F07A0096475C /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
+		8E3E5EBF29B737850063553B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		8E3E5EC129B737C40063553B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		8E3E5EC329B737EA0063553B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesTableViewController.swift; sourceTree = "<group>"; };
 		8E40DF4329A770A3001A7E8B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +113,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E3E5EBE29B7376D0063553B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8E3E5EBF29B737850063553B /* UIColor+Extension.swift */,
+				8E3E5EC129B737C40063553B /* UIFont+Extension.swift */,
+				8E3E5EC329B737EA0063553B /* UIView+Extension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8E40DF4029A769D9001A7E8B /* AllRecipes */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +150,7 @@
 		8E41FA4729A47E6F0068C678 /* MakeSomeFood */ = {
 			isa = PBXGroup;
 			children = (
+				8E3E5EBE29B7376D0063553B /* Helpers */,
 				8EFF463929B22EAA00AD3CC9 /* Cooking */,
 				8E46D23929A4C331001D1106 /* Screensaver */,
 				8E46D24429A6919B001D1106 /* Home */,
@@ -415,7 +432,9 @@
 				8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */,
 				8E46D24629A691D9001D1106 /* HomeTableViewController.swift in Sources */,
 				8E46D24C29A69AB5001D1106 /* RecipeTableViewCell.swift in Sources */,
+				8E3E5EC029B737850063553B /* UIColor+Extension.swift in Sources */,
 				8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */,
+				8E3E5EC229B737C40063553B /* UIFont+Extension.swift in Sources */,
 				8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */,
 				8EFF463F29B22FCB00AD3CC9 /* CookingHeaderView.swift in Sources */,
 				8E46D24029A5D1C4001D1106 /* RegistrationViewController.swift in Sources */,
@@ -428,6 +447,7 @@
 				8E41FA4929A47E6F0068C678 /* AppDelegate.swift in Sources */,
 				8E40DF4629AA2F0A001A7E8B /* TestViewController.swift in Sources */,
 				8E46D24329A617E8001D1106 /* ProfileViewController.swift in Sources */,
+				8E3E5EC429B737EA0063553B /* UIView+Extension.swift in Sources */,
 				8E4F4A5C29B5AF9700678DE2 /* TagCollectionViewCell.swift in Sources */,
 				8E46D23829A4C328001D1106 /* ScreensaverViewController.swift in Sources */,
 				8E16671829B5F07A0096475C /* RecipeCollectionViewCell.swift in Sources */,

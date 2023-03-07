@@ -9,6 +9,7 @@ class LoginViewController: UIViewController {
 
     private let contentView: UIView = {
         let contentView = UIView()
+        contentView.backgroundColor = .red
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
@@ -102,15 +103,16 @@ extension LoginViewController {
 
     public func setupConstraint() {
         NSLayoutConstraint.activate([
-            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
 
             emailTextFieldView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 112),
             emailTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -127,6 +129,7 @@ extension LoginViewController {
 
             registrationStackView.topAnchor.constraint(equalTo: enterButton.bottomAnchor, constant: 34),
             registrationStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            registrationStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }
 

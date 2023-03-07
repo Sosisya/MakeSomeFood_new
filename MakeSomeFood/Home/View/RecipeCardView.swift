@@ -1,14 +1,23 @@
 import UIKit
 
 class RecipeCardView: UIView {
+
+    var hasLargeImage: Bool = true {
+        didSet {
+            let height: CGFloat = hasLargeImage ? 230 : 160
+            recipeImageHeight?.constant = height
+        }
+    }
+
+    private var recipeImageHeight: NSLayoutConstraint?
     
     private let shadowView: UIView = {
         let shadowView = UIView()
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         shadowView.layer.masksToBounds = false
-        shadowView.backgroundColor = UIColor(named: "white")
+        shadowView.backgroundColor = .clear
         shadowView.layer.shadowColor = UIColor(named: "black")!.cgColor
-        shadowView.layer.shadowOpacity = 0.5 // 0.06
+        shadowView.layer.shadowOpacity = 0.06
         shadowView.layer.shadowRadius = 10
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 12)
         return shadowView
@@ -16,7 +25,7 @@ class RecipeCardView: UIView {
 
     private let conteinerView: UIView = {
         let containerView = UIView()
-        containerView.backgroundColor = .red
+        containerView.backgroundColor = UIColor(named: "white")
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 12
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +117,8 @@ extension RecipeCardView {
     }
 
     private func setupConstraints() {
+        recipeImageHeight = recipeImageView.heightAnchor.constraint(equalToConstant: hasLargeImage ? 230 : 160)
+
         NSLayoutConstraint.activate([
             shadowView.topAnchor.constraint(equalTo: topAnchor),
             shadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -122,7 +133,7 @@ extension RecipeCardView {
             recipeImageView.topAnchor.constraint(equalTo: conteinerView.topAnchor),
             recipeImageView.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor),
             recipeImageView.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor),
-            recipeImageView.heightAnchor.constraint(equalToConstant: 230),
+            recipeImageHeight!,
 
             likeButton.topAnchor.constraint(equalTo: recipeImageView.topAnchor, constant: 8),
             likeButton.trailingAnchor.constraint(equalTo: recipeImageView.trailingAnchor, constant: -8),
