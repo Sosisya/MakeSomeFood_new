@@ -9,7 +9,6 @@ enum Section: Int, CaseIterable {
 }
 
 class CookingViewController: UIViewController {
-
     private let cookingHeaderView: CookingHeaderView =  {
         let view = CookingHeaderView()
         view.translates()

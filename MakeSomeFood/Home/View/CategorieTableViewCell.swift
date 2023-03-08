@@ -1,9 +1,11 @@
 import UIKit
 
 class CategorieTableViewCell: UITableViewCell {
-
+    
     struct Spec {
         static let shadowViewAlpha = 0.36
+        static let categorieImageView = UIImage(named: "recipe")
+        static let categoryLabelText = "Category"
     }
 
     private let categorieImageView: UIImageView = {
@@ -11,7 +13,7 @@ class CategorieTableViewCell: UITableViewCell {
         imageView.translates()
         imageView.masked(true)
         imageView.rounded()
-        imageView.image = UIImage(named: "recipe")
+        imageView.image = Spec.categorieImageView
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -28,7 +30,7 @@ class CategorieTableViewCell: UITableViewCell {
     private let categorieLabel: UILabel = {
         let label = UILabel()
         label.translates()
-        label.text = "Category"
+        label.text = Spec.categoryLabelText
         label.font = .montserratSemibBold24()
         label.textColor = .specialWhite
         return label

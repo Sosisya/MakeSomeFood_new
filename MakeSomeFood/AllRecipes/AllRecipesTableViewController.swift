@@ -4,7 +4,7 @@ class AllRecipesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
+        configure()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -18,7 +18,12 @@ class AllRecipesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as! RecipeTableViewCell
         cell.setHasLargeImage(false)
+        cell.selectionStyle = .none
         return cell
+    }
+
+    private func configure() {
+        configureTableView()
     }
 }
 

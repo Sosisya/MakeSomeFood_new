@@ -2,6 +2,11 @@ import UIKit
 
 class GreetingTableViewCell: UITableViewCell {
     
+    struct Spec {
+        static let greetingLabel = "Hello, guest!"
+        static let profileImage = UIImage(named: "profile")
+    }
+    
     private let containerView: UIView = {
          let view = UIView()
          view.translates()
@@ -11,7 +16,7 @@ class GreetingTableViewCell: UITableViewCell {
      private let greetingLabel: UILabel = {
          let label = UILabel()
          label.translates()
-         label.text = "Hello, guest!"
+         label.text = Spec.greetingLabel
          label.textColor = .specialBlack
          label.font = .montserratSemibBold24()
          return label
@@ -20,7 +25,7 @@ class GreetingTableViewCell: UITableViewCell {
      private let profileImage: UIImageView = {
          let imageView = UIImageView()
          imageView.translates()
-         imageView.image = UIImage(named: "profile")
+         imageView.image = Spec.profileImage
          imageView.contentMode = .scaleAspectFill
          imageView.masked(true)
          imageView.rounded()

@@ -1,7 +1,7 @@
 import UIKit
 
 class HeaderView: UITableViewHeaderFooterView {
-
+    
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.translates()
@@ -19,7 +19,6 @@ class HeaderView: UITableViewHeaderFooterView {
     }()
 
     private var buttonAction: () -> Void = {}
-
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

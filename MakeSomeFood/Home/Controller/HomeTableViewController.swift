@@ -4,7 +4,7 @@ class HomeTableViewController: UITableViewController {
 
     enum Section: Int, CaseIterable {
         case greeting
-        case specilRecipe
+        case specialRecipe
         case categories
     }
 
@@ -15,7 +15,7 @@ class HomeTableViewController: UITableViewController {
     }
 
     private func configureNavigationBar() {
-        title = "Home"
+        title = ""
     }
 
     private func configureTableView() {
@@ -24,8 +24,6 @@ class HomeTableViewController: UITableViewController {
         tableView.register(CategorieTableViewCell.self, forCellReuseIdentifier: "CategorieTableViewCell")
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
-
     }
 }
 
@@ -38,7 +36,7 @@ extension HomeTableViewController {
         switch Section(rawValue: section) {
         case .greeting:
             return 1
-        case .specilRecipe:
+        case .specialRecipe:
             return 1
         case .categories:
             return 10
@@ -51,12 +49,15 @@ extension HomeTableViewController {
         switch Section(rawValue: indexPath.section) {
         case .greeting:
             let cell = tableView.dequeueReusableCell(withIdentifier: "GreetingTableViewCell", for: indexPath) as! GreetingTableViewCell
+            cell.selectionStyle = .none
             return cell
-        case .specilRecipe:
+        case .specialRecipe:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as! RecipeTableViewCell
+            cell.selectionStyle = .none
             return cell
         case .categories:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategorieTableViewCell", for: indexPath) as! CategorieTableViewCell
+            cell.selectionStyle = .none
             return cell
         default:
             fatalError()
@@ -75,7 +76,7 @@ extension HomeTableViewController {
         switch Section(rawValue: section) {
         case .greeting:
             return nil
-        case.specilRecipe:
+        case.specialRecipe:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
             header.configure(title: "Special", actionTitle: "All recipes") {
                 let recipeVC = AllRecipesTableViewController()
@@ -95,7 +96,7 @@ extension HomeTableViewController {
         switch Section(rawValue: section) {
         case .greeting:
             return 0
-        case .specilRecipe:
+        case .specialRecipe:
             return UITableView.automaticDimension
         case .categories:
             return UITableView.automaticDimension
@@ -108,10 +109,22 @@ extension HomeTableViewController {
         switch Section(rawValue: section) {
         case .greeting:
             return 0
-        case .specilRecipe:
+        case .specialRecipe:
             return UITableView.automaticDimension
         case .categories:
             return UITableView.automaticDimension
+        default:
+            fatalError()
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch Section(rawValue: indexPath.section) {
+        case .specialRecipe:
+            let recipeVC = CookingViewController()
+            self.present(recipeVC, animated: true)
+        case .categories:
+            print("category")
         default:
             fatalError()
         }

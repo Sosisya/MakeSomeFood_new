@@ -18,6 +18,7 @@
 		8E3E5ECC29B7A5D90063553B /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */; };
 		8E3E5ECE29B7A77A0063553B /* CookingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5ECD29B7A77A0063553B /* CookingFooterView.swift */; };
 		8E3E5ED029B7A9160063553B /* CookingFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5ECF29B7A9160063553B /* CookingFooterTableViewCell.swift */; };
+		8E3E5ED329B8E0420063553B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5ED229B8E0420063553B /* ApiManager.swift */; };
 		8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */; };
 		8E40DF4429A770A3001A7E8B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4329A770A3001A7E8B /* HeaderView.swift */; };
 		8E40DF4629AA2F0A001A7E8B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */; };
@@ -70,6 +71,7 @@
 		8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		8E3E5ECD29B7A77A0063553B /* CookingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingFooterView.swift; sourceTree = "<group>"; };
 		8E3E5ECF29B7A9160063553B /* CookingFooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingFooterTableViewCell.swift; sourceTree = "<group>"; };
+		8E3E5ED229B8E0420063553B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		8E40DF4129A76A7C001A7E8B /* AllRecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesTableViewController.swift; sourceTree = "<group>"; };
 		8E40DF4329A770A3001A7E8B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8E40DF4529AA2F0A001A7E8B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8E3E5ED129B8E0180063553B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8E3E5ED229B8E0420063553B /* ApiManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		8E40DF4029A769D9001A7E8B /* AllRecipes */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +173,7 @@
 		8E41FA4729A47E6F0068C678 /* MakeSomeFood */ = {
 			isa = PBXGroup;
 			children = (
+				8E3E5ED129B8E0180063553B /* Network */,
 				8E3E5EBE29B7376D0063553B /* Helpers */,
 				8EFF463929B22EAA00AD3CC9 /* Cooking */,
 				8E46D23929A4C331001D1106 /* Screensaver */,
@@ -476,6 +487,7 @@
 				8E16671829B5F07A0096475C /* RecipeCollectionViewCell.swift in Sources */,
 				8E41FA4B29A47E6F0068C678 /* SceneDelegate.swift in Sources */,
 				8E3E5ECC29B7A5D90063553B /* InstructionsTableViewCell.swift in Sources */,
+				8E3E5ED329B8E0420063553B /* ApiManager.swift in Sources */,
 				8E40DF4429A770A3001A7E8B /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,6 +4,7 @@ class TagCollectionViewCell: UICollectionViewCell {
 
     private var containerView: UIView = {
         let view = UIView()
+        view.translates()
         view.backgroundColor = .cyan
         view.layer.cornerRadius = 12
         return view
@@ -11,6 +12,7 @@ class TagCollectionViewCell: UICollectionViewCell {
 
     private let tagLabel: UILabel = {
         let label = UILabel()
+        label.translates()
         label.text = "Tag"
         label.textColor = .black
         return label
@@ -18,10 +20,12 @@ class TagCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        commonInit()
     }
 
     private func commonInit() {

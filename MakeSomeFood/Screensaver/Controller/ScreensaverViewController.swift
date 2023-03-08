@@ -5,12 +5,13 @@ class ScreensaverViewController: UIViewController {
     struct Spec {
         static let upperNameLabelText = "make some"
         static let lowerNameLabelText = "food"
+        static let screensaverImageView = UIImage(named: "screensaver")
     }
 
     private let screensaverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translates()
-        imageView.image = UIImage(named: "screensaver")
+        imageView.image = Spec.screensaverImageView
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

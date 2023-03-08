@@ -16,6 +16,7 @@ class RecipeCardView: UIView {
         static let stackViewSpacing: CGFloat = 8
         static let categoryTagLabelText = "Category"
         static let areaTagLabelText = "Area"
+        static let nameOfRecipeAndTagsStackViewSpasing: CGFloat = 8
     }
 
     var hasLargeImage: Bool = true {
@@ -63,7 +64,7 @@ class RecipeCardView: UIView {
         button.setImage(Spec.likeButtonImage, for: .normal)
         button.tintColor = .specialWhite
         button.backgroundColor = .specialOrange
-        button.rounded(radius: 21) // как установить исхjдя из собственной высоты??
+        button.rounded(radius: 21) // как установить исходя из собственной высоты??
         return button
     }()
 
@@ -71,7 +72,7 @@ class RecipeCardView: UIView {
         let stackView = UIStackView()
         stackView.translates()
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = Spec.nameOfRecipeAndTagsStackViewSpasing
         stackView.distribution = .fill
         stackView.alignment = .fill
         return stackView
