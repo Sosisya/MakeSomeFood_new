@@ -5,6 +5,9 @@ class NameOfRecipeTableViewCell: UITableViewCell {
         static let nameOfRecipeLabelText = "Name of recipe"
         static let categoryTagLabelText = "Category"
         static let areaTagLabelText = "Area"
+        static let numberOfNameOfRecipeLabelLines = 0
+        static let numberOfCategoryTagLabelLines = 0
+        static let numberOfAreaTagLabelLines = 0
     }
 
     private let nameOfRecipeLabel: UILabel = {
@@ -13,6 +16,7 @@ class NameOfRecipeTableViewCell: UITableViewCell {
         label.textColor = .specialBlack
         label.text = Spec.nameOfRecipeLabelText
         label.font = .montserratSemibBold24()
+        label.numberOfLines = Spec.numberOfNameOfRecipeLabelLines
         return label
     }()
 
@@ -27,7 +31,7 @@ class NameOfRecipeTableViewCell: UITableViewCell {
         label.bordered()
         label.colored(color: label.textColor)
         label.masked(true)
-        label.numberOfLines = 0
+        label.numberOfLines = Spec.numberOfCategoryTagLabelLines
         label.textAlignment = .center
         return label
     }()
@@ -43,7 +47,7 @@ class NameOfRecipeTableViewCell: UITableViewCell {
         label.bordered()
         label.colored(color: label.textColor)
         label.masked(true)
-        label.numberOfLines = 0
+        label.numberOfLines = Spec.numberOfAreaTagLabelLines
         label.textAlignment = .center
         return label
     }()

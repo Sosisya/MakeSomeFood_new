@@ -37,6 +37,7 @@ class CookingViewController: UIViewController {
         cookingTableView.register(CookingFooterTableViewCell.self, forCellReuseIdentifier: "CookingFooterTableViewCell")
         cookingTableView.register(IngredientsTableViewCell.self, forCellReuseIdentifier: "IngredientsTableViewCell")
         cookingTableView.register(InstructionsTableViewCell.self, forCellReuseIdentifier: "InstructionsTableViewCell")
+        cookingTableView.allowsSelection = false
     }
 }
 
@@ -64,8 +65,22 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch Section(rawValue: section) {
+        case .nameOfrecipe:
+            return 1
+        case .ingredientFooter:
+            return 1
+        case .ingredients:
+            return 5
+        case .instructionsFooter:
+            return 1
+        case .instructions:
+            return 1
+        default:
+            fatalError()
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

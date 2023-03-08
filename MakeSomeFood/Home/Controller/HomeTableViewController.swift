@@ -24,6 +24,8 @@ class HomeTableViewController: UITableViewController {
         tableView.register(CategorieTableViewCell.self, forCellReuseIdentifier: "CategorieTableViewCell")
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+
     }
 }
 
@@ -76,7 +78,7 @@ extension HomeTableViewController {
         case.specilRecipe:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
             header.configure(title: "Special", actionTitle: "All recipes") {
-                let recipeVC = CookingViewController()
+                let recipeVC = AllRecipesTableViewController()
                 self.present(recipeVC, animated: true)
             }
             return header

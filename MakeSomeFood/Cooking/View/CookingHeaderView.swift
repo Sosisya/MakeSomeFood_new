@@ -1,7 +1,6 @@
 import UIKit
 
 class CookingHeaderView: UIView {
-
     struct Spec {
         static let alphaOfShadowView = 0.3
         static let likeButtonImage = UIImage(systemName: "heart")

@@ -67,7 +67,17 @@ class RecipeCardView: UIView {
         return button
     }()
 
-    private let nameOfRecipeLabel: UILabel = {
+    let nameOfRecipeAndTagsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translates()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        return stackView
+    }()
+
+    let nameOfRecipeLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.text = Spec.nameOfRecipeLabelText
@@ -76,7 +86,7 @@ class RecipeCardView: UIView {
         return label
     }()
 
-    private let tagsStackView: UIStackView = {
+    let tagsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translates()
         stackView.spacing = Spec.stackViewSpacing
@@ -86,7 +96,7 @@ class RecipeCardView: UIView {
         return stackView
     }()
 
-    private let categoryTagLabel: LabelWithInsets = {
+    let categoryTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
         label.translates()
         label.text = Spec.categoryTagLabelText
@@ -98,7 +108,7 @@ class RecipeCardView: UIView {
         return label
     }()
 
-    private let areaTagLabel: LabelWithInsets = {
+    let areaTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
         label.translates()
         label.rounded()
@@ -134,10 +144,11 @@ extension RecipeCardView {
         shadowView.addSubview(conteinerView)
         conteinerView.addSubview(recipeImageView)
         conteinerView.addSubview(likeButton)
-        conteinerView.addSubview(nameOfRecipeLabel)
+        nameOfRecipeAndTagsStackView.addArrangedSubview(nameOfRecipeLabel)
         tagsStackView.addArrangedSubview(categoryTagLabel)
         tagsStackView.addArrangedSubview(areaTagLabel)
-        conteinerView.addSubview(tagsStackView)
+        nameOfRecipeAndTagsStackView.addArrangedSubview(tagsStackView)
+        conteinerView.addSubview(nameOfRecipeAndTagsStackView)
     }
 
     private func setupConstraints() {
@@ -164,14 +175,10 @@ extension RecipeCardView {
             likeButton.heightAnchor.constraint(equalToConstant: 44),
             likeButton.widthAnchor.constraint(equalToConstant: 44),
 
-            nameOfRecipeLabel.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: 8),
-            nameOfRecipeLabel.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor,constant: 16),
-            nameOfRecipeLabel.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor, constant: -16),
-
-            tagsStackView.topAnchor.constraint(equalTo: nameOfRecipeLabel.bottomAnchor, constant: 6),
-            tagsStackView.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor, constant: 16),
-            tagsStackView.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor, constant: -16),
-            tagsStackView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: -12)
+            nameOfRecipeAndTagsStackView.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: 6),
+            nameOfRecipeAndTagsStackView.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor, constant: 16),
+            nameOfRecipeAndTagsStackView.trailingAnchor.constraint(lessThanOrEqualTo: conteinerView.trailingAnchor, constant: -16),
+            nameOfRecipeAndTagsStackView.bottomAnchor.constraint(equalTo: conteinerView.bottomAnchor, constant: -12)
         ])
     }
 }

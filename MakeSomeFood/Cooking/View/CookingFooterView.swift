@@ -1,7 +1,6 @@
 import UIKit
 
 class CookingFooterView: UIView {
-
     let headerLabel: UILabel = {
         let label = UILabel()
         label.translates()

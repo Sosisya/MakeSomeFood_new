@@ -22,6 +22,7 @@ class FavouritesTableViewController: UITableViewController {
 extension FavouritesTableViewController {
     private func configureTableView() {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
+        tableView.allowsSelection = false
     }
     private func configureNavigationBar() {
         title = "Favourites"

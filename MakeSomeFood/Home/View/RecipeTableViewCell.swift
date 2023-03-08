@@ -25,6 +25,9 @@ class RecipeTableViewCell: UITableViewCell {
 
     func setHasLargeImage(_ hasLargeImage: Bool) {
         recipeView.hasLargeImage = hasLargeImage
+        if hasLargeImage == false {
+            recipeView.tagsStackView.isHidden = true
+        }
     }
 }
 
