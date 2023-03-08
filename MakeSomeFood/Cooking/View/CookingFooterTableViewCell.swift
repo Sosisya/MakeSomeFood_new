@@ -1,6 +1,6 @@
 import UIKit
 
-class CookingHeaderTableViewCell: UITableViewCell {
+class CookingFooterTableViewCell: UITableViewCell {
     private let headerView: CookingFooterView = {
         let view = CookingFooterView()
         view.translates()
@@ -22,7 +22,7 @@ class CookingHeaderTableViewCell: UITableViewCell {
     }
 }
 
-extension CookingHeaderTableViewCell {
+extension CookingFooterTableViewCell {
     private func setupLayout() {
         contentView.addSubview(headerView)
     }

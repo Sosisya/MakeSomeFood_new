@@ -14,7 +14,7 @@ class RecipeCardView: UIView {
     private let shadowView: UIView = {
         let shadowView = UIView()
         shadowView.translates()
-        shadowView.layer.masksToBounds = false
+        shadowView.masked(false)
         shadowView.backgroundColor = .clear
         shadowView.layer.shadowColor = UIColor(named: "black")!.cgColor
         shadowView.layer.shadowOpacity = 0.06
@@ -26,8 +26,8 @@ class RecipeCardView: UIView {
     private let conteinerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor = UIColor(named: "white")
-        containerView.layer.masksToBounds = true
-        containerView.layer.cornerRadius = 12
+        containerView.masked(true)
+        containerView.rounded()
         containerView.translates()
         return containerView
     }()
@@ -36,7 +36,7 @@ class RecipeCardView: UIView {
         let imageView = UIImageView()
         imageView.translates()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
+        imageView.masked(true)
         imageView.image = UIImage(named: "recipe")
         return imageView
     }()
@@ -47,7 +47,7 @@ class RecipeCardView: UIView {
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = UIColor(named: "white")
         button.backgroundColor = UIColor(named: "orange")
-        button.layer.cornerRadius = 21
+        button.rounded(radius: 21)
         return button
     }()
 
@@ -74,25 +74,25 @@ class RecipeCardView: UIView {
         let label = LabelWithInsets()
         label.translates()
         label.text = "category"
-        label.font = UIFont(name: "Montserrat-Medium", size: 13)
-        label.textColor = UIColor(named: "green")
+        label.font = .montserratMedium13()
+        label.textColor = .specialGreen
         label.rounded()
-        label.layer.borderWidth = 1
-        label.layer.borderColor = label.textColor.cgColor
+        label.bordered()
+        label.colored(color: label.textColor)
         return label
     }()
 
     private let areaTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
         label.translates()
-        label.layer.cornerRadius = 12
-        label.text = "area"
-        label.font = UIFont(name: "Montserrat-Medium", size: 13)
-        label.textColor = UIColor(named: "orange")
         label.rounded()
-        label.layer.borderWidth = 1
-        label.layer.borderColor = label.textColor.cgColor
-        label.layer.masksToBounds = true
+        label.text = "area"
+        label.font = .montserratMedium13()
+        label.textColor = .specialOrange
+        label.rounded()
+        label.bordered()
+        label.colored(color: label.textColor)
+        label.masked(true)
         return label
     }()
 

@@ -15,11 +15,11 @@ class NameOfRecipeTableViewCell: UITableViewCell {
         let label = LabelWithInsets()
         label.translates()
         label.text = "category"
-        label.font = UIFont(name: "Montserrat-Medium", size: 13)
-        label.textColor = UIColor(named: "green")
+        label.font = .montserratMedium13()
+        label.textColor = .specialGreen
         label.rounded()
-        label.layer.borderWidth = 1
-        label.layer.borderColor = label.textColor.cgColor
+        label.bordered()
+        label.colored(color: label.textColor)
         return label
     }()
 

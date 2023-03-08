@@ -2,11 +2,15 @@ import UIKit
 
 class CategorieTableViewCell: UITableViewCell {
 
+    struct Spec {
+        static let shadowViewAlpha = 0.36
+    }
+
     private let categorieImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translates()
-        imageView.layer.masksToBounds =  true
-        imageView.layer.cornerRadius = 12
+        imageView.masked(true)
+        imageView.rounded()
         imageView.image = UIImage(named: "recipe")
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -15,9 +19,9 @@ class CategorieTableViewCell: UITableViewCell {
     private let shadowView: UIView = {
         let view = UIView()
         view.translates()
-        view.layer.cornerRadius = 12
-        view.backgroundColor = UIColor(named: "black")
-        view.alpha = 0.36
+        view.rounded()
+        view.backgroundColor = .specialBlack
+        view.alpha = Spec.shadowViewAlpha
         return view
     }()
 
@@ -25,8 +29,8 @@ class CategorieTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translates()
         label.text = "Category"
-        label.font = UIFont(name: "Montserrat-SemiBold", size: 24)
-        label.textColor = UIColor(named: "white")
+        label.font = .montserratSemibBold24()
+        label.textColor = .specialWhite
         return label
 
     }()

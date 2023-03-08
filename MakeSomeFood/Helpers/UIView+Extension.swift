@@ -9,4 +9,16 @@ extension UIView {
     func translates() {
         self.translatesAutoresizingMaskIntoConstraints = false
     }
+
+    func bordered() {
+        self.layer.borderWidth = 1
+    }
+
+    func colored(color: UIColor = .specialBlack) {
+        self.layer.borderColor = color.cgColor
+    }
+
+    func masked(_ bool: Bool) {
+        self.layer.masksToBounds = bool
+    }
 }

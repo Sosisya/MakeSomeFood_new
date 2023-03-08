@@ -26,7 +26,7 @@ class CookingViewController: UIViewController {
         cookingTableView.delegate = self
         cookingTableView.separatorStyle = .none
         cookingTableView.register(NameOfRecipeTableViewCell.self, forCellReuseIdentifier: "NameOfRecipeTableViewCell")
-        cookingTableView.register(CookingHeaderTableViewCell.self, forCellReuseIdentifier: "CookingHeaderTableViewCell")
+        cookingTableView.register(CookingFooterTableViewCell.self, forCellReuseIdentifier: "CookingHeaderTableViewCell")
         cookingTableView.register(IngredientsTableViewCell.self, forCellReuseIdentifier: "IngredientsTableViewCell")
         cookingTableView.register(InstructionsTableViewCell.self, forCellReuseIdentifier: "InstructionsTableViewCell")
 

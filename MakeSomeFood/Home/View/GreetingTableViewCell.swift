@@ -12,8 +12,8 @@ class GreetingTableViewCell: UITableViewCell {
          let label = UILabel()
          label.translates()
          label.text = "Hello, guest!"
-         label.textColor = UIColor(named: "black")
-         label.font = UIFont(name: "Montserrat-SemiBold", size: 24)
+         label.textColor = .specialBlack
+         label.font = .montserratSemibBold24()
          return label
      }()
 
@@ -22,8 +22,8 @@ class GreetingTableViewCell: UITableViewCell {
          imageView.translates()
          imageView.image = UIImage(named: "profile")
          imageView.contentMode = .scaleAspectFill
-         imageView.layer.masksToBounds = true
-         imageView.layer.cornerRadius = 12
+         imageView.masked(true)
+         imageView.rounded()
          return imageView
      }()
 
