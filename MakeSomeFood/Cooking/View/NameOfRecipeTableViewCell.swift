@@ -1,12 +1,17 @@
 import UIKit
 
 class NameOfRecipeTableViewCell: UITableViewCell {
+    struct Spec {
+        static let nameOfRecipeLabelText = "Name of recipe"
+        static let categoryTagLabelText = "Category"
+        static let areaTagLabelText = "Area"
+    }
 
     private let nameOfRecipeLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.textColor = .specialBlack
-        label.text = "Name of recipe"
+        label.text = Spec.nameOfRecipeLabelText
         label.font = .montserratSemibBold24()
         return label
     }()
@@ -14,31 +19,38 @@ class NameOfRecipeTableViewCell: UITableViewCell {
     private let categoryTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
         label.translates()
-        label.text = "category"
+        label.rounded()
+        label.text = Spec.categoryTagLabelText
         label.font = .montserratMedium13()
         label.textColor = .specialGreen
         label.rounded()
         label.bordered()
         label.colored(color: label.textColor)
+        label.masked(true)
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
 
     private let areaTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
         label.translates()
-        label.layer.cornerRadius = 12
-        label.text = "area"
-        label.font = UIFont(name: "Montserrat-Medium", size: 13)
-        label.textColor = UIColor(named: "orange")
         label.rounded()
-        label.layer.borderWidth = 1
-        label.layer.borderColor = label.textColor.cgColor
-        label.layer.masksToBounds = true
+        label.text = Spec.areaTagLabelText
+        label.font = .montserratMedium13()
+        label.textColor = .specialOrange
+        label.rounded()
+        label.bordered()
+        label.colored(color: label.textColor)
+        label.masked(true)
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
     }
 
     required init?(coder: NSCoder) {
@@ -64,15 +76,13 @@ extension NameOfRecipeTableViewCell {
             nameOfRecipeLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             nameOfRecipeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             nameOfRecipeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            nameOfRecipeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
             categoryTagLabel.topAnchor.constraint(equalTo: nameOfRecipeLabel.bottomAnchor, constant: 8),
             categoryTagLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            categoryTagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             categoryTagLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
             areaTagLabel.centerYAnchor.constraint(equalTo: categoryTagLabel.centerYAnchor),
-            areaTagLabel.leadingAnchor.constraint(greaterThanOrEqualTo: categoryTagLabel.leadingAnchor, constant: 6),
+            areaTagLabel.leadingAnchor.constraint(equalTo: categoryTagLabel.trailingAnchor, constant: 6),
             areaTagLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16)
         ])
     }

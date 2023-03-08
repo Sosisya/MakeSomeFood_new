@@ -349,12 +349,12 @@
 		8EFF463D29B22FA600AD3CC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */,
-				8E3E5ECD29B7A77A0063553B /* CookingFooterView.swift */,
-				8E3E5ECF29B7A9160063553B /* CookingFooterTableViewCell.swift */,
 				8E3E5EC529B7998C0063553B /* NameOfRecipeTableViewCell.swift */,
+				8E3E5ECF29B7A9160063553B /* CookingFooterTableViewCell.swift */,
 				8E3E5EC929B7A58D0063553B /* IngredientsTableViewCell.swift */,
 				8E3E5ECB29B7A5D90063553B /* InstructionsTableViewCell.swift */,
+				8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */,
+				8E3E5ECD29B7A77A0063553B /* CookingFooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

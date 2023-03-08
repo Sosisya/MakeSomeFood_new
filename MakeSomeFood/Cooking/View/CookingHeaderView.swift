@@ -5,14 +5,15 @@ class CookingHeaderView: UIView {
     struct Spec {
         static let alphaOfShadowView = 0.3
         static let likeButtonImage = UIImage(systemName: "heart")
+        static let recipeImageView = UIImage(named: "recipe")
     }
 
     private let recipeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translates()
-        imageView.image = UIImage(named: "recipe")
+        imageView.image = Spec.recipeImageView
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
+        imageView.masked(true)
         return imageView
     }()
 

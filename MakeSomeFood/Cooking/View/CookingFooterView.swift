@@ -2,7 +2,7 @@ import UIKit
 
 class CookingFooterView: UIView {
 
-    private let headerLabel: UILabel = {
+    let headerLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.font = .montserratMedium22()
@@ -12,10 +12,12 @@ class CookingFooterView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        commonInit()
     }
 
     private func commonInit() {

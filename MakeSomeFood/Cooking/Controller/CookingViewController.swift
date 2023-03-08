@@ -1,5 +1,13 @@
 import UIKit
 
+enum Section: Int, CaseIterable {
+    case nameOfrecipe
+    case ingredientFooter
+    case ingredients
+    case instructionsFooter
+    case instructions
+}
+
 class CookingViewController: UIViewController {
 
     private let cookingHeaderView: CookingHeaderView =  {
@@ -26,10 +34,9 @@ class CookingViewController: UIViewController {
         cookingTableView.delegate = self
         cookingTableView.separatorStyle = .none
         cookingTableView.register(NameOfRecipeTableViewCell.self, forCellReuseIdentifier: "NameOfRecipeTableViewCell")
-        cookingTableView.register(CookingFooterTableViewCell.self, forCellReuseIdentifier: "CookingHeaderTableViewCell")
+        cookingTableView.register(CookingFooterTableViewCell.self, forCellReuseIdentifier: "CookingFooterTableViewCell")
         cookingTableView.register(IngredientsTableViewCell.self, forCellReuseIdentifier: "IngredientsTableViewCell")
         cookingTableView.register(InstructionsTableViewCell.self, forCellReuseIdentifier: "InstructionsTableViewCell")
-
     }
 }
 
@@ -50,17 +57,46 @@ extension CookingViewController {
             cookingTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cookingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-
     }
 }
 
 extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Section.allCases.count
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategorieTableViewCell", for: indexPath) as! CategorieTableViewCell
-        return cell
+        switch Section(rawValue: indexPath.section) {
+        case .nameOfrecipe:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NameOfRecipeTableViewCell", for: indexPath) as! NameOfRecipeTableViewCell
+            return cell
+        case .ingredientFooter:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CookingFooterTableViewCell", for: indexPath) as! CookingFooterTableViewCell
+            cell.headerView.headerLabel.text = "Ingredients"
+            return cell
+        case .ingredients:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientsTableViewCell", for: indexPath) as! IngredientsTableViewCell
+            return cell
+        case .instructionsFooter:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CookingFooterTableViewCell", for: indexPath) as! CookingFooterTableViewCell
+            cell.headerView.headerLabel.text = "Instructions"
+            return cell
+        case .instructions:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionsTableViewCell", for: indexPath) as! InstructionsTableViewCell
+            return cell
+        default:
+            fatalError()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
 }

@@ -1,10 +1,26 @@
 import UIKit
+//Есть вопросы
+//likeButton радиус?
 
 class RecipeCardView: UIView {
 
+    struct Spec {
+        static let recipeImageHeightMax: CGFloat = 230
+        static let recipeImageHeightMin: CGFloat = 160
+        static let shadowViewOpacity: Float = 0.06
+        static let shadowViewRadius: CGFloat = 10
+        static let shadowViewOffset: CGSize = CGSize(width: 0, height: 12)
+        static let likeButtonImage = UIImage(systemName: "heart")
+        static let nameOfRecipeLabelText = "Name of recipe"
+        static let recipeImageView = UIImage(named: "recipe")
+        static let stackViewSpacing: CGFloat = 8
+        static let categoryTagLabelText = "Category"
+        static let areaTagLabelText = "Area"
+    }
+
     var hasLargeImage: Bool = true {
         didSet {
-            let height: CGFloat = hasLargeImage ? 230 : 160
+            let height: CGFloat = hasLargeImage ? Spec.recipeImageHeightMax : Spec.recipeImageHeightMin
             recipeImageHeight?.constant = height
         }
     }
@@ -16,16 +32,16 @@ class RecipeCardView: UIView {
         shadowView.translates()
         shadowView.masked(false)
         shadowView.backgroundColor = .clear
-        shadowView.layer.shadowColor = UIColor(named: "black")!.cgColor
-        shadowView.layer.shadowOpacity = 0.06
-        shadowView.layer.shadowRadius = 10
-        shadowView.layer.shadowOffset = CGSize(width: 0, height: 12)
+        shadowView.layer.shadowColor = UIColor.specialBlack.cgColor
+        shadowView.layer.shadowOpacity = Spec.shadowViewOpacity
+        shadowView.layer.shadowRadius = Spec.shadowViewRadius
+        shadowView.layer.shadowOffset = Spec.shadowViewOffset
         return shadowView
     }()
 
     private let conteinerView: UIView = {
         let containerView = UIView()
-        containerView.backgroundColor = UIColor(named: "white")
+        containerView.backgroundColor = .specialWhite
         containerView.masked(true)
         containerView.rounded()
         containerView.translates()
@@ -37,33 +53,33 @@ class RecipeCardView: UIView {
         imageView.translates()
         imageView.contentMode = .scaleAspectFill
         imageView.masked(true)
-        imageView.image = UIImage(named: "recipe")
+        imageView.image = Spec.recipeImageView
         return imageView
     }()
 
     private let likeButton: UIButton = {
         let button = UIButton()
         button.translates()
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.tintColor = UIColor(named: "white")
-        button.backgroundColor = UIColor(named: "orange")
-        button.rounded(radius: 21)
+        button.setImage(Spec.likeButtonImage, for: .normal)
+        button.tintColor = .specialWhite
+        button.backgroundColor = .specialOrange
+        button.rounded(radius: 21) // как установить исхjдя из собственной высоты??
         return button
     }()
 
     private let nameOfRecipeLabel: UILabel = {
         let label = UILabel()
         label.translates()
-        label.text = "Name of recipe"
-        label.font = UIFont(name: "Montserrat-Medium", size: 16)
-        label.tintColor = UIColor(named: "black")
+        label.text = Spec.nameOfRecipeLabelText
+        label.font = .montserratMedium16()
+        label.tintColor = .specialBlack
         return label
     }()
 
     private let tagsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translates()
-        stackView.spacing = 8
+        stackView.spacing = Spec.stackViewSpacing
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .fill
@@ -73,7 +89,7 @@ class RecipeCardView: UIView {
     private let categoryTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
         label.translates()
-        label.text = "category"
+        label.text = Spec.categoryTagLabelText
         label.font = .montserratMedium13()
         label.textColor = .specialGreen
         label.rounded()
@@ -86,7 +102,7 @@ class RecipeCardView: UIView {
         let label = LabelWithInsets()
         label.translates()
         label.rounded()
-        label.text = "area"
+        label.text = Spec.areaTagLabelText
         label.font = .montserratMedium13()
         label.textColor = .specialOrange
         label.rounded()
@@ -125,7 +141,7 @@ extension RecipeCardView {
     }
 
     private func setupConstraints() {
-        recipeImageHeight = recipeImageView.heightAnchor.constraint(equalToConstant: hasLargeImage ? 230 : 160)
+        recipeImageHeight = recipeImageView.heightAnchor.constraint(equalToConstant: hasLargeImage ? Spec.recipeImageHeightMax : Spec.recipeImageHeightMin)
 
         NSLayoutConstraint.activate([
             shadowView.topAnchor.constraint(equalTo: topAnchor),

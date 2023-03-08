@@ -1,7 +1,7 @@
 import UIKit
 
 class CookingFooterTableViewCell: UITableViewCell {
-    private let headerView: CookingFooterView = {
+    let headerView: CookingFooterView = {
         let view = CookingFooterView()
         view.translates()
         return view
@@ -9,6 +9,7 @@ class CookingFooterTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
     }
 
     required init?(coder: NSCoder) {
