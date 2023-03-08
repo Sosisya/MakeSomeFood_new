@@ -2,9 +2,14 @@ import UIKit
 
 class ScreensaverViewController: UIViewController {
 
+    struct Spec {
+        static let upperNameLabelText = "make some"
+        static let lowerNameLabelText = "food"
+    }
+
     private let screensaverImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translates()
         imageView.image = UIImage(named: "screensaver")
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -12,21 +17,21 @@ class ScreensaverViewController: UIViewController {
 
     private let upperNameLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.tintColor = UIColor(named: "black")
+        label.translates()
+        label.tintColor = .specialBlack
         label.textAlignment = .center
-        label.font = UIFont(name: "Montserrat-Bold", size: 44)
-        label.text = "make some"
+        label.font = .montserratBold44()
+        label.text = Spec.upperNameLabelText
         return label
     }()
 
     private let lowerNameLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "orange")
+        label.translates()
+        label.textColor = .specialOrange
         label.textAlignment = .center
-        label.font = UIFont(name: "Montserrat-Bold", size: 53)
-        label.text = "food"
+        label.font = .montserratBold53()
+        label.text = Spec.lowerNameLabelText
         return label
     }()
 
