@@ -2,7 +2,7 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
     
-    private var recipeView: RecipeCardView = {
+    var recipeView: RecipeCardView = {
         let recipeView = RecipeCardView()
         recipeView.translates()
         return recipeView

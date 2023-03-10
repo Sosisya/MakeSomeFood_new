@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8E0C8FCA29BB310E003104FB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8E0C8FC929BB310E003104FB /* Kingfisher */; };
+		8E0C8FCC29BB3F2F003104FB /* ReсipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0C8FCB29BB3F2F003104FB /* ReсipeList.swift */; };
+		8E0C8FCE29BB3FD0003104FB /* RecipeOfCategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0C8FCD29BB3FD0003104FB /* RecipeOfCategoryList.swift */; };
 		8E16671829B5F07A0096475C /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E16671729B5F07A0096475C /* RecipeCollectionViewCell.swift */; };
 		8E16CC3E29B5AE5700707E78 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E46D21329A482DF001D1106 /* Montserrat-Black.ttf */; };
 		8E3E5EC029B737850063553B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3E5EBF29B737850063553B /* UIColor+Extension.swift */; };
@@ -63,6 +65,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E0C8FCB29BB3F2F003104FB /* ReсipeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReсipeList.swift"; sourceTree = "<group>"; };
+		8E0C8FCD29BB3FD0003104FB /* RecipeOfCategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeOfCategoryList.swift; sourceTree = "<group>"; };
 		8E16671729B5F07A0096475C /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E3E5EBF29B737850063553B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8E3E5EC129B737C40063553B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				8E3E5ED529BA40F80063553B /* CategoriesList.swift */,
+				8E0C8FCB29BB3F2F003104FB /* ReсipeList.swift */,
+				8E0C8FCD29BB3FD0003104FB /* RecipeOfCategoryList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -477,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0C8FCE29BB3FD0003104FB /* RecipeOfCategoryList.swift in Sources */,
 				8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */,
 				8E46D24629A691D9001D1106 /* HomeTableViewController.swift in Sources */,
 				8E46D24C29A69AB5001D1106 /* RecipeTableViewCell.swift in Sources */,
@@ -498,6 +505,7 @@
 				8E3E5EC829B79B390063553B /* LabelWithInsets.swift in Sources */,
 				8E46D23C29A4CB2C001D1106 /* TextFieldView.swift in Sources */,
 				8EFF463829B1F27B00AD3CC9 /* GreetingTableViewCell.swift in Sources */,
+				8E0C8FCC29BB3F2F003104FB /* ReсipeList.swift in Sources */,
 				8E41FA4929A47E6F0068C678 /* AppDelegate.swift in Sources */,
 				8E40DF4629AA2F0A001A7E8B /* TestViewController.swift in Sources */,
 				8E46D24329A617E8001D1106 /* ProfileViewController.swift in Sources */,

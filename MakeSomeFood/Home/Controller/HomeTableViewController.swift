@@ -4,6 +4,7 @@ class HomeTableViewController: UITableViewController {
 
     let apiManager = ApiManager()
     private var categories: [Category] = []
+    var recipe: Recipe?
 
     enum Section: Int, CaseIterable {
         case greeting
@@ -16,6 +17,7 @@ class HomeTableViewController: UITableViewController {
         configureNavigationBar()
         configureTableView()
         getCategories()
+        getRecipe()
     }
 
     private func getCategories() {
@@ -24,6 +26,20 @@ class HomeTableViewController: UITableViewController {
             case .success(let categoriesList):
                 DispatchQueue.main.async {
                     self?.categories = categoriesList.categories
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    private func getRecipe() {
+        apiManager.getRecipe { [weak self] result in
+            switch result {
+            case .success(let recepieList):
+                DispatchQueue.main.async {
+                    self?.recipe = recepieList.meals.first
                     self?.tableView.reloadData()
                 }
             case .failure(let error):
@@ -57,7 +73,7 @@ extension HomeTableViewController {
         case .specialRecipe:
             return 1
         case .categories:
-            return  categories.count
+            return categories.count
         default:
             fatalError()
         }
@@ -72,6 +88,11 @@ extension HomeTableViewController {
         case .specialRecipe:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as! RecipeTableViewCell
             cell.selectionStyle = .none
+            cell.recipeView.nameOfRecipeLabel.text = recipe?.name
+            let url =  URL(string: recipe?.thumb ?? "")
+            cell.recipeView.recipeImageView.kf.setImage(with: url)
+            cell.recipeView.areaTagLabel.text = recipe?.area
+            cell.recipeView.categoryTagLabel.text = recipe?.category
             return cell
         case .categories:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategorieTableViewCell", for: indexPath) as! CategorieTableViewCell

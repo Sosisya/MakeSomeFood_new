@@ -49,7 +49,7 @@ class RecipeCardView: UIView {
         return containerView
     }()
 
-    private let recipeImageView: UIImageView = {
+    let recipeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translates()
         imageView.contentMode = .scaleAspectFill
