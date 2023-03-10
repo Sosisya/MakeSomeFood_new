@@ -38,7 +38,7 @@ extension RecipeTableViewCell {
 
     private func setupConstraits() {
         NSLayoutConstraint.activate([
-            recipeView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            recipeView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             recipeView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             recipeView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             recipeView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

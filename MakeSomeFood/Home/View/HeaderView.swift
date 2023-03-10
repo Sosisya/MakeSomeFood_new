@@ -66,7 +66,7 @@ extension HeaderView {
         NSLayoutConstraint.activate([
             headerLabel.topAnchor.constraint(equalTo: topAnchor),
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
 
             headerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             headerButton.leadingAnchor.constraint(equalTo: headerLabel.trailingAnchor, constant: 16),

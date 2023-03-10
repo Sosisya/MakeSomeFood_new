@@ -1,17 +1,17 @@
 import UIKit
 import Kingfisher
 class HomeTableViewController: UITableViewController {
-
+    
     let apiManager = ApiManager()
     private var categories: [Category] = []
     var recipe: Recipe?
-
+    
     enum Section: Int, CaseIterable {
-        case greeting
+        //        case greeting
         case specialRecipe
         case categories
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -19,7 +19,7 @@ class HomeTableViewController: UITableViewController {
         getCategories()
         getRecipe()
     }
-
+    
     private func getCategories() {
         apiManager.getCategoryList { [weak self] result in
             switch result {
@@ -33,7 +33,7 @@ class HomeTableViewController: UITableViewController {
             }
         }
     }
-
+    
     private func getRecipe() {
         apiManager.getRecipe { [weak self] result in
             switch result {
@@ -47,16 +47,16 @@ class HomeTableViewController: UITableViewController {
             }
         }
     }
-
+    
     private func configureNavigationBar() {
         title = ""
     }
-
+    
     private func configureTableView() {
-        tableView.register(GreetingTableViewCell.self, forCellReuseIdentifier: "GreetingTableViewCell")
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
         tableView.register(CategorieTableViewCell.self, forCellReuseIdentifier: "CategorieTableViewCell")
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
+        
         tableView.separatorStyle = .none
     }
 }
@@ -65,11 +65,11 @@ extension HomeTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section(rawValue: section) {
-        case .greeting:
-            return 1
+            //        case .greeting:
+            //            return 1
         case .specialRecipe:
             return 1
         case .categories:
@@ -78,13 +78,13 @@ extension HomeTableViewController {
             fatalError()
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Section(rawValue: indexPath.section) {
-        case .greeting:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GreetingTableViewCell", for: indexPath) as! GreetingTableViewCell
-            cell.selectionStyle = .none
-            return cell
+            //        case .greeting:
+            //            let cell = tableView.dequeueReusableCell(withIdentifier: "GreetingTableViewCell", for: indexPath) as! GreetingTableViewCell
+            //            cell.selectionStyle = .none
+            //            return cell
         case .specialRecipe:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as! RecipeTableViewCell
             cell.selectionStyle = .none
@@ -106,19 +106,19 @@ extension HomeTableViewController {
             fatalError()
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
-
+    
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
-
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch Section(rawValue: section) {
-        case .greeting:
-            return nil
+            //        case .greeting:
+            //            return nil
         case.specialRecipe:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
             header.configure(title: "Special", actionTitle: "All recipes") {
@@ -134,11 +134,11 @@ extension HomeTableViewController {
             fatalError()
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch Section(rawValue: section) {
-        case .greeting:
-            return 0
+            //        case .greeting:
+            //            return 0
         case .specialRecipe:
             return UITableView.automaticDimension
         case .categories:
@@ -147,11 +147,11 @@ extension HomeTableViewController {
             fatalError()
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         switch Section(rawValue: section) {
-        case .greeting:
-            return 0
+            //        case .greeting:
+            //            return 0
         case .specialRecipe:
             return UITableView.automaticDimension
         case .categories:
@@ -160,7 +160,7 @@ extension HomeTableViewController {
             fatalError()
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Section(rawValue: indexPath.section) {
         case .specialRecipe:

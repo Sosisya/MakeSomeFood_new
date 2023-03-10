@@ -92,8 +92,8 @@ class RecipeCardView: UIView {
         stackView.translates()
         stackView.spacing = Spec.stackViewSpacing
         stackView.axis = .horizontal
-        stackView.distribution = .fill
-        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.alignment = .leading
         return stackView
     }()
 
