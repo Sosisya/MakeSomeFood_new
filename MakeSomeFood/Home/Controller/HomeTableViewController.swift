@@ -1,6 +1,9 @@
 import UIKit
-
+import Kingfisher
 class HomeTableViewController: UITableViewController {
+
+    let apiManager = ApiManager()
+    private var categories: [Category] = []
 
     enum Section: Int, CaseIterable {
         case greeting
@@ -12,6 +15,21 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+        getCategories()
+    }
+
+    private func getCategories() {
+        apiManager.getCategoryList { [weak self] result in
+            switch result {
+            case .success(let categoriesList):
+                DispatchQueue.main.async {
+                    self?.categories = categoriesList.categories
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     private func configureNavigationBar() {
@@ -39,7 +57,7 @@ extension HomeTableViewController {
         case .specialRecipe:
             return 1
         case .categories:
-            return 10
+            return  categories.count
         default:
             fatalError()
         }
@@ -58,6 +76,10 @@ extension HomeTableViewController {
         case .categories:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategorieTableViewCell", for: indexPath) as! CategorieTableViewCell
             cell.selectionStyle = .none
+            let item = categories[indexPath.row]
+            cell.categorieLabel.text = item.category
+            let url = URL(string: item.thumb)
+            cell.categorieImageView.kf.setImage(with: url)
             return cell
         default:
             fatalError()

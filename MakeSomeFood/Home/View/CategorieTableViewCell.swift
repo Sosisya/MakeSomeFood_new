@@ -8,7 +8,7 @@ class CategorieTableViewCell: UITableViewCell {
         static let categoryLabelText = "Category"
     }
 
-    private let categorieImageView: UIImageView = {
+    let categorieImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translates()
         imageView.masked(true)
@@ -27,7 +27,7 @@ class CategorieTableViewCell: UITableViewCell {
         return view
     }()
 
-    private let categorieLabel: UILabel = {
+    let categorieLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.text = Spec.categoryLabelText
