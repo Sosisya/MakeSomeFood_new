@@ -1,6 +1,6 @@
 import UIKit
 
-class SearchCollectionViewController: UICollectionViewController {
+class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     enum Section: Int, CaseIterable {
         case category

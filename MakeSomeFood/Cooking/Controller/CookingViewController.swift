@@ -9,11 +9,13 @@ enum Section: Int, CaseIterable {
 }
 
 class CookingViewController: UIViewController {
-    private let cookingHeaderView: CookingHeaderView =  {
-        let view = CookingHeaderView()
-        view.translates()
-        return view
-    }()
+
+    struct Spec {
+        static var headerContentInsetTop: CGFloat = 280
+        static var headerContentInsetLeft: CGFloat = 0
+        static var headerContentInsetBottom: CGFloat = 0
+        static var headerContentInsetRight: CGFloat = 0
+    }
 
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
@@ -23,9 +25,11 @@ class CookingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupLayout()
         setupConstraints()
         configureTableView()
+        configureSTrchyHeader()
     }
 
     private func configureTableView() {
@@ -38,21 +42,21 @@ class CookingViewController: UIViewController {
         cookingTableView.register(InstructionsTableViewCell.self, forCellReuseIdentifier: "InstructionsTableViewCell")
         cookingTableView.allowsSelection = false
     }
+
+    private func configureSTrchyHeader() {
+        let headerView = CookingHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 280))
+        cookingTableView.tableHeaderView = headerView
+    }
 }
 
 extension CookingViewController {
     private func setupLayout() {
-        view.addSubview(cookingHeaderView)
         view.addSubview(cookingTableView)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            cookingHeaderView.topAnchor.constraint(equalTo: view.topAnchor),
-            cookingHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            cookingHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
-            cookingTableView.topAnchor.constraint(equalTo: cookingHeaderView.bottomAnchor),
+            cookingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             cookingTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cookingTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cookingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -72,7 +76,7 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
         case .ingredientFooter:
             return 1
         case .ingredients:
-            return 5
+            return 50
         case .instructionsFooter:
             return 1
         case .instructions:
@@ -112,5 +116,12 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+}
+
+extension CookingViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let headerView = cookingTableView.tableHeaderView as! CookingHeaderView
+        headerView.scrollViewDidScroll(scrollView: scrollView)
     }
 }

@@ -122,8 +122,9 @@ extension HomeTableViewController {
         case.specialRecipe:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
             header.configure(title: "Special", actionTitle: "All recipes") {
-                let recipeVC = AllRecipesTableViewController()
-                self.present(recipeVC, animated: true)
+                let allRecipesVC = AllRecipesTableViewController()
+                allRecipesVC.title = "All recipes"
+                self.show(allRecipesVC, sender: self)
             }
             return header
         case .categories:
@@ -165,9 +166,10 @@ extension HomeTableViewController {
         switch Section(rawValue: indexPath.section) {
         case .specialRecipe:
             let recipeVC = CookingViewController()
-            self.present(recipeVC, animated: true)
+            show(recipeVC, sender: self)
         case .categories:
-            print("category")
+            let allRecipesVC = AllRecipesTableViewController()
+            show(allRecipesVC, sender: self)
         default:
             fatalError()
         }

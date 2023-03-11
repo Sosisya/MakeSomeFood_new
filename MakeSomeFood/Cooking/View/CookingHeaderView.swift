@@ -7,6 +7,12 @@ class CookingHeaderView: UIView {
         static let recipeImageView = UIImage(named: "recipe")
     }
 
+    private let containerView: UIView = {
+        let view = UIView()
+        view.translates()
+        return view
+    }()
+
     private let recipeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translates()
@@ -43,6 +49,10 @@ class CookingHeaderView: UIView {
         return view
     }()
 
+    var containerViewHeight = NSLayoutConstraint()
+    var imageViewHeight = NSLayoutConstraint()
+    var imageViewBottom = NSLayoutConstraint()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -62,19 +72,28 @@ class CookingHeaderView: UIView {
 extension CookingHeaderView {
     private func setupLayout() {
         backgroundColor = .specialWhite
-        addSubview(recipeImageView)
+        addSubview(containerView)
+        containerView.addSubview(recipeImageView)
         recipeImageView.addSubview(shadowView)
         recipeImageView.addSubview(bottomView)
         recipeImageView.addSubview(likeButton)
     }
 
     private func setupConstraints() {
+
+        containerViewHeight = containerView.heightAnchor.constraint(equalTo: heightAnchor)
+        imageViewBottom = recipeImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        imageViewHeight = recipeImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor)
+
         NSLayoutConstraint.activate([
-            recipeImageView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.widthAnchor.constraint(equalTo: recipeImageView.widthAnchor),
+            containerViewHeight,
+            imageViewBottom,
+            imageViewHeight,
+            recipeImageView.heightAnchor.constraint(equalToConstant: 280),
+
             recipeImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             recipeImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            recipeImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            recipeImageView.heightAnchor.constraint(equalToConstant: 280),
 
             shadowView.topAnchor.constraint(equalTo: recipeImageView.topAnchor),
             shadowView.leadingAnchor.constraint(equalTo: recipeImageView.leadingAnchor),
@@ -91,5 +110,13 @@ extension CookingHeaderView {
             likeButton.heightAnchor.constraint(equalToConstant: 44),
             likeButton.widthAnchor.constraint(equalToConstant: 44)
         ])
+    }
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        containerViewHeight.constant = scrollView.contentInset.top
+        let offsetY = -(scrollView.contentOffset.y + scrollView.contentInset.top)
+        containerView.clipsToBounds = offsetY <= 0
+        imageViewBottom.constant = offsetY >= 0 ? 0 : -offsetY / 2
+        imageViewHeight.constant = max(offsetY + scrollView.contentInset.top, scrollView.contentInset.top)
     }
 }

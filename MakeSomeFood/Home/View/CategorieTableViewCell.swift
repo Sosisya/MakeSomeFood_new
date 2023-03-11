@@ -51,6 +51,12 @@ class CategorieTableViewCell: UITableViewCell {
         setupLayout()
         setupConstraints()
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        categorieImageView.kf.cancelDownloadTask()
+        categorieImageView.image = nil
+    }
 }
 
 extension CategorieTableViewCell {

@@ -58,6 +58,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         configureNavigationController(registrationNavVC)
         return registrationNavVC
     }
+
+
 //
 //    func configureViewController() -> UIViewController {
 //        let loginNavVC = UINavigationController(rootViewController: LoginViewController())
