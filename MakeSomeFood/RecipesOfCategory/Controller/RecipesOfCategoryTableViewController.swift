@@ -1,8 +1,8 @@
 import UIKit
 
-class AllRecipesTableViewController: UITableViewController {
-    private var apiManager = ApiManager()
-    var categoryName: String!
+class RecipesOfCategoryTableViewController: UITableViewController {
+
+    var categoryName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +19,8 @@ class AllRecipesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as! RecipeTableViewCell
+        cell.hideTags(true)
+        cell.setHasLargeImage(false)
         cell.selectionStyle = .none
         return cell
     }
@@ -29,16 +31,12 @@ class AllRecipesTableViewController: UITableViewController {
     }
 }
 
-extension AllRecipesTableViewController {
+extension RecipesOfCategoryTableViewController {
     private func configureTableView() {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
     }
 
     private func configureNavigationBar() {
-        title = "All recipes"
+        title = categoryName
     }
-//
-//    private func getAllRecipes() {
-//        apiManager.getAllRecipes(search: <#T##String#>, completion: <#T##(Result<ReсipeList, Error>) -> Void#>)
-//    }
 }

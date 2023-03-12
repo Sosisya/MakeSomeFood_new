@@ -5,8 +5,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     private var containerView: UIView = {
         let view = UIView()
         view.translates()
-        view.backgroundColor = .cyan
-        view.layer.cornerRadius = 12
+        view.rounded()
         return view
     }()
 
@@ -14,7 +13,6 @@ class TagCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translates()
         label.text = "Tag"
-        label.textColor = .black
         return label
     }()
 

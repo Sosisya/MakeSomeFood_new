@@ -22,13 +22,6 @@ class RecipeTableViewCell: UITableViewCell {
         setupLayout()
         setupConstraits()
     }
-
-    func setHasLargeImage(_ hasLargeImage: Bool) {
-        recipeView.hasLargeImage = hasLargeImage
-        if hasLargeImage == false {
-            recipeView.tagsStackView.isHidden = true
-        }
-    }
 }
 
 extension RecipeTableViewCell {
@@ -43,5 +36,13 @@ extension RecipeTableViewCell {
             recipeView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             recipeView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
+    }
+
+    func setHasLargeImage(_ hasLargeImage: Bool) {
+        recipeView.hasLargeImage = hasLargeImage
+    }
+
+    func hideTags(_ hide: Bool) {
+        recipeView.tagsStackView.isHidden = hide
     }
 }

@@ -10,6 +10,10 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCollectinView()
+    }
+
+    private func configureCollectinView() {
         collectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
         collectionView.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: "RecipeCollectionViewCell")
     }

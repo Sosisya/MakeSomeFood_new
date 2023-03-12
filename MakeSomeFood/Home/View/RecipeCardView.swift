@@ -1,6 +1,5 @@
 import UIKit
-//Есть вопросы
-//likeButton радиус?
+//ВОРОС НИЖЕ
 
 class RecipeCardView: UIView {
 

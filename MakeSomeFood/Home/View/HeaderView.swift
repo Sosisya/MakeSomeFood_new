@@ -35,25 +35,6 @@ class HeaderView: UITableViewHeaderFooterView {
         configureButton()
         setupContsraints()
     }
-    
-    func configure(title: String, actionTitle: String? = nil, action: @escaping () -> Void = {}) {
-        headerLabel.text = title
-        if let actionTitle = actionTitle {
-            headerButton.isHidden = false
-            headerButton.setTitle(actionTitle, for: .normal)
-        } else {
-            headerButton.isHidden = true
-        }
-        buttonAction = action
-    }
-
-    func configureButton() {
-        headerButton.addTarget(self, action: #selector(headerButtonTapped), for: .touchUpInside)
-    }
-
-    @objc func headerButtonTapped() {
-        buttonAction()
-    }
 }
 
 extension HeaderView {
@@ -72,5 +53,24 @@ extension HeaderView {
             headerButton.leadingAnchor.constraint(equalTo: headerLabel.trailingAnchor, constant: 16),
             headerButton.centerYAnchor.constraint(equalTo: headerLabel.centerYAnchor),
         ])
+    }
+
+    func configure(title: String, actionTitle: String? = nil, action: @escaping () -> Void = {}) {
+        headerLabel.text = title
+        if let actionTitle = actionTitle {
+            headerButton.isHidden = false
+            headerButton.setTitle(actionTitle, for: .normal)
+        } else {
+            headerButton.isHidden = true
+        }
+        buttonAction = action
+    }
+
+    func configureButton() {
+        headerButton.addTarget(self, action: #selector(headerButtonTapped), for: .touchUpInside)
+    }
+
+    @objc func headerButtonTapped() {
+        buttonAction()
     }
 }

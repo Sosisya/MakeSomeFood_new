@@ -16,6 +16,8 @@ class CookingViewController: UIViewController {
         static var headerContentInsetRight: CGFloat = 0
     }
 
+    var activityViewController: UIActivityViewController? = nil
+
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
         tableView.translates()
@@ -29,6 +31,8 @@ class CookingViewController: UIViewController {
         setupConstraints()
         configureTableView()
         configureStrechyHeader()
+//        addShareBarButtonItem()
+//        shareButtonPressed()
     }
 
     private func configureTableView() {
@@ -46,6 +50,33 @@ class CookingViewController: UIViewController {
         let headerView = CookingHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 280))
         cookingTableView.tableHeaderView = headerView
     }
+
+//    func addShareBarButtonItem() {
+//        let shareButton = UIBarButtonItem(image: UIImage(named: "icon.share"), style: .done, target: self, action: #selector(shareButtonPressed))
+//        self.navigationItem.rightBarButtonItem = shareButton
+//    }
+//
+//    @objc func shareButtonPressed() {
+//        self.activityViewController = UIActivityViewController(activityItems: [makeTextFromRecipe()], applicationActivities: nil)
+//        self.present(self.activityViewController!, animated: true)
+//    }
+//
+//    func makeTextFromRecipe() -> String {
+//        guard let recipe else { return "" }
+//        let title = recipe.name
+//        let about = "Instructions:\n\(recipe.instruction ?? "")"
+//        var ingredients = ["Ingredients:"]
+//        for i in 0..<recipe.ingredients.count {
+//            let ingredient = recipe.ingredients[i]
+//            let measure = recipe.measures[i]
+//            ingredients.append("\(ingredient) - \(measure)")
+//        }
+//        return [
+//            title,
+//            ingredients.joined(separator: "\n"),
+//            about
+//        ].joined(separator: "\n\n")
+//    }
 }
 
 extension CookingViewController {
