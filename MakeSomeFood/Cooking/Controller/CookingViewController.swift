@@ -9,7 +9,6 @@ enum Section: Int, CaseIterable {
 }
 
 class CookingViewController: UIViewController {
-
     struct Spec {
         static var headerContentInsetTop: CGFloat = 280
         static var headerContentInsetLeft: CGFloat = 0
@@ -29,7 +28,7 @@ class CookingViewController: UIViewController {
         setupLayout()
         setupConstraints()
         configureTableView()
-        configureSTrchyHeader()
+        configureStrechyHeader()
     }
 
     private func configureTableView() {
@@ -43,7 +42,7 @@ class CookingViewController: UIViewController {
         cookingTableView.allowsSelection = false
     }
 
-    private func configureSTrchyHeader() {
+    private func configureStrechyHeader() {
         let headerView = CookingHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 280))
         cookingTableView.tableHeaderView = headerView
     }

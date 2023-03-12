@@ -16,6 +16,7 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+        configureHomeHeader()
         getCategories()
         getRecipe()
     }
@@ -58,6 +59,11 @@ class HomeTableViewController: UITableViewController {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         
         tableView.separatorStyle = .none
+    }
+
+    private func configureHomeHeader() {
+        let headerView = HomeTableHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 58))
+        tableView.tableHeaderView = headerView
     }
 }
 

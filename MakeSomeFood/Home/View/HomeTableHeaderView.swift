@@ -1,6 +1,6 @@
 import UIKit
 
-class HomeTableHeaderView: UITableViewHeaderFooterView {
+class HomeTableHeaderView: UIView {
 
     struct Spec {
         static let greetingLabel = "Hello, guest!"
@@ -26,8 +26,8 @@ class HomeTableHeaderView: UITableViewHeaderFooterView {
          return imageView
      }()
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         commonInit()
     }
 
@@ -50,7 +50,7 @@ extension HomeTableHeaderView {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            greetingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            greetingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             greetingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             greetingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
 
