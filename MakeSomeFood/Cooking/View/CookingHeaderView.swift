@@ -91,8 +91,7 @@ extension CookingHeaderView {
             containerViewHeight,
             imageViewBottom,
             imageViewHeight,
-            recipeImageView.heightAnchor.constraint(equalToConstant: 280),
-
+            
             recipeImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             recipeImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
@@ -101,13 +100,13 @@ extension CookingHeaderView {
             shadowView.trailingAnchor.constraint(equalTo: recipeImageView.trailingAnchor),
             shadowView.bottomAnchor.constraint(equalTo: recipeImageView.bottomAnchor),
 
-            bottomView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
-            bottomView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
-            bottomView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
+            bottomView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            bottomView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             bottomView.heightAnchor.constraint(equalToConstant: 26),
 
-            likeButton.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: -16),
-            likeButton.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: -4),
+            likeButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            likeButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -4),
             likeButton.heightAnchor.constraint(equalToConstant: 44),
             likeButton.widthAnchor.constraint(equalToConstant: 44)
         ])

@@ -31,6 +31,10 @@ class CookingViewController: UIViewController {
         setupConstraints()
         configureTableView()
         configureStrechyHeader()
+
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
 //        addShareBarButtonItem()
 //        shareButtonPressed()
     }
@@ -86,7 +90,7 @@ extension CookingViewController {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            cookingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            cookingTableView.topAnchor.constraint(equalTo: view.topAnchor),
             cookingTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cookingTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cookingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

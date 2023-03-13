@@ -63,7 +63,7 @@ class RecipeCardView: UIView {
         button.setImage(Spec.likeButtonImage, for: .normal)
         button.tintColor = .specialWhite
         button.backgroundColor = .specialOrange
-        button.rounded(radius: 21) // как установить исходя из собственной высоты??
+        button.rounded(radius: 22) // как установить исходя из собственной высоты??
         return button
     }()
 
@@ -73,12 +73,14 @@ class RecipeCardView: UIView {
         stackView.axis = .vertical
         stackView.spacing = Spec.nameOfRecipeAndTagsStackViewSpasing
         stackView.distribution = .fill
-        stackView.alignment = .fill
+        stackView.alignment = .leading
         return stackView
     }()
 
     let nameOfRecipeLabel: UILabel = {
         let label = UILabel()
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
         label.translates()
         label.text = Spec.nameOfRecipeLabelText
         label.font = .montserratMedium16()
@@ -91,7 +93,7 @@ class RecipeCardView: UIView {
         stackView.translates()
         stackView.spacing = Spec.stackViewSpacing
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.alignment = .leading
         return stackView
     }()
