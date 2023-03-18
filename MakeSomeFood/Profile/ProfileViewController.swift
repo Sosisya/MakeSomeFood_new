@@ -1,10 +1,12 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+// -MARK:
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .blue
         return scrollView
     }()
 
@@ -80,6 +82,7 @@ class ProfileViewController: UIViewController {
         return button
     }()
 
+    // -MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -88,6 +91,7 @@ class ProfileViewController: UIViewController {
     }
 }
 
+// -MARK: Extension
 extension ProfileViewController {
    private func setupLayout() {
        view.addSubview(scrollView)
@@ -105,7 +109,7 @@ extension ProfileViewController {
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
@@ -113,7 +117,7 @@ extension ProfileViewController {
             contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             
-            profileImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 24),
+            profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             profileImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             profileImageView.heightAnchor.constraint(equalToConstant: 100),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
@@ -137,6 +141,7 @@ extension ProfileViewController {
             saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             saveButton.heightAnchor.constraint(equalToConstant: 56),
+            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
 
             exitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
             exitButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

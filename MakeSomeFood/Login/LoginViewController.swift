@@ -1,6 +1,11 @@
 import UIKit
-class LoginViewController: UIViewController {
 
+class LoginViewController: UIViewController {
+    // - MARK: Constants
+    private var scrollViewBottom: NSLayoutConstraint?
+    private var agreementBottom: NSLayoutConstraint?
+
+    // -MARK: Properties
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -9,7 +14,6 @@ class LoginViewController: UIViewController {
 
     private let contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .red
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
@@ -71,13 +75,15 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Agreement"
-        label.textAlignment = .left
-        label.tintColor = UIColor(named: "gray")
+        label.textAlignment = .center
+        label.textColor = UIColor(named: "black")
         label.font = UIFont(name: "Montserrat-Regular", size: 16)
         return label
     }()
 
     private let tap = UITapGestureRecognizer(target: LoginViewController.self, action: #selector(UIInputViewController.dismissKeyboard))
+
+    // -MARK:
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,9 +91,12 @@ class LoginViewController: UIViewController {
         setupConstraint()
         configureButton()
         configureNavigationBar()
+        configurationNotificationCenter()
+        createBottomLinks()
     }
 }
 
+// -MARK: Extension
 extension LoginViewController {
     public func setupLayout() {
         view.backgroundColor = .white
@@ -99,14 +108,18 @@ extension LoginViewController {
         registrationStackView.addArrangedSubview(registrationLabel)
         registrationStackView.addArrangedSubview(registrationButton)
         contentView.addSubview(registrationStackView)
+//        scrollView.addSubview(agreementLabel)
     }
 
     public func setupConstraint() {
+        scrollViewBottom = scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        agreementBottom = agreementLabel.bottomAnchor.constraint(equalTo: registrationStackView.bottomAnchor, constant: 50)
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollViewBottom!,
 
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
@@ -122,25 +135,24 @@ extension LoginViewController {
             passwordTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwordTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
-            enterButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 32),
+            enterButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 150),
             enterButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             enterButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             enterButton.heightAnchor.constraint(equalToConstant: 56),
 
             registrationStackView.topAnchor.constraint(equalTo: enterButton.bottomAnchor, constant: 34),
             registrationStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            registrationStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+
+            agreementBottom!,
+            agreementLabel.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
+            agreementLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
+            agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -16)
         ])
     }
 
     private func configureButton() {
         registrationButton.addTarget(self, action: #selector(registrationButtonAction), for: .touchUpInside)
         enterButton.addTarget(self, action: #selector(enterButtonAction), for: .touchUpInside)
-    }
-
-    private func configurationNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     @objc func registrationButtonAction() {
@@ -153,6 +165,22 @@ extension LoginViewController {
         self.present(profileVC, animated: true)
     }
 
+    private func configurationNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+            scrollViewBottom?.constant = keyboardSize.height - tabBarHeight
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        scrollViewBottom?.constant = 0
+    }
+
     private func configureNavigationBar() {
         title = ""
     }
@@ -161,19 +189,11 @@ extension LoginViewController {
         view.endEditing(true)
      }
 
-    @objc func keyboardWillShow(notification: NSNotification) {
-
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-           // if keyboard size is not available for some reason, dont do anything
-           return
-        }
-
-      // move the root view up by the distance of keyboard height
-      self.view.frame.origin.y = 0 - keyboardSize.height
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-      // move back the root view origin to zero
-      self.view.frame.origin.y = 0
-    }
+//    private func createBottomLinks() {
+//        let filledHeight = registrationStackView.frame.maxY
+//        let fullHeight = scrollView.frame.height
+//        let minOffset = 8 + agreementLabel.frame.height
+//        let realOffSet = fullHeight - filledHeight - 18
+//        agreementBottom?.constant = max(realOffSet, minOffset)
+//    }
 }
