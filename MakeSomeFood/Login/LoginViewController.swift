@@ -9,12 +9,14 @@ class LoginViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .blue
         return scrollView
     }()
 
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .red
         return contentView
     }()
 
@@ -91,8 +93,8 @@ class LoginViewController: UIViewController {
         setupConstraint()
         configureButton()
         configureNavigationBar()
-        configurationNotificationCenter()
-        createBottomLinks()
+//        configurationNotificationCenter()
+//        createBottomLinks()
     }
 }
 
@@ -108,7 +110,7 @@ extension LoginViewController {
         registrationStackView.addArrangedSubview(registrationLabel)
         registrationStackView.addArrangedSubview(registrationButton)
         contentView.addSubview(registrationStackView)
-//        scrollView.addSubview(agreementLabel)
+        scrollView.addSubview(agreementLabel)
     }
 
     public func setupConstraint() {
@@ -135,7 +137,7 @@ extension LoginViewController {
             passwordTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwordTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
-            enterButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 150),
+            enterButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 32),
             enterButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             enterButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             enterButton.heightAnchor.constraint(equalToConstant: 56),
@@ -146,7 +148,7 @@ extension LoginViewController {
             agreementBottom!,
             agreementLabel.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
             agreementLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
-            agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -16)
+            agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8)
         ])
     }
 
@@ -157,29 +159,29 @@ extension LoginViewController {
 
     @objc func registrationButtonAction() {
         let registrationVC = RegistrationViewController()
-        self.present(registrationVC, animated: true)
+        self.show(registrationVC, sender: self)
     }
 
     @objc func enterButtonAction() {
         let profileVC = ProfileViewController()
-        self.present(profileVC, animated: true)
+        self.show(profileVC, sender: self)
     }
 
-    private func configurationNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
+//    private func configurationNotificationCenter() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
 
-    @objc func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
-            scrollViewBottom?.constant = keyboardSize.height - tabBarHeight
-        }
-    }
-
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollViewBottom?.constant = 0
-    }
+//    @objc func keyboardWillShow(notification: Notification) {
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+//            scrollViewBottom?.constant = keyboardSize.height - tabBarHeight
+//        }
+//    }
+//
+//    @objc func keyboardWillHide(notification: Notification) {
+//        scrollViewBottom?.constant = 0
+//    }
 
     private func configureNavigationBar() {
         title = ""

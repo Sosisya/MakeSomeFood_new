@@ -1,8 +1,10 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-// -MARK:
-    
+// -MARK: Constants
+    private var contentViewBottom: NSLayoutConstraint?
+
+// -MARK: Properties
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,12 +62,12 @@ class ProfileViewController: UIViewController {
     private let saveButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Sign in", for: .normal)
+        button.setTitle("Save", for: .normal)
         button.setTitleColor(UIColor(named: "white"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         button.backgroundColor = UIColor(named: "orange")
         button.layer.cornerRadius = 12
-        button.isHidden = true
+//        button.isHidden = true
         return button
     }()
 
@@ -88,6 +90,7 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .white
         setupLayout()
         setupConstraint()
+        configurationNotificationCenter()
     }
 }
 
@@ -101,22 +104,25 @@ extension ProfileViewController {
        contentView.addSubview(nameTextFieldView)
        contentView.addSubview(emailTextFieldView)
        contentView.addSubview(saveButton)
-       contentView.addSubview(exitButton)
+//       contentView.addSubview(exitButton)
     }
 
    private func setupConstraint() {
+       contentViewBottom = scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            contentViewBottom!,
 
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-            
+
             profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             profileImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             profileImageView.heightAnchor.constraint(equalToConstant: 100),
@@ -143,10 +149,26 @@ extension ProfileViewController {
             saveButton.heightAnchor.constraint(equalToConstant: 56),
             saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
 
-            exitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
-            exitButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            exitButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            exitButton.heightAnchor.constraint(equalToConstant: 56)
+//            exitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
+//            exitButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+//            exitButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+//            exitButton.heightAnchor.constraint(equalToConstant: 56)
         ])
+    }
+
+    private func configurationNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+            contentViewBottom?.constant = keyboardSize.height - tabBarHeight
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        contentViewBottom?.constant = 0
     }
 }

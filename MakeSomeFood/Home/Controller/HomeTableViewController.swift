@@ -1,16 +1,24 @@
 import UIKit
 import Kingfisher
+
 class HomeTableViewController: UITableViewController {
-    
-    let apiManager = ApiManager()
-    private var categories: [Category] = []
-    var recipe: Recipe?
-    
     enum Section: Int, CaseIterable {
         case specialRecipe
         case categories
     }
+
+    struct Spec { }
     
+    let apiManager = ApiManager()
+    private var categories: [Category] = []
+    var recipe: Recipe?
+    private var searchController: UISearchController?
+
+    private let specialRefreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        return refreshControl
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -18,8 +26,12 @@ class HomeTableViewController: UITableViewController {
         configureHomeHeader()
         getCategories()
         getRecipe()
+        configureRefreshControl()
+        configureSearchController()
     }
-    
+}
+
+extension HomeTableViewController {
     private func getCategories() {
         apiManager.getCategoryList { [weak self] result in
             switch result {
@@ -63,13 +75,44 @@ class HomeTableViewController: UITableViewController {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         
         tableView.separatorStyle = .none
+
+        tableView.refreshControl = specialRefreshControl
     }
 
     private func configureHomeHeader() {
         let headerView = HomeTableHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 58))
         tableView.tableHeaderView = headerView
     }
+
+    private func configureSearchController() {
+        let searchResults = AllRecipesTableViewController()
+        searchController = UISearchController(searchResultsController: searchResults)
+        navigationItem.searchController = searchController
+        searchController?.searchBar.placeholder = "Search"
+    }
+
+    private func configureRefreshControl() {
+        specialRefreshControl.addTarget(self, action: #selector(refreshSpecial), for: .valueChanged)
+    }
+
+    @objc private func refreshSpecial(sender: UIRefreshControl) {
+        apiManager.getRecipe { [weak self] result in
+            switch result {
+            case .success(let recepieList):
+                DispatchQueue.main.async {
+                    self?.recipe = recepieList.meals.first
+                    self?.tableView.reloadData()
+                    sender.endRefreshing()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                sender.endRefreshing()
+            }
+        }
+    }
 }
+
+// - MARK: UITableViewDelegate, UITableViewDataSource
 
 extension HomeTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {

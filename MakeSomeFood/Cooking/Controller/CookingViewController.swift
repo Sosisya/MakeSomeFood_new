@@ -9,20 +9,15 @@ enum Section: Int, CaseIterable {
 }
 
 class CookingViewController: UIViewController {
-    struct Spec {
-        static var headerContentInsetTop: CGFloat = 280
-        static var headerContentInsetLeft: CGFloat = 0
-        static var headerContentInsetBottom: CGFloat = 0
-        static var headerContentInsetRight: CGFloat = 0
-    }
-
-    var activityViewController: UIActivityViewController? = nil
+    struct Spec {}
 
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
         tableView.translates()
         return tableView
     }()
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,56 +26,19 @@ class CookingViewController: UIViewController {
         setupConstraints()
         configureTableView()
         configureStrechyHeader()
-
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//        addShareBarButtonItem()
-//        shareButtonPressed()
+        configureNavigationBar()
+        addShareBarButtonItem()
     }
 
-    private func configureTableView() {
-        cookingTableView.dataSource = self
-        cookingTableView.delegate = self
-        cookingTableView.separatorStyle = .none
-        cookingTableView.register(NameOfRecipeTableViewCell.self, forCellReuseIdentifier: "NameOfRecipeTableViewCell")
-        cookingTableView.register(CookingFooterTableViewCell.self, forCellReuseIdentifier: "CookingFooterTableViewCell")
-        cookingTableView.register(IngredientsTableViewCell.self, forCellReuseIdentifier: "IngredientsTableViewCell")
-        cookingTableView.register(InstructionsTableViewCell.self, forCellReuseIdentifier: "InstructionsTableViewCell")
-        cookingTableView.allowsSelection = false
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateNavigationBarTint()
     }
 
-    private func configureStrechyHeader() {
-        let headerView = CookingHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 280))
-        cookingTableView.tableHeaderView = headerView
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.tintColor = .specialBlack
     }
-
-//    func addShareBarButtonItem() {
-//        let shareButton = UIBarButtonItem(image: UIImage(named: "icon.share"), style: .done, target: self, action: #selector(shareButtonPressed))
-//        self.navigationItem.rightBarButtonItem = shareButton
-//    }
-//
-//    @objc func shareButtonPressed() {
-//        self.activityViewController = UIActivityViewController(activityItems: [makeTextFromRecipe()], applicationActivities: nil)
-//        self.present(self.activityViewController!, animated: true)
-//    }
-//
-//    func makeTextFromRecipe() -> String {
-//        guard let recipe else { return "" }
-//        let title = recipe.name
-//        let about = "Instructions:\n\(recipe.instruction ?? "")"
-//        var ingredients = ["Ingredients:"]
-//        for i in 0..<recipe.ingredients.count {
-//            let ingredient = recipe.ingredients[i]
-//            let measure = recipe.measures[i]
-//            ingredients.append("\(ingredient) - \(measure)")
-//        }
-//        return [
-//            title,
-//            ingredients.joined(separator: "\n"),
-//            about
-//        ].joined(separator: "\n\n")
-//    }
 }
 
 extension CookingViewController {
@@ -96,8 +54,54 @@ extension CookingViewController {
             cookingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+
+    private func configureTableView() {
+        cookingTableView.dataSource = self
+        cookingTableView.delegate = self
+        cookingTableView.separatorStyle = .none
+        cookingTableView.allowsSelection = false
+        cookingTableView.register(NameOfRecipeTableViewCell.self, forCellReuseIdentifier: "NameOfRecipeTableViewCell")
+        cookingTableView.register(CookingFooterTableViewCell.self, forCellReuseIdentifier: "CookingFooterTableViewCell")
+        cookingTableView.register(IngredientsTableViewCell.self, forCellReuseIdentifier: "IngredientsTableViewCell")
+        cookingTableView.register(InstructionsTableViewCell.self, forCellReuseIdentifier: "InstructionsTableViewCell")
+    }
+
+    private func configureStrechyHeader() {
+        let headerView = CookingHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 280))
+        cookingTableView.tableHeaderView = headerView
+    }
+
+    private func configureNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+
+    private func updateNavigationBarTint() {
+        let isScrolled = cookingTableView.contentOffset.y + cookingTableView.adjustedContentInset.top > 0
+        navigationController?.navigationBar.tintColor = isScrolled ? .specialBlack : .white
+    }
+
+   private func addShareBarButtonItem() {
+       let shareButton = UIBarButtonItem(image: UIImage(named: "square.and.arrow.up"), style: .done, target: self, action: #selector(shareButtonPressed))
+        self.navigationItem.rightBarButtonItem = shareButton
+    }
+
+    @objc func shareButtonPressed() {
+        print("Share")
+    }
 }
 
+// -MARK: UIScrollViewDelegate
+extension CookingViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let headerView = cookingTableView.tableHeaderView as! CookingHeaderView
+        headerView.scrollViewDidScroll(scrollView: scrollView)
+        updateNavigationBarTint()
+    }
+}
+
+// - MARK: UITableViewDelegate, UITableViewDataSource
 extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count
@@ -150,12 +154,5 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
-    }
-}
-
-extension CookingViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let headerView = cookingTableView.tableHeaderView as! CookingHeaderView
-        headerView.scrollViewDidScroll(scrollView: scrollView)
     }
 }

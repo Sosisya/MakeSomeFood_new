@@ -63,7 +63,7 @@ class RecipeCardView: UIView {
         button.setImage(Spec.likeButtonImage, for: .normal)
         button.tintColor = .specialWhite
         button.backgroundColor = .specialOrange
-        button.rounded(radius: 22) // как установить исходя из собственной высоты??
+        button.rounded(radius: 22)
         return button
     }()
 

@@ -9,12 +9,14 @@ class RegistrationViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .blue
         return scrollView
     }()
 
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .red
         return contentView
     }()
 
@@ -127,12 +129,11 @@ extension RegistrationViewController {
             registrationButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             registrationButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             registrationButton.heightAnchor.constraint(equalToConstant: 56),
-            registrationButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-
+            
             agreementBottom!,
             agreementLabel.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
             agreementLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
-            agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -16)
+            agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8)
         ])
     }
 
