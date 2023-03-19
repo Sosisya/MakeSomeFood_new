@@ -40,10 +40,10 @@ extension InstructionsTableViewCell {
 
     private func setupConstraits() {
         NSLayoutConstraint.activate([
-            instructionsLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            instructionsLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
             instructionsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             instructionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            instructionsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            instructionsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
 }

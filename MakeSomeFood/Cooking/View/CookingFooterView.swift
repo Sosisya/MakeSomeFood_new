@@ -32,10 +32,10 @@ extension CookingFooterView {
 
     private func setupContsraints() {
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: topAnchor),
+            headerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             headerLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
         ])
     }
 }
