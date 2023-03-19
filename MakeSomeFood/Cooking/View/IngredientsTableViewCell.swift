@@ -62,17 +62,17 @@ extension IngredientsTableViewCell {
 
     private func setupConstraits() {
         NSLayoutConstraint.activate([
-            ingredientLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            ingredientLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
             ingredientLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             ingredientLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            ingredientLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
             quantityOfIngredientsLabel.centerYAnchor.constraint(equalTo: ingredientLabel.centerYAnchor),
             quantityOfIngredientsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
+            bottomLineView.topAnchor.constraint(equalTo: ingredientLabel.bottomAnchor),
             bottomLineView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             bottomLineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            bottomLineView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            bottomLineView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
             bottomLineView.heightAnchor.constraint(equalToConstant: 1.5)
         ])
     }
