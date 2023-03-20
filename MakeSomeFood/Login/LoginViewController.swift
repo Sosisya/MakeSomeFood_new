@@ -97,11 +97,11 @@ class LoginViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        DispatchQueue.main.async {
-            self.createBottomLinks()
-        }
-    }
+           super.viewDidLayoutSubviews()
+           DispatchQueue.main.async {
+               self.createBottomLinks()
+           }
+       }
 }
 
 // -MARK: Extension

@@ -76,11 +76,14 @@ class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setConstraints()
+        configurationNotificationCenter()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        createBottomLinks()
+        DispatchQueue.main.async {
+            self.createBottomLinks()
+        }
     }
 }
 
@@ -139,6 +142,22 @@ extension RegistrationViewController {
             agreementLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
             agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8)
         ])
+    }
+
+    private func configurationNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+            scrollViewBottom?.constant = -(keyboardSize.height - tabBarHeight)
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        scrollViewBottom?.constant = 0
     }
 
     private func createBottomLinks() {
