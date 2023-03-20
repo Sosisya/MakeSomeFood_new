@@ -9,6 +9,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
 // -MARK: Constants
     private var scrollViewBottom: NSLayoutConstraint?
+    private var saveButtonBottom: NSLayoutConstraint?
+    private var saveButtonTop: NSLayoutConstraint?
 
 // -MARK: Properties
     private let scrollView: UIScrollView = {
@@ -71,6 +73,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         button.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         button.backgroundColor = UIColor(named: "orange")
         button.layer.cornerRadius = 12
+//        button.isHidden = true
         return button
     }()
 
@@ -91,6 +94,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+//        nameTextFieldView.textField.delegate = self
         setupLayout()
         setupConstraint()
         configurationNotificationCenter()
@@ -144,15 +148,15 @@ extension ProfileViewController {
             emailTextFieldView.topAnchor.constraint(equalTo: nameTextFieldView.bottomAnchor, constant: 16),
             emailTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             emailTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            emailTextFieldView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
             emailTextFieldView.heightAnchor.constraint(equalToConstant: 56),
 
-            saveButton.topAnchor.constraint(equalTo: emailTextFieldView.bottomAnchor, constant: 32),
-            saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            saveButton.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
+            saveButton.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
             saveButton.heightAnchor.constraint(equalToConstant: 56),
-            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            saveButton.bottomAnchor.constraint(equalTo: scrollView.frameLayoutGuide.bottomAnchor, constant: -16),
 
-            exitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
+            exitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             exitButton.heightAnchor.constraint(equalToConstant: 56)
@@ -231,3 +235,9 @@ extension ProfileViewController {
         }
     }
 }
+
+//extension ProfileViewController: UITextFieldDelegate {
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        saveButton.isHidden = false
+//    }
+//}

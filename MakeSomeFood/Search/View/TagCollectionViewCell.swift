@@ -5,7 +5,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     private var containerView: UIView = {
         let view = UIView()
         view.translates()
-        view.rounded()
+        view.rounded(radius: 17)
         view.backgroundColor = .specialOrange
         return view
     }()
@@ -13,7 +13,11 @@ class TagCollectionViewCell: UICollectionViewCell {
     private let tagLabel: UILabel = {
         let label = UILabel()
         label.translates()
+        label.font = UIFont.montserratMedium16()
+        label.numberOfLines = 0
+        label.textColor = .white
         label.text = "Tag"
+        label.textAlignment = .center
         return label
     }()
 
@@ -45,10 +49,13 @@ extension TagCollectionViewCell {
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -6),
-            containerView.heightAnchor.constraint(equalToConstant: 34),
+//            containerView.heightAnchor.constraint(equalToConstant: 34),
+//            containerView.widthAnchor.constraint(equalToConstant: 100),
 
-            tagLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            tagLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            tagLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 4),
+            tagLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            tagLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            tagLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -4)
         ])
     }
 }

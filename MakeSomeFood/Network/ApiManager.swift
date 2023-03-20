@@ -4,6 +4,60 @@ struct ApiManager {
     enum ApiError: Error {
         case unknownError
     }
+
+    static func getCategories(completion: @escaping (Result<CategoriesList, Error>) -> Void) {
+        let urlString = "https://www.themealdb.com/api/json/v1/1/categories.php"
+        guard let url = URL(string: urlString) else { return }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data else {
+                completion(.failure(error ?? ApiError.unknownError))
+                return
+            }
+            do {
+                let categories = try JSONDecoder().decode(CategoriesList.self, from: data)
+                completion(.success(categories))
+            } catch let error {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
+    static func getTagsOfCategories(completion: @escaping (Result<CategoriesTagList, Error>) -> Void) {
+        let urlString = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
+        guard let url = URL(string: urlString) else { return }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data else {
+                completion(.failure(error ?? ApiError.unknownError))
+                return
+            }
+            do {
+                let meals = try JSONDecoder().decode(CategoriesTagList.self, from: data)
+                completion(.success(meals))
+            } catch let error {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
+    static func getTagsOfArea(completion: @escaping (Result<AreasTagList, Error>) -> Void) {
+        let urlString = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+        guard let url = URL(string: urlString) else { return }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data else {
+                completion(.failure(error ?? ApiError.unknownError))
+                return
+            }
+            do {
+                let meals = try JSONDecoder().decode(AreasTagList.self, from: data)
+                completion(.success(meals))
+            } catch let error {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
     
     func getCategoryList(completion: @escaping (Result<CategoriesList, Error>) -> Void) {
         let urlString = "https://www.themealdb.com/api/json/v1/1/categories.php"

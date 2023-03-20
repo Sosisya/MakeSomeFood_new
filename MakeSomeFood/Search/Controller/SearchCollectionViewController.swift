@@ -8,6 +8,10 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         case ingredient
         case allRecipes
     }
+
+    struct Spec {
+        static var collectionViewLayoutHeight: CGFloat = 42
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectinView()
@@ -25,11 +29,11 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch Section(rawValue: section) {
         case .category:
-            return 1
+            return 10
         case .area:
-            return 1
+            return 7
         case .ingredient:
-            return 1
+            return 5
         case .allRecipes:
             return 4
         default:
@@ -54,5 +58,9 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         default:
             fatalError()
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: Spec.collectionViewLayoutHeight)
     }
 }
