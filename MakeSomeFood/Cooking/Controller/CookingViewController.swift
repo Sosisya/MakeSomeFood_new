@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 enum Section: Int, CaseIterable {
     case nameOfrecipe
@@ -11,13 +12,14 @@ enum Section: Int, CaseIterable {
 class CookingViewController: UIViewController {
     struct Spec {}
 
+    private var recipe: Recipe?
+    var recipeName: String?
+
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
         tableView.translates()
         return tableView
     }()
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +116,7 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
         case .ingredientFooter:
             return 1
         case .ingredients:
-            return 50
+            return 20
         case .instructionsFooter:
             return 1
         case .instructions:

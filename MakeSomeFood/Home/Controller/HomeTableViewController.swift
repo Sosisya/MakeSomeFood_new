@@ -207,6 +207,7 @@ extension HomeTableViewController {
         switch Section(rawValue: indexPath.section) {
         case .specialRecipe:
             let recipeVC = CookingViewController()
+            recipeVC.recipeName = recipe?.name ?? ""
             show(recipeVC, sender: self)
         case .categories:
             let recipesOfCategoriesVC = RecipesOfCategoryTableViewController()

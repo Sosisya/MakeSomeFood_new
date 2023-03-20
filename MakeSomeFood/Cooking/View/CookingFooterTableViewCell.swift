@@ -1,7 +1,7 @@
 import UIKit
 
 class CookingFooterTableViewCell: UITableViewCell {
-    let headerView: CookingFooterView = {
+   let headerView: CookingFooterView = {
         let view = CookingFooterView()
         view.translates()
         return view

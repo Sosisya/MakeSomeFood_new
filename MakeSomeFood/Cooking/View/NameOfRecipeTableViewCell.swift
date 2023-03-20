@@ -10,7 +10,7 @@ class NameOfRecipeTableViewCell: UITableViewCell {
         static let numberOfAreaTagLabelLines = 0
     }
 
-    private let nameOfRecipeLabel: UILabel = {
+    let nameOfRecipeLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.textColor = .specialBlack
@@ -20,7 +20,7 @@ class NameOfRecipeTableViewCell: UITableViewCell {
         return label
     }()
 
-    private let categoryTagLabel: LabelWithInsets = {
+    let categoryTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
         label.translates()
         label.rounded()
@@ -36,7 +36,7 @@ class NameOfRecipeTableViewCell: UITableViewCell {
         return label
     }()
 
-    private let areaTagLabel: LabelWithInsets = {
+    let areaTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
         label.translates()
         label.rounded()

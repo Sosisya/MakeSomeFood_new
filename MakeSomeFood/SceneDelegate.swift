@@ -7,7 +7,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = configureTabBar()
+        let screenSaver = ScreensaverViewController()
+        screenSaver.completionHandler = { [weak self, weak window] in
+            window?.rootViewController = self?.configureTabBar()
+        }
+        window.rootViewController = screenSaver
         self.window = window
         window.makeKeyAndVisible()
     }
@@ -40,7 +44,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func configureSearchController() -> UIViewController {
-        let searchNavVC = UINavigationController(rootViewController: SearchCollectionViewController())
+        let searchVC = SearchCollectionViewController(collectionViewLayout: SearchCompositionalLayout())
+        let searchNavVC = UINavigationController(rootViewController: searchVC)
         configureNavigationController(searchNavVC)
         searchNavVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
         return searchNavVC

@@ -6,7 +6,7 @@ class InstructionsTableViewCell: UITableViewCell {
         static let numberOfInstructionsLabelLines = 0
     }
 
-    private let instructionsLabel: UILabel = {
+    let instructionsLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.text = Spec.instructionsLabelText

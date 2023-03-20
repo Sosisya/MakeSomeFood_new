@@ -14,7 +14,7 @@ class CookingHeaderView: UIView {
         return view
     }()
 
-    private let recipeImageView: UIImageView = {
+    let recipeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translates()
         imageView.image = Spec.recipeImageView

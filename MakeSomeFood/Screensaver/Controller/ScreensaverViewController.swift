@@ -36,6 +36,8 @@ class ScreensaverViewController: UIViewController {
         return label
     }()
 
+    var completionHandler = {}
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -45,9 +47,8 @@ class ScreensaverViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let homeVC = HomeTableViewController()
-            self.present(homeVC, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.completionHandler()
         }
     }
 }

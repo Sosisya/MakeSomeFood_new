@@ -76,12 +76,16 @@ class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setConstraints()
-//        createBottomLinks()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        createBottomLinks()
     }
 }
 
 extension RegistrationViewController {
-   private func setupLayout() {
+    private func setupLayout() {
         view.backgroundColor = .white
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -90,7 +94,7 @@ extension RegistrationViewController {
         contentView.addSubview(emailTextFieldView)
         contentView.addSubview(passwordTextFieldView)
         contentView.addSubview(registrationButton)
-        scrollView.addSubview(agreementLabel)
+        contentView.addSubview(agreementLabel)
     }
 
     private func setConstraints() {
@@ -137,11 +141,11 @@ extension RegistrationViewController {
         ])
     }
 
-//    private func createBottomLinks() {
-//        let filledHeight = registrationButton.frame.maxY
-//        let fullHeight = scrollView.frame.height
-//        let minOffset = 8 + agreementLabel.frame.height
-//        let realOffSet = fullHeight - filledHeight - 18
-//        agreementBottom?.constant = max(realOffSet, minOffset)
-//    }
+    private func createBottomLinks() {
+        let filledHeight = registrationButton.frame.maxY
+        let fullHeight = scrollView.frame.height
+        let minOffset = 8 + agreementLabel.frame.height
+        let realOffSet = fullHeight - filledHeight - 18
+        agreementBottom?.constant = max(realOffSet, minOffset)
+    }
 }

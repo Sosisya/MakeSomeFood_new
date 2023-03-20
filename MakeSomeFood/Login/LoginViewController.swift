@@ -93,8 +93,14 @@ class LoginViewController: UIViewController {
         setupConstraint()
         configureButton()
         configureNavigationBar()
-//        configurationNotificationCenter()
-//        createBottomLinks()
+        configurationNotificationCenter()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        DispatchQueue.main.async {
+            self.createBottomLinks()
+        }
     }
 }
 
@@ -103,14 +109,14 @@ extension LoginViewController {
     public func setupLayout() {
         view.backgroundColor = .white
         view.addSubview(scrollView)
-        view.addSubview(contentView)
+        scrollView.addSubview(contentView)
         contentView.addSubview(emailTextFieldView)
         contentView.addSubview(passwordTextFieldView)
         contentView.addSubview(enterButton)
         registrationStackView.addArrangedSubview(registrationLabel)
         registrationStackView.addArrangedSubview(registrationButton)
         contentView.addSubview(registrationStackView)
-        scrollView.addSubview(agreementLabel)
+        contentView.addSubview(agreementLabel)
     }
 
     public func setupConstraint() {
@@ -167,21 +173,21 @@ extension LoginViewController {
         self.show(profileVC, sender: self)
     }
 
-//    private func configurationNotificationCenter() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
+    private func configurationNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 
-//    @objc func keyboardWillShow(notification: Notification) {
-//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-//            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
-//            scrollViewBottom?.constant = keyboardSize.height - tabBarHeight
-//        }
-//    }
-//
-//    @objc func keyboardWillHide(notification: Notification) {
-//        scrollViewBottom?.constant = 0
-//    }
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+            scrollViewBottom?.constant = -(keyboardSize.height - tabBarHeight)
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        scrollViewBottom?.constant = 0
+    }
 
     private func configureNavigationBar() {
         title = ""
@@ -191,11 +197,11 @@ extension LoginViewController {
         view.endEditing(true)
      }
 
-//    private func createBottomLinks() {
-//        let filledHeight = registrationStackView.frame.maxY
-//        let fullHeight = scrollView.frame.height
-//        let minOffset = 8 + agreementLabel.frame.height
-//        let realOffSet = fullHeight - filledHeight - 18
-//        agreementBottom?.constant = max(realOffSet, minOffset)
-//    }
+    private func createBottomLinks() {
+        let filledHeight = registrationStackView.frame.maxY
+        let fullHeight = scrollView.frame.height
+        let minOffset = 8 + agreementLabel.frame.height
+        let realOffSet = fullHeight - filledHeight - 18
+        agreementBottom?.constant = max(realOffSet, minOffset)
+    }
 }

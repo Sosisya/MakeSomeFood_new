@@ -8,7 +8,7 @@ class IngredientsTableViewCell: UITableViewCell {
         static let numberOfquantityOfIngredientsLabelLines = 0
     }
 
-    private let ingredientLabel: UILabel = {
+    let ingredientLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.text = Spec.ingredientLabelText
@@ -19,7 +19,7 @@ class IngredientsTableViewCell: UITableViewCell {
         return label
     }()
 
-    private let quantityOfIngredientsLabel: UILabel = {
+    let quantityOfIngredientsLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.text = Spec.quantityOfIngredientsLabelText
