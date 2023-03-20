@@ -9,14 +9,12 @@ class RegistrationViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .blue
         return scrollView
     }()
 
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .red
         return contentView
     }()
 
@@ -26,6 +24,7 @@ class RegistrationViewController: UIViewController {
         label.font = UIFont(name: "Montserrat-SemiBold", size: 24)
         label.textColor = UIColor(named: "black")
         label.text = "Registration"
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -65,10 +64,10 @@ class RegistrationViewController: UIViewController {
     private let agreementLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Agreement"
+        label.text = "By registering, I agree to the terms and conditions"
         label.textAlignment = .center
         label.tintColor = UIColor(named: "black")
-        label.font = UIFont(name: "Montserrat-Regular", size: 16)
+        label.font = UIFont(name: "Montserrat-Medium", size: 13)
         return label
     }()
 

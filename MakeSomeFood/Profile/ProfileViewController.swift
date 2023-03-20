@@ -14,13 +14,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .blue
         return scrollView
     }()
 
     private let contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .red
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()

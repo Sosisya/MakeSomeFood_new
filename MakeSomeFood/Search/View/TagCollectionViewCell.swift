@@ -6,6 +6,7 @@ class TagCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.translates()
         view.rounded()
+        view.backgroundColor = .specialOrange
         return view
     }()
 
@@ -40,10 +41,11 @@ extension TagCollectionViewCell {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -6),
+            containerView.heightAnchor.constraint(equalToConstant: 34),
 
             tagLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             tagLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),

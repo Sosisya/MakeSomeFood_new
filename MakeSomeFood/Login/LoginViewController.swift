@@ -9,14 +9,12 @@ class LoginViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .blue
         return scrollView
     }()
 
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .red
         return contentView
     }()
 
@@ -76,10 +74,11 @@ class LoginViewController: UIViewController {
     private let agreementLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Agreement"
+        label.text = "By logging into my account, I agree to the terms and conditions"
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = UIColor(named: "black")
-        label.font = UIFont(name: "Montserrat-Regular", size: 16)
+        label.font = UIFont(name: "Montserrat-Medium", size: 13)
         return label
     }()
 

@@ -58,12 +58,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return favouritesNavVC
     }
 
-    func configureRegistrationController() -> UIViewController {
-        let registrationNavVC = UINavigationController(rootViewController: RegistrationViewController())
-        configureNavigationController(registrationNavVC)
-        return registrationNavVC
-    }
-
     func configureNavigationController(_ navVC: UINavigationController) {
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
