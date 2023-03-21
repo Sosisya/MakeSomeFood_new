@@ -20,7 +20,7 @@ class SearchHeaderView: UICollectionReusableView {
     let headerButton: UIButton = {
         let button = UIButton(type: .system)
         button.translates()
-        button.tintColor = .specialGreen
+        button.tintColor = .specialBlack
         button.titleLabel?.font = .montserratMedium13()
         return button
     }()

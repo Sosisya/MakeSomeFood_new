@@ -6,6 +6,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         static var takePhotoButtonFirstAlertTitle = "Take photo"
         static var takePhotoButtonSecondAlertTitle = "Open gallery"
         static var takePhotoButtonCancelAlertTitle = "Cancel"
+        static var exitButtonMainAlertTitle = "Are you sure you want to log out of your profile?"
+        static var exitButtonFirstAlertTitle = "Log out"
+        static var exitButtonCancelAlertTitle = "Cancel"
     }
 // -MARK: Constants
     private var scrollViewBottom: NSLayoutConstraint?
@@ -212,8 +215,27 @@ extension ProfileViewController {
     }
 
     @objc private func exitFromAccount() {
-        print("exit")
-    }
+        let alert = UIAlertController(title: Spec.exitButtonMainAlertTitle, message: nil, preferredStyle: .actionSheet)
+
+//        alert.addAction(UIAlertAction(title: Spec.exitButtonFirstAlertTitle, style: .destructive , handler:{ (UIAlertAction) in
+//            do {
+//                try Auth.auth().signOut()
+//                self.onExit()
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        }))
+        alert.addAction(UIAlertAction(title: Spec.exitButtonFirstAlertTitle, style: .destructive, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+
+        alert.addAction(UIAlertAction(title: Spec.exitButtonCancelAlertTitle, style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })    }
 
     private func openCameraButton() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {

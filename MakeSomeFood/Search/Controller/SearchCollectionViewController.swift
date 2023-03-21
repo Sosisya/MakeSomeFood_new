@@ -16,6 +16,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     private var ingredietsTag: [IngredientTag] = []
     private var recipe: [Recipe] = []
     private var recipes: Recipe?
+    private var searchController: UISearchController?
 
     struct Spec {
         static var collectionViewLayoutHeight: CGFloat = 42
@@ -29,6 +30,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         super.viewDidLoad()
         configureCollectinView()
         getApi()
+        configureSearchController()
     }
 
     private func getApi() {
@@ -92,6 +94,14 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
             }
         }
     }
+
+    private func configureSearchController() {
+        let searchResults = AllRecipesTableViewController()
+        searchController = UISearchController(searchResultsController: searchResults)
+        navigationItem.searchController = searchController
+        searchController?.searchBar.placeholder = "Search"
+    }
+    
     private func configureCollectinView() {
         collectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
         collectionView.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: "RecipeCollectionViewCell")

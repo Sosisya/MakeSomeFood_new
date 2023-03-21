@@ -2,10 +2,13 @@ import UIKit
 
 class FavouritesTableViewController: UITableViewController {
 
+    private var searchController: UISearchController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         configureNavigationBar()
+        configureSearchController()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,7 +27,15 @@ extension FavouritesTableViewController {
     private func configureTableView() {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
     }
+
     private func configureNavigationBar() {
         title = "Favourites"
+    }
+
+    private func configureSearchController() {
+        let searchResults = AllRecipesTableViewController()
+        searchController = UISearchController(searchResultsController: searchResults)
+        navigationItem.searchController = searchController
+        searchController?.searchBar.placeholder = "Search"
     }
 }
