@@ -1,8 +1,11 @@
 import UIKit
+import Kingfisher
 
 class AllRecipesTableViewController: UITableViewController {
     private var apiManager = ApiManager()
     var categoryName: String!
+    private var recipe: [Recipe] = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,18 +17,25 @@ class AllRecipesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return recipe.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeTableViewCell", for: indexPath) as! RecipeTableViewCell
         cell.selectionStyle = .none
+        let item = recipe[indexPath.row]
+        let url = URL(string: item.thumb ?? "")
+        cell.recipeView.recipeImageView.kf.setImage(with: url)
+        cell.recipeView.nameOfRecipeLabel.text = item.name
+        cell.recipeView.areaTagLabel.text = item.area
+        cell.recipeView.categoryTagLabel.text = item.category
         return cell
     }
 
     private func configure() {
         configureTableView()
         configureNavigationBar()
+        getAllRecipes()
     }
 }
 
@@ -37,8 +47,18 @@ extension AllRecipesTableViewController {
     private func configureNavigationBar() {
         title = "All recipes"
     }
-//
-//    private func getAllRecipes() {
-//        apiManager.getAllRecipes(search: <#T##String#>, completion: <#T##(Result<ReсipeList, Error>) -> Void#>)
-//    }
+
+    private func getAllRecipes() {
+        apiManager.getAllRecipes(search: "") { [weak self] result in
+            switch result {
+            case .success(let recipes):
+                DispatchQueue.main.async {
+                    self?.recipe = recipes.meals
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

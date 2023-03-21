@@ -97,11 +97,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-//        nameTextFieldView.textField.delegate = self
         setupLayout()
         setupConstraint()
         configurationNotificationCenter()
         configureButton()
+        configureTapGesture()
     }
 }
 
@@ -164,6 +164,11 @@ extension ProfileViewController {
             exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             exitButton.heightAnchor.constraint(equalToConstant: 56)
         ])
+    }
+
+    private func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+               view.addGestureRecognizer(tapGesture)
     }
 
     private func configurationNotificationCenter() {

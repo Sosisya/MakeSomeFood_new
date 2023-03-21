@@ -76,6 +76,7 @@ class RegistrationViewController: UIViewController {
         setupLayout()
         setConstraints()
         configurationNotificationCenter()
+        configureTapGesture()
     }
 
     override func viewDidLayoutSubviews() {
@@ -141,6 +142,11 @@ extension RegistrationViewController {
             agreementLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
             agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8)
         ])
+    }
+
+    private func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+               view.addGestureRecognizer(tapGesture)
     }
 
     private func configurationNotificationCenter() {

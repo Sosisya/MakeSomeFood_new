@@ -93,6 +93,7 @@ class LoginViewController: UIViewController {
         configureButton()
         configureNavigationBar()
         configurationNotificationCenter()
+        configureTapGesture()
     }
 
     override func viewDidLayoutSubviews() {
@@ -160,6 +161,11 @@ extension LoginViewController {
     private func configureButton() {
         registrationButton.addTarget(self, action: #selector(registrationButtonAction), for: .touchUpInside)
         enterButton.addTarget(self, action: #selector(enterButtonAction), for: .touchUpInside)
+    }
+
+    private func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+               view.addGestureRecognizer(tapGesture)
     }
 
     @objc func registrationButtonAction() {
