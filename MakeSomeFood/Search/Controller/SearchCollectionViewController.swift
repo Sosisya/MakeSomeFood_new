@@ -19,7 +19,12 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
 
     struct Spec {
         static var collectionViewLayoutHeight: CGFloat = 42
+        static var countOfTags = 6
+        static var titleOfCategory = "Categories"
+        static var titleOfArea = "Area"
+        static var titleOfIngredient = "Ingredients"
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectinView()
@@ -90,6 +95,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     private func configureCollectinView() {
         collectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
         collectionView.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: "RecipeCollectionViewCell")
+        collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchHeaderView")
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -99,11 +105,11 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch Section(rawValue: section) {
         case .category:
-            return categoriesTag.count
+            return min(categoriesTag.count, Spec.countOfTags)
         case .area:
-            return areasTag.count
+            return min(areasTag.count, Spec.countOfTags)
         case .ingredient:
-            return ingredietsTag.count
+            return min(ingredietsTag.count, Spec.countOfTags)
         case .allRecipes:
             return recipe.count
         default:
@@ -140,6 +146,29 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         default:
             fatalError()
         }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SearchHeaderView", for: indexPath) as! SearchHeaderView
+        switch Section(rawValue: indexPath.section) {
+        case .category:
+            header.configure(title: Spec.titleOfCategory, actionTitle: "All categories") {
+                print("Tap category")
+            }
+        case .area:
+            header.configure(title: Spec.titleOfArea, actionTitle: "All areas") {
+                print("Tap area")
+            }
+        case .ingredient:
+            header.configure(title: Spec.titleOfIngredient, actionTitle: "All ingredients") {
+                print("Tap ingredient")
+            }
+        case .allRecipes:
+            header.configure(title: "All recipes", offset: 16)
+        default:
+            break
+        }
+        return header
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
