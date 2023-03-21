@@ -5,12 +5,12 @@ class TagCollectionViewCell: UICollectionViewCell {
     private var containerView: UIView = {
         let view = UIView()
         view.translates()
-        view.rounded(radius: 17)
+        view.rounded(radius: view.bounds.height / 2)
         view.backgroundColor = .specialOrange
         return view
     }()
 
-    private let tagLabel: UILabel = {
+    let tagLabel: UILabel = {
         let label = UILabel()
         label.translates()
         label.font = UIFont.montserratMedium16()

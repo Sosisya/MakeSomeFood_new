@@ -2,7 +2,7 @@ import UIKit
 
 class RecipeCollectionViewCell: UICollectionViewCell {
 
-    private let recipeView: RecipeCardView = {
+    let recipeView: RecipeCardView = {
         let view = RecipeCardView()
         view.translates()
         return view
@@ -36,5 +36,11 @@ extension RecipeCollectionViewCell {
             recipeView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             recipeView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        recipeView.recipeImageView.kf.cancelDownloadTask()
+        recipeView.recipeImageView.image = nil
     }
 }

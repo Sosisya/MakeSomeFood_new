@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -9,14 +10,83 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         case allRecipes
     }
 
+    let apiManager = ApiManager()
+    private var categoriesTag: [CategoryTag] = []
+    private var areasTag: [AreaTag] = []
+    private var ingredietsTag: [IngredientTag] = []
+    private var recipe: [Recipe] = []
+    private var recipes: Recipe?
+
     struct Spec {
         static var collectionViewLayoutHeight: CGFloat = 42
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectinView()
+        getApi()
     }
 
+    private func getApi() {
+        apiManager.getTagsOfCategories { [weak self] result in
+            switch result {
+            case .success(let categoriesTagsList):
+                DispatchQueue.main.async {
+                    self?.categoriesTag = categoriesTagsList.meals
+                    self?.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+        apiManager.getTagsOfArea { [weak self] result in
+            switch result {
+            case .success(let areasTagsList):
+                DispatchQueue.main.async {
+                    self?.areasTag = areasTagsList.meals
+                    self?.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+        apiManager.getTagsOfIngredients { [weak self] result in
+            switch result {
+            case .success(let ingredientsTagsList):
+                DispatchQueue.main.async {
+                    self?.ingredietsTag = ingredientsTagsList.meals
+                    self?.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+        apiManager.getAllRecipes(search: "") { [weak self] result in
+            switch result {
+            case .success(let recipes):
+                DispatchQueue.main.async {
+                    self?.recipe = recipes.meals
+                    self?.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+        apiManager.getRecipe { [weak self] result in
+            switch result {
+            case .success(let recipes):
+                DispatchQueue.main.async {
+                    self?.recipes = recipes.meals.first
+                    self?.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
     private func configureCollectinView() {
         collectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
         collectionView.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: "RecipeCollectionViewCell")
@@ -29,13 +99,13 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch Section(rawValue: section) {
         case .category:
-            return 10
+            return categoriesTag.count
         case .area:
-            return 7
+            return areasTag.count
         case .ingredient:
-            return 5
+            return ingredietsTag.count
         case .allRecipes:
-            return 4
+            return recipe.count
         default:
             fatalError()
         }
@@ -45,15 +115,27 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         switch Section(rawValue: indexPath.section) {
         case .category:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
+            let item = categoriesTag[indexPath.row]
+            cell.tagLabel.text = item.category
             return cell
         case .area:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
+            let item = areasTag[indexPath.row]
+            cell.tagLabel.text = item.area
             return cell
         case .ingredient:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
+            let item = ingredietsTag[indexPath.row]
+            cell.tagLabel.text = item.ingredient
             return cell
         case .allRecipes:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeCollectionViewCell", for: indexPath) as! RecipeCollectionViewCell
+            let item = recipe[indexPath.row]
+            cell.recipeView.nameOfRecipeLabel.text = item.name
+            cell.recipeView.categoryTagLabel.text = item.category
+            cell.recipeView.areaTagLabel.text = item.area
+            let url = URL(string: item.thumb ?? "")
+            cell.recipeView.recipeImageView.kf.setImage(with: url)
             return cell
         default:
             fatalError()
