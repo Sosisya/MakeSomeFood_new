@@ -12,8 +12,7 @@ enum Section: Int, CaseIterable {
 class CookingViewController: UIViewController {
     struct Spec {}
 
-    private var recipe: Recipe?
-    var recipeName: String?
+    var recipe: Recipe?
 
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
@@ -70,6 +69,8 @@ extension CookingViewController {
 
     private func configureStrechyHeader() {
         let headerView = CookingHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 280))
+        let url = URL(string: recipe?.thumb ?? "")
+        headerView.recipeImageView.kf.setImage(with: url)
         cookingTableView.tableHeaderView = headerView
     }
 
@@ -116,7 +117,7 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
         case .ingredientFooter:
             return 1
         case .ingredients:
-            return 20
+            return recipe?.ingredients.count ?? 0
         case .instructionsFooter:
             return 1
         case .instructions:
@@ -130,6 +131,9 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
         switch Section(rawValue: indexPath.section) {
         case .nameOfrecipe:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NameOfRecipeTableViewCell", for: indexPath) as! NameOfRecipeTableViewCell
+            cell.nameOfRecipeLabel.text = recipe?.name
+            cell.areaTagLabel.text = recipe?.area
+            cell.categoryTagLabel.text = recipe?.category
             return cell
         case .ingredientFooter:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CookingFooterTableViewCell", for: indexPath) as! CookingFooterTableViewCell
@@ -137,6 +141,8 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .ingredients:
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientsTableViewCell", for: indexPath) as! IngredientsTableViewCell
+            cell.ingredientLabel.text = recipe?.ingredients[indexPath.row]
+            cell.quantityOfIngredientsLabel.text = recipe?.measures[indexPath.row]
             return cell
         case .instructionsFooter:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CookingFooterTableViewCell", for: indexPath) as! CookingFooterTableViewCell
@@ -144,6 +150,7 @@ extension CookingViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .instructions:
             let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionsTableViewCell", for: indexPath) as! InstructionsTableViewCell
+            cell.instructionsLabel.text = recipe?.instruction
             return cell
         default:
             fatalError()
