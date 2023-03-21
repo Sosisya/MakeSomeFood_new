@@ -42,6 +42,7 @@ class AllRecipesTableViewController: UITableViewController {
 extension AllRecipesTableViewController {
     private func configureTableView() {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
+        tableView.separatorStyle = .none
     }
 
     private func configureNavigationBar() {

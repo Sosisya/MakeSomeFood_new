@@ -11,7 +11,7 @@ import UIKit
 class SearchHeaderView: UICollectionReusableView {
     private let headerLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.font = .montserratMedium22()
         label.tintColor = .specialBlack
         return label
@@ -19,7 +19,7 @@ class SearchHeaderView: UICollectionReusableView {
 
     let headerButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translates()
+        button.translatesAutoresizingMaskIntoConstraints()
         button.tintColor = .specialBlack
         button.titleLabel?.font = .montserratMedium13()
         return button

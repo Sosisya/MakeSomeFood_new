@@ -3,7 +3,7 @@ import UIKit
 class CookingFooterView: UIView {
     let headerLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.font = .montserratMedium22()
         label.tintColor = .specialBlack
         return label

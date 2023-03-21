@@ -1,18 +1,19 @@
 import UIKit
 
 class CategorieTableViewCell: UITableViewCell {
-    
+    // - MARK: -
     struct Spec {
         static let shadowViewAlpha = 0.36
         static let categorieImageView = UIImage(named: "recipe")
         static let categoryLabelText = "Category"
     }
 
+    // - MARK: -
     let categorieImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translates()
-        imageView.masked(true)
-        imageView.rounded()
+        imageView.translatesAutoresizingMaskIntoConstraints()
+        imageView.setMasksToBounds()
+        imageView.setCornerRadius()
         imageView.image = Spec.categorieImageView
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -20,8 +21,8 @@ class CategorieTableViewCell: UITableViewCell {
 
     private let shadowView: UIView = {
         let view = UIView()
-        view.translates()
-        view.rounded()
+        view.translatesAutoresizingMaskIntoConstraints()
+        view.setCornerRadius()
         view.backgroundColor = .specialBlack
         view.alpha = Spec.shadowViewAlpha
         return view
@@ -29,7 +30,7 @@ class CategorieTableViewCell: UITableViewCell {
 
     let categorieLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.text = Spec.categoryLabelText
         label.font = .montserratSemibBold24()
         label.textColor = .specialWhite
@@ -37,6 +38,7 @@ class CategorieTableViewCell: UITableViewCell {
 
     }()
 
+    // - MARK: -
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -47,18 +49,19 @@ class CategorieTableViewCell: UITableViewCell {
         commonInit()
     }
 
-    private func commonInit() {
-        setupLayout()
-        setupConstraints()
-    }
-
     override func prepareForReuse() {
         super.prepareForReuse()
         categorieImageView.kf.cancelDownloadTask()
         categorieImageView.image = nil
     }
+
+    private func commonInit() {
+        setupLayout()
+        setupConstraints()
+    }
 }
 
+// - MARK: -
 extension CategorieTableViewCell {
     private func setupLayout() {
         contentView.addSubview(categorieImageView)

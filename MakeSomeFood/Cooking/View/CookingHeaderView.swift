@@ -10,22 +10,22 @@ class CookingHeaderView: UIView {
 
     private let containerView: UIView = {
         let view = UIView()
-        view.translates()
+        view.translatesAutoresizingMaskIntoConstraints()
         return view
     }()
 
     let recipeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translates()
+        imageView.translatesAutoresizingMaskIntoConstraints()
         imageView.image = Spec.recipeImageView
         imageView.contentMode = .scaleAspectFill
-        imageView.masked(true)
+        imageView.setMasksToBounds()
         return imageView
     }()
 
     private let shadowView: UIView = {
         let view = UIView()
-        view.translates()
+        view.translatesAutoresizingMaskIntoConstraints()
         view.backgroundColor = .specialBlack
         view.alpha = Spec.alphaOfShadowView
         return view
@@ -33,19 +33,19 @@ class CookingHeaderView: UIView {
 
     private let likeButton: UIButton = {
         let button = UIButton()
-        button.translates()
+        button.translatesAutoresizingMaskIntoConstraints()
         button.setImage(Spec.likeButtonImage, for: .normal)
         button.tintColor = .specialWhite
         button.backgroundColor = .specialOrange
-        button.rounded(radius: 21)
+        button.setCornerRadius(radius: 21)
         return button
     }()
 
     private let bottomView: UIView = {
         let view = UIView()
-        view.translates()
+        view.translatesAutoresizingMaskIntoConstraints()
         view.backgroundColor = .specialWhite
-        view.rounded()
+        view.setCornerRadius()
         view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         return view
     }()

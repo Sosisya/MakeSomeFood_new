@@ -2,13 +2,22 @@ import UIKit
 import Kingfisher
 
 class HomeTableViewController: UITableViewController {
+    // - MARK: -
     enum Section: Int, CaseIterable {
         case specialRecipe
         case categories
     }
+    // - MARK: Costants
+    struct Spec {
+        static let backIndicatorImage = UIImage(named: "icon.left")
+        static let backIndicatorTransitionMaskImage = UIImage(named: "icon.left")
+        static let searchBarPlaceholder = "Search"
+        static let specialHeaderLabelTitle = "Special"
+        static let specialHeaderButtonTitle = "All recipes"
+        static let categoryHeaderTitle = "Categories"
+    }
 
-    struct Spec { }
-    
+    // - MARK: -
     let apiManager = ApiManager()
     private var categories: [Category] = []
     var recipe: Recipe?
@@ -19,6 +28,7 @@ class HomeTableViewController: UITableViewController {
         return refreshControl
     }()
 
+    // - MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -31,7 +41,9 @@ class HomeTableViewController: UITableViewController {
     }
 }
 
+// - MARK: -
 extension HomeTableViewController {
+    // - MARK: Network
     private func getCategories() {
         apiManager.getCategoryList { [weak self] result in
             switch result {
@@ -59,11 +71,12 @@ extension HomeTableViewController {
             }
         }
     }
-    
+
+    // - MARK: Configure
     private func configureNavigationBar() {
-        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "icon.left")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "icon.left")
-        navigationController?.navigationBar.tintColor = UIColor(named: "black")
+        navigationController?.navigationBar.backIndicatorImage = Spec.backIndicatorImage
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = Spec.backIndicatorTransitionMaskImage
+        navigationController?.navigationBar.tintColor = .specialBlack
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
@@ -73,9 +86,7 @@ extension HomeTableViewController {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
         tableView.register(CategorieTableViewCell.self, forCellReuseIdentifier: "CategorieTableViewCell")
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
-        
         tableView.separatorStyle = .none
-
         tableView.refreshControl = specialRefreshControl
     }
 
@@ -88,7 +99,7 @@ extension HomeTableViewController {
         let searchResults = AllRecipesTableViewController()
         searchController = UISearchController(searchResultsController: searchResults)
         navigationItem.searchController = searchController
-        searchController?.searchBar.placeholder = "Search"
+        searchController?.searchBar.placeholder = Spec.searchBarPlaceholder
     }
 
     private func configureRefreshControl() {
@@ -113,7 +124,6 @@ extension HomeTableViewController {
 }
 
 // - MARK: UITableViewDelegate, UITableViewDataSource
-
 extension HomeTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count
@@ -166,15 +176,14 @@ extension HomeTableViewController {
         switch Section(rawValue: section) {
         case.specialRecipe:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
-            header.configure(title: "Special", actionTitle: "All recipes") {
+            header.configure(title: Spec.specialHeaderLabelTitle, actionTitle:  Spec.specialHeaderButtonTitle) {
                 let allRecipesVC = AllRecipesTableViewController()
-                allRecipesVC.title = "All recipes"
                 self.show(allRecipesVC, sender: self)
             }
             return header
         case .categories:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! HeaderView
-            header.configure(title: "Categories")
+            header.configure(title: Spec.categoryHeaderTitle)
             return header
         default:
             fatalError()

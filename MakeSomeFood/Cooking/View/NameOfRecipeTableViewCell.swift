@@ -12,7 +12,7 @@ class NameOfRecipeTableViewCell: UITableViewCell {
 
     let nameOfRecipeLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.textColor = .specialBlack
         label.text = Spec.nameOfRecipeLabelText
         label.font = .montserratSemibBold24()
@@ -22,15 +22,15 @@ class NameOfRecipeTableViewCell: UITableViewCell {
 
     let categoryTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
-        label.translates()
-        label.rounded()
+        label.translatesAutoresizingMaskIntoConstraints()
+        label.setCornerRadius()
         label.text = Spec.categoryTagLabelText
         label.font = .montserratMedium13()
         label.textColor = .specialGreen
-        label.rounded()
-        label.bordered()
-        label.colored(color: label.textColor)
-        label.masked(true)
+        label.setCornerRadius()
+        label.setBorderWidth()
+        label.setColor(color: label.textColor)
+        label.setMasksToBounds()
         label.numberOfLines = Spec.numberOfCategoryTagLabelLines
         label.textAlignment = .center
         return label
@@ -38,15 +38,15 @@ class NameOfRecipeTableViewCell: UITableViewCell {
 
     let areaTagLabel: LabelWithInsets = {
         let label = LabelWithInsets()
-        label.translates()
-        label.rounded()
+        label.translatesAutoresizingMaskIntoConstraints()
+        label.setCornerRadius()
         label.text = Spec.areaTagLabelText
         label.font = .montserratMedium13()
         label.textColor = .specialOrange
-        label.rounded()
-        label.bordered()
-        label.colored(color: label.textColor)
-        label.masked(true)
+        label.setCornerRadius()
+        label.setBorderWidth()
+        label.setColor(color: label.textColor)
+        label.setMasksToBounds()
         label.numberOfLines = Spec.numberOfAreaTagLabelLines
         label.textAlignment = .center
         return label

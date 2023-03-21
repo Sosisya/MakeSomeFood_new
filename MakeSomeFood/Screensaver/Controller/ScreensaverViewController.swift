@@ -1,16 +1,16 @@
 import UIKit
 
 class ScreensaverViewController: UIViewController {
-
+// - MARK: Constants
     struct Spec {
         static let upperNameLabelText = "make some"
         static let lowerNameLabelText = "food"
         static let screensaverImageView = UIImage(named: "screensaver")
     }
-
+// - MARK: -
     private let screensaverImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translates()
+        imageView.translatesAutoresizingMaskIntoConstraints()
         imageView.image = Spec.screensaverImageView
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -18,7 +18,7 @@ class ScreensaverViewController: UIViewController {
 
     private let upperNameLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.tintColor = .specialBlack
         label.textAlignment = .center
         label.font = .montserratBold44()
@@ -28,7 +28,7 @@ class ScreensaverViewController: UIViewController {
 
     private let lowerNameLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.textColor = .specialOrange
         label.textAlignment = .center
         label.font = .montserratBold53()
@@ -38,6 +38,7 @@ class ScreensaverViewController: UIViewController {
 
     var completionHandler = {}
 
+// - MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -53,6 +54,7 @@ class ScreensaverViewController: UIViewController {
     }
 }
 
+// - MARK: -
 extension ScreensaverViewController {
     private func setupLayout() {
         view.addSubview(screensaverImageView)

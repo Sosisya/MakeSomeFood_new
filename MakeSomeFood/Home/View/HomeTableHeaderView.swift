@@ -1,15 +1,16 @@
 import UIKit
 
 class HomeTableHeaderView: UIView {
-
+    // - MARK: -
     struct Spec {
         static let greetingLabel = "Hello, guest!"
         static let profileImage = UIImage(named: "profile")
     }
-    
+
+    // - MARK: -
      private let greetingLabel: UILabel = {
          let label = UILabel()
-         label.translates()
+         label.translatesAutoresizingMaskIntoConstraints()
          label.text = Spec.greetingLabel
          label.textColor = .specialBlack
          label.font = .montserratSemibBold24()
@@ -18,14 +19,15 @@ class HomeTableHeaderView: UIView {
 
      private let profileImage: UIImageView = {
          let imageView = UIImageView()
-         imageView.translates()
+         imageView.translatesAutoresizingMaskIntoConstraints()
          imageView.image = Spec.profileImage
          imageView.contentMode = .scaleAspectFill
-         imageView.masked(true)
-         imageView.rounded()
+         imageView.setMasksToBounds()
+         imageView.setCornerRadius()
          return imageView
      }()
 
+    // - MARK: -
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -42,6 +44,7 @@ class HomeTableHeaderView: UIView {
      }
  }
 
+// - MARK: -
 extension HomeTableHeaderView {
     private func setupLayout() {
         addSubview(greetingLabel)

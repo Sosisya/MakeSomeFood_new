@@ -8,7 +8,7 @@ class InstructionsTableViewCell: UITableViewCell {
 
     let instructionsLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.text = Spec.instructionsLabelText
         label.font = .montserratRegular16()
         label.textColor = .specialBlack

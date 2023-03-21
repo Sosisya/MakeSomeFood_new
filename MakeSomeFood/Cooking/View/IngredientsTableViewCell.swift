@@ -10,7 +10,7 @@ class IngredientsTableViewCell: UITableViewCell {
 
     let ingredientLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.text = Spec.ingredientLabelText
         label.font = .montserratRegular13()
         label.textColor = .specialBlack
@@ -21,7 +21,7 @@ class IngredientsTableViewCell: UITableViewCell {
 
     let quantityOfIngredientsLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.text = Spec.quantityOfIngredientsLabelText
         label.font = .montserratRegular13()
         label.textColor = .specialBlack
@@ -32,7 +32,7 @@ class IngredientsTableViewCell: UITableViewCell {
 
     private let bottomLineView: UIView = {
         let view = UIView()
-        view.translates()
+        view.translatesAutoresizingMaskIntoConstraints()
         view.backgroundColor = .specialGrayFill
         return view
     }()

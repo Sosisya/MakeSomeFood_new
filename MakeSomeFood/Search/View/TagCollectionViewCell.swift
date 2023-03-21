@@ -4,16 +4,16 @@ class TagCollectionViewCell: UICollectionViewCell {
 
     private var containerView: UIView = {
         let view = UIView()
-        view.translates()
-        view.rounded(radius: 17)
-        view.masked(true)
+        view.translatesAutoresizingMaskIntoConstraints()
+        view.setCornerRadius(radius: 17)
+        view.setMasksToBounds()
         view.backgroundColor = .specialOrange
         return view
     }()
 
     let tagLabel: UILabel = {
         let label = UILabel()
-        label.translates()
+        label.translatesAutoresizingMaskIntoConstraints()
         label.font = UIFont.montserratMedium16()
         label.numberOfLines = 0
         label.textColor = .white

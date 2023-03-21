@@ -1,21 +1,21 @@
 import UIKit
 
 class GreetingTableViewCell: UITableViewCell {
-    
+    // - MARK: -Constants
     struct Spec {
         static let greetingLabel = "Hello, guest!"
         static let profileImage = UIImage(named: "profile")
     }
-    
+    // - MARK: -
     private let containerView: UIView = {
          let view = UIView()
-         view.translates()
+         view.translatesAutoresizingMaskIntoConstraints()
          return view
      }()
 
      private let greetingLabel: UILabel = {
          let label = UILabel()
-         label.translates()
+         label.translatesAutoresizingMaskIntoConstraints()
          label.text = Spec.greetingLabel
          label.textColor = .specialBlack
          label.font = .montserratSemibBold24()
@@ -24,14 +24,15 @@ class GreetingTableViewCell: UITableViewCell {
 
      private let profileImage: UIImageView = {
          let imageView = UIImageView()
-         imageView.translates()
+         imageView.translatesAutoresizingMaskIntoConstraints()
          imageView.image = Spec.profileImage
          imageView.contentMode = .scaleAspectFill
-         imageView.masked(true)
-         imageView.rounded()
+         imageView.setMasksToBounds()
+         imageView.setCornerRadius()
          return imageView
      }()
 
+    // - MARK: -
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -48,6 +49,7 @@ class GreetingTableViewCell: UITableViewCell {
      }
  }
 
+// - MARK: -
 extension GreetingTableViewCell {
     private func setupLayout() {
         contentView.addSubview(containerView)

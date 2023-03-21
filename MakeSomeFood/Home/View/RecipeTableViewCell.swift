@@ -1,13 +1,14 @@
 import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
-    
+    // - MARK: -
     var recipeView: RecipeCardView = {
         let recipeView = RecipeCardView()
-        recipeView.translates()
+        recipeView.translatesAutoresizingMaskIntoConstraints()
         return recipeView
     }()
 
+    // - MARK: -
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -24,6 +25,7 @@ class RecipeTableViewCell: UITableViewCell {
     }
 }
 
+// - MARK: -
 extension RecipeTableViewCell {
     private func setupLayout() {
         contentView.addSubview(recipeView)

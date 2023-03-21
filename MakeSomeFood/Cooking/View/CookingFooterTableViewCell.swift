@@ -3,7 +3,7 @@ import UIKit
 class CookingFooterTableViewCell: UITableViewCell {
    let headerView: CookingFooterView = {
         let view = CookingFooterView()
-        view.translates()
+        view.translatesAutoresizingMaskIntoConstraints()
         return view
     }()
 

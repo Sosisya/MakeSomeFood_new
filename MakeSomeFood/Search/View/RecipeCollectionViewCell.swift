@@ -4,7 +4,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
 
     let recipeView: RecipeCardView = {
         let view = RecipeCardView()
-        view.translates()
+        view.translatesAutoresizingMaskIntoConstraints()
         return view
     }()
 

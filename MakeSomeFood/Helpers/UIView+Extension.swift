@@ -2,23 +2,23 @@ import UIKit
 
 // MARK: - extension UIView
 extension UIView {
-    func rounded(radius: CGFloat = 12) {
+    func setCornerRadius(radius: CGFloat = 12) {
         self.layer.cornerRadius = radius
     }
 
-    func translates() {
+    func translatesAutoresizingMaskIntoConstraints() {
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    func bordered() {
+    func setBorderWidth() {
         self.layer.borderWidth = 1
     }
 
-    func colored(color: UIColor = .specialBlack) {
+    func setColor(color: UIColor = .specialBlack) {
         self.layer.borderColor = color.cgColor
     }
 
-    func masked(_ bool: Bool) {
+    func setMasksToBounds(_ bool: Bool = true) {
         self.layer.masksToBounds = bool
     }
 }

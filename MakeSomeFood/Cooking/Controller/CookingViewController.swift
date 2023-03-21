@@ -16,7 +16,7 @@ class CookingViewController: UIViewController {
 
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
-        tableView.translates()
+        tableView.translatesAutoresizingMaskIntoConstraints()
         return tableView
     }()
 
