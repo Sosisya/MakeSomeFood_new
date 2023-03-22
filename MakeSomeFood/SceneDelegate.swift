@@ -58,6 +58,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return favouritesNavVC
     }
 
+    func configureAllTagsController() -> UIViewController {
+        let allTagsVS = AllTagsCollectionViewController(collectionViewLayout: SearchCompositionalLayout())
+        let allTagsNavVC = UINavigationController(rootViewController: allTagsVS)
+        configureNavigationController(allTagsNavVC)
+        return allTagsNavVC
+    }
+
     func configureNavigationController(_ navVC: UINavigationController) {
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [

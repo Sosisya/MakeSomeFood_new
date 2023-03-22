@@ -22,7 +22,6 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         static var buttonTitleOfCategories = "All categories"
         static var buttonTitleOfAreas = "All areas"
         static var buttonTitleOfIngredients = "All ingredients"
-
     }
 
     // - MARK: -
@@ -172,15 +171,18 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         switch Section(rawValue: indexPath.section) {
         case .category:
             header.configure(title: Spec.titleOfCategory, actionTitle: Spec.buttonTitleOfCategories) {
-                print("Tap category")
+                let allTagsVC = AllTagsCollectionViewController()
+                self.show(allTagsVC, sender: self)
             }
         case .area:
             header.configure(title: Spec.titleOfArea, actionTitle: Spec.buttonTitleOfAreas) {
-                print("Tap area")
+                let allTagsVC = AllTagsCollectionViewController()
+                self.show(allTagsVC, sender: self)
             }
         case .ingredient:
             header.configure(title: Spec.titleOfIngredient, actionTitle: Spec.buttonTitleOfIngredients) {
-                print("Tap ingredient")
+                let allTagsVC = AllTagsCollectionViewController()
+                self.show(allTagsVC, sender: self)
             }
         case .allRecipes:
             header.configure(title: Spec.titleOfAllRecipes, offset: 16)

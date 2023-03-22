@@ -63,6 +63,7 @@
 		8E88173D29C8DCD600CDDC7E /* AreasTagList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88173C29C8DCD600CDDC7E /* AreasTagList.swift */; };
 		8E88173F29C9AF7E00CDDC7E /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88173E29C9AF7D00CDDC7E /* SearchHeaderView.swift */; };
 		8E88174429CA332A00CDDC7E /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88174329CA332A00CDDC7E /* UILabel+Extension.swift */; };
+		8E88174729CAC5D900CDDC7E /* AllTagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88174629CAC5D900CDDC7E /* AllTagsCollectionViewController.swift */; };
 		8ECF034229BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */; };
 		8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */; };
 		8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */; };
@@ -129,6 +130,7 @@
 		8E88173C29C8DCD600CDDC7E /* AreasTagList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreasTagList.swift; sourceTree = "<group>"; };
 		8E88173E29C9AF7D00CDDC7E /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		8E88174329CA332A00CDDC7E /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		8E88174629CAC5D900CDDC7E /* AllTagsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsCollectionViewController.swift; sourceTree = "<group>"; };
 		8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesOfCategoryTableViewController.swift; sourceTree = "<group>"; };
 		8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		8E41FA4729A47E6F0068C678 /* MakeSomeFood */ = {
 			isa = PBXGroup;
 			children = (
+				8E88174529CAC5BA00CDDC7E /* AllTags */,
 				8E3E5EBE29B7376D0063553B /* Helpers */,
 				8E3E5ED129B8E0180063553B /* Network */,
 				8E46D23929A4C331001D1106 /* Screensaver */,
@@ -345,6 +348,22 @@
 				8E46D23E29A5D1A0001D1106 /* Registration */,
 			);
 			path = ProfileControllers;
+			sourceTree = "<group>";
+		};
+		8E88174529CAC5BA00CDDC7E /* AllTags */ = {
+			isa = PBXGroup;
+			children = (
+				8E88174829CAC5DE00CDDC7E /* Controller */,
+			);
+			path = AllTags;
+			sourceTree = "<group>";
+		};
+		8E88174829CAC5DE00CDDC7E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8E88174629CAC5D900CDDC7E /* AllTagsCollectionViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		8ECF034029BDDD2500A21A9D /* RecipesOfCategory */ = {
@@ -541,6 +560,7 @@
 				8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */,
 				8E46D24629A691D9001D1106 /* HomeTableViewController.swift in Sources */,
 				8E46D24C29A69AB5001D1106 /* RecipeTableViewCell.swift in Sources */,
+				8E88174729CAC5D900CDDC7E /* AllTagsCollectionViewController.swift in Sources */,
 				8E3E5EC629B7998C0063553B /* NameOfRecipeTableViewCell.swift in Sources */,
 				8E88173B29C8DCC900CDDC7E /* IngredientsTagList.swift in Sources */,
 				8E3E5EC029B737850063553B /* UIColor+Extension.swift in Sources */,
