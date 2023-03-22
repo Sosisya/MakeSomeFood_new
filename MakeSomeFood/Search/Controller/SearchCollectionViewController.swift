@@ -2,7 +2,7 @@ import UIKit
 import Kingfisher
 
 class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    // - MARK: -
     enum Section: Int, CaseIterable {
         case category
         case area
@@ -10,6 +10,22 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         case allRecipes
     }
 
+    // - MARK: Constants
+    struct Spec {
+        static var collectionViewLayoutHeight: CGFloat = 42
+        static var countOfTags = 6
+        static var titleOfCategory = "Categories"
+        static var titleOfArea = "Area"
+        static var titleOfIngredient = "Ingredients"
+        static var titleOfAllRecipes = "All recipes"
+        static var searchBarPlaceholder = "Search"
+        static var buttonTitleOfCategories = "All categories"
+        static var buttonTitleOfAreas = "All areas"
+        static var buttonTitleOfIngredients = "All ingredients"
+
+    }
+
+    // - MARK: -
     let apiManager = ApiManager()
     private var categoriesTag: [CategoryTag] = []
     private var areasTag: [AreaTag] = []
@@ -18,21 +34,14 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     private var recipes: Recipe?
     private var searchController: UISearchController?
 
-    struct Spec {
-        static var collectionViewLayoutHeight: CGFloat = 42
-        static var countOfTags = 6
-        static var titleOfCategory = "Categories"
-        static var titleOfArea = "Area"
-        static var titleOfIngredient = "Ingredients"
-    }
-
+    // - MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectinView()
         getApi()
         configureSearchController()
     }
-
+    // - MARK: Network
     private func getApi() {
         apiManager.getTagsOfCategories { [weak self] result in
             switch result {
@@ -94,12 +103,12 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
             }
         }
     }
-
+    // - MARK: Configure
     private func configureSearchController() {
         let searchResults = AllRecipesTableViewController()
         searchController = UISearchController(searchResultsController: searchResults)
         navigationItem.searchController = searchController
-        searchController?.searchBar.placeholder = "Search"
+        searchController?.searchBar.placeholder = Spec.searchBarPlaceholder
     }
     
     private func configureCollectinView() {
@@ -107,7 +116,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         collectionView.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: "RecipeCollectionViewCell")
         collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchHeaderView")
     }
-
+    // - MARK: UICollectionViewDataSource, UICollectionViewDelegate
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return Section.allCases.count
     }
@@ -162,19 +171,19 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SearchHeaderView", for: indexPath) as! SearchHeaderView
         switch Section(rawValue: indexPath.section) {
         case .category:
-            header.configure(title: Spec.titleOfCategory, actionTitle: "All categories") {
+            header.configure(title: Spec.titleOfCategory, actionTitle: Spec.buttonTitleOfCategories) {
                 print("Tap category")
             }
         case .area:
-            header.configure(title: Spec.titleOfArea, actionTitle: "All areas") {
+            header.configure(title: Spec.titleOfArea, actionTitle: Spec.buttonTitleOfAreas) {
                 print("Tap area")
             }
         case .ingredient:
-            header.configure(title: Spec.titleOfIngredient, actionTitle: "All ingredients") {
+            header.configure(title: Spec.titleOfIngredient, actionTitle: Spec.buttonTitleOfIngredients) {
                 print("Tap ingredient")
             }
         case .allRecipes:
-            header.configure(title: "All recipes", offset: 16)
+            header.configure(title: Spec.titleOfAllRecipes, offset: 16)
         default:
             break
         }

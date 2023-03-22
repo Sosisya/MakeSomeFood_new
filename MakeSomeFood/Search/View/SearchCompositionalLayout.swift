@@ -1,14 +1,14 @@
 import UIKit
 
 class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
-
+    // - MARK: -
     enum Section: Int, CaseIterable {
         case category
         case area
         case ingredient
         case allRecipes
     }
-
+    // - MARK: Constants
     private struct Spec {
         static var chipsItemSizeWidth: CGFloat = 1
         static var chipsItemSizeHeight: CGFloat = 200
@@ -35,7 +35,6 @@ class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
     }
 
     private static func createLayout() -> ((Int, NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection?) {
-
         return { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
             if sectionKind == .allRecipes {
@@ -74,12 +73,10 @@ class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
             alignment: .top
         )
         section.boundarySupplementaryItems = [header]
-
         return section
     }
 
     private static func createRecipeLayout(sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
-
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(Spec.chipsItemSizeWidth),
             heightDimension: .estimated(Spec.chipsItemSizeHeight)
@@ -107,13 +104,12 @@ class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
             alignment: .top
         )
         section.boundarySupplementaryItems = [header]
-
         return section
     }
 
+    // - MARK: -
     init() {
         super.init(sectionProvider: SearchCompositionalLayout.createLayout())
-
     }
 
     required init?(coder: NSCoder) {

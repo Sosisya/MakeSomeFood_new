@@ -2,6 +2,7 @@ import UIKit
 
 class TagCollectionViewCell: UICollectionViewCell {
 
+    // - MARK: -
     private var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints()
@@ -17,11 +18,11 @@ class TagCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.montserratMedium16()
         label.numberOfLines = 0
         label.textColor = .white
-        label.text = "Tag"
         label.textAlignment = .center
         return label
     }()
-
+    
+    // - MARK: -
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()

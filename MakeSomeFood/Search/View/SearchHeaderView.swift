@@ -1,14 +1,7 @@
-//
-//  SearchHeaderView.swift
-//  MakeSomeFood
-//
-//  Created by Луиза Самойленко on 21.03.2023.
-//
-
-import Foundation
 import UIKit
 
 class SearchHeaderView: UICollectionReusableView {
+    // - MARK: -
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints()
@@ -29,6 +22,7 @@ class SearchHeaderView: UICollectionReusableView {
     private var headerLabelLeading: NSLayoutConstraint?
     private var headerButtonTrailing: NSLayoutConstraint?
 
+    // - MARK: -
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -45,7 +39,7 @@ class SearchHeaderView: UICollectionReusableView {
         setupContsraints()
     }
 }
-
+// - MARK: -
 extension SearchHeaderView {
     private func setupLayout() {
         addSubview(headerLabel)
@@ -54,7 +48,6 @@ extension SearchHeaderView {
 
     private func setupContsraints() {
         headerLabelLeading = headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor)
-
         NSLayoutConstraint.activate([
             headerLabel.topAnchor.constraint(equalTo: topAnchor),
             headerLabelLeading!,
@@ -65,7 +58,7 @@ extension SearchHeaderView {
             headerButton.centerYAnchor.constraint(equalTo: headerLabel.centerYAnchor),
         ])
     }
-
+    // - MARK: Configure
     func configure(title: String, actionTitle: String? = nil, offset: CGFloat = 0, openAllTags: (() -> Void)? = nil) {
         headerLabel.text = title
         headerButton.setTitle(actionTitle, for: .normal)
