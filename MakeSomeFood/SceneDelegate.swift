@@ -58,21 +58,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return favouritesNavVC
     }
 
-    func configureAllTagsController() -> UIViewController {
-        let allTagsVS = AllTagsCollectionViewController(collectionViewLayout: SearchCompositionalLayout())
-        let allTagsNavVC = UINavigationController(rootViewController: allTagsVS)
-        configureNavigationController(allTagsNavVC)
-        return allTagsNavVC
-    }
-
     func configureNavigationController(_ navVC: UINavigationController) {
+        navVC.navigationBar.standardAppearance = .standard
+        navVC.navigationBar.scrollEdgeAppearance = .scrollEdge
+    }
+}
+
+extension UINavigationBarAppearance {
+    static var standard: UINavigationBarAppearance {
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
             .font: UIFont(name: "Montserrat-SemiBold", size: 24),
             .foregroundColor: UIColor(named: "black")
         ]
-        navVC.navigationBar.standardAppearance = appearance
-        navVC.navigationBar.scrollEdgeAppearance = appearance
+        return appearance
+    }
+
+    static var scrollEdge: UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.titleTextAttributes = [
+            .font: UIFont(name: "Montserrat-SemiBold", size: 24),
+            .foregroundColor: UIColor(named: "black")
+        ]
+        return appearance
     }
 }
 

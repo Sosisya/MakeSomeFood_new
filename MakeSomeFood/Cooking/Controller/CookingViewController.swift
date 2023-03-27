@@ -27,7 +27,6 @@ class CookingViewController: UIViewController {
         setupConstraints()
         configureTableView()
         configureStrechyHeader()
-        configureNavigationBar()
         addShareBarButtonItem()
     }
 
@@ -74,19 +73,13 @@ extension CookingViewController {
         cookingTableView.tableHeaderView = headerView
     }
 
-    private func configureNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-    }
-
     private func updateNavigationBarTint() {
         let isScrolled = cookingTableView.contentOffset.y + cookingTableView.adjustedContentInset.top > 0
         navigationController?.navigationBar.tintColor = isScrolled ? .specialBlack : .white
     }
 
    private func addShareBarButtonItem() {
-       let shareButton = UIBarButtonItem(image: UIImage(named: "square.and.arrow.up"), style: .done, target: self, action: #selector(shareButtonPressed))
+       let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .done, target: self, action: #selector(shareButtonPressed))
         self.navigationItem.rightBarButtonItem = shareButton
     }
 

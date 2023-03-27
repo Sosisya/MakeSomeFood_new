@@ -195,7 +195,7 @@ extension LoginViewController {
     }
 
     private func configureNavigationBar() {
-        title = ""
+        navigationItem.title = ""
     }
 
     @objc func dismissKeyboard() {

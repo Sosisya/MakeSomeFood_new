@@ -8,7 +8,10 @@ class RecipeCardView: UIView {
         static let shadowViewOpacity: Float = 0.06
         static let shadowViewRadius: CGFloat = 10
         static let shadowViewOffset: CGSize = CGSize(width: 0, height: 12)
-        static let likeButtonImage = UIImage(systemName: "heart")
+        static let likeButtonImage = UIImage(
+            systemName: "heart",
+            withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+        )
         static let nameOfRecipeLabelText = "Name of recipe"
         static let recipeImageView = UIImage(named: "recipe")
         static let stackViewSpacing: CGFloat = 8

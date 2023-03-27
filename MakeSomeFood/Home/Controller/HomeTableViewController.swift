@@ -81,7 +81,7 @@ extension HomeTableViewController {
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
     }
-    
+
     private func configureTableView() {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
         tableView.register(CategorieTableViewCell.self, forCellReuseIdentifier: "CategorieTableViewCell")
