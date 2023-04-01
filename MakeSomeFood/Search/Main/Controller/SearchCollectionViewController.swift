@@ -1,7 +1,7 @@
 import UIKit
 import Kingfisher
 
-class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, RecipePresenting {
     // - MARK: -
     enum Section: Int, CaseIterable {
         case category
@@ -190,6 +190,22 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
             break
         }
         return header
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch Section(rawValue: indexPath.section) {
+        case .category:
+            showRecipes(.category, categoriesTag[indexPath.item].category)
+        case .area:
+            showRecipes(.area, areasTag[indexPath.item].area)
+        case .ingredient:
+            showRecipes(.ingredient, ingredietsTag[indexPath.item].ingredient)
+        case  .allRecipes:
+            let item = recipe[indexPath.row]
+            showRecipe(item)
+        default:
+            break
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

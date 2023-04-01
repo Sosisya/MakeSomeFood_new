@@ -1,7 +1,7 @@
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
     struct Spec {
         static var takePhotoButtonFirstAlertTitle = "Take photo"
         static var takePhotoButtonSecondAlertTitle = "Open gallery"
@@ -10,10 +10,24 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         static var exitButtonFirstAlertTitle = "Log out"
         static var exitButtonCancelAlertTitle = "Cancel"
     }
+
+    struct ProfileData: Equatable {
+        var changedPhoto: Bool
+        var name: String
+        var email: String
+    }
+
 // -MARK: Constants
     private var scrollViewBottom: NSLayoutConstraint?
     private var saveButtonBottom: NSLayoutConstraint?
     private var saveButtonTop: NSLayoutConstraint?
+
+    private var initialValues = {
+        if let user = Auth.auth().currentUser {
+            return ProfileData(changedPhoto: false, name: user.displayName ?? "", email: user.email ?? "")
+        }
+        return ProfileData(changedPhoto: false, name: "", email: "")
+    }()
 
 // -MARK: Properties
     private let scrollView: UIScrollView = {
@@ -102,6 +116,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         configurationNotificationCenter()
         configureButton()
         configureTapGesture()
+        configureTextField() 
     }
 }
 
@@ -260,6 +275,11 @@ extension ProfileViewController {
             imagePicker.allowsEditing = false
             self.present(imagePicker, animated: true, completion: nil)
         }
+    }
+
+    private func configureTextField() {
+        emailTextFieldView.textField.text = initialValues.name
+        emailTextFieldView.textField.text = initialValues.email
     }
 }
 

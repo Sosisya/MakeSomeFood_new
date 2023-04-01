@@ -1,7 +1,7 @@
 import UIKit
 import Kingfisher
 
-class HomeTableViewController: UITableViewController {
+class HomeTableViewController: UITableViewController, RecipePresenting {
     // - MARK: -
     enum Section: Int, CaseIterable {
         case specialRecipe
@@ -215,14 +215,11 @@ extension HomeTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Section(rawValue: indexPath.section) {
         case .specialRecipe:
-            let recipeVC = CookingViewController()
-            recipeVC.recipe = recipe
-            show(recipeVC, sender: self)
+            guard let recipe = recipe else { return }
+            showRecipe(recipe)
         case .categories:
-            let recipesOfCategoriesVC = RecipesOfCategoryTableViewController()
-            let item = categories[indexPath.row].category
-            recipesOfCategoriesVC.categoryName = item
-            show(recipesOfCategoriesVC, sender: self)
+            guard indexPath.section == 1 else { return }
+            showRecipes(.category, categories[indexPath.row].category)
         default:
             fatalError()
         }

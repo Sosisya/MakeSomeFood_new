@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class RegistrationViewController: UIViewController {
     // - MARK: Constants
@@ -77,6 +78,7 @@ class RegistrationViewController: UIViewController {
         setConstraints()
         configurationNotificationCenter()
         configureTapGesture()
+        conficgureButton()
     }
 
     override func viewDidLayoutSubviews() {
@@ -171,5 +173,25 @@ extension RegistrationViewController {
         let minOffset = 8 + agreementLabel.frame.height
         let realOffSet = fullHeight - filledHeight - 18
         agreementBottom?.constant = max(realOffSet, minOffset)
+    }
+
+    private func conficgureButton() {
+        registrationButton.addTarget(self, action: #selector(registrationAction), for: .touchUpInside)
+    }
+
+    @objc private func registrationAction() {
+        Auth.auth().createUser(withEmail: emailTextFieldView.textField.text ?? "", password: passwordTextFieldView.textField.text ?? "") { [weak self] authResult, error in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+                if authResult?.user != nil {
+                    self?.onAuth()
+                }
+            }
+        }
+    }
+
+    private func onAuth() {
+        let profileVC = ProfileViewController()
+        show(profileVC, sender: self)
     }
 }

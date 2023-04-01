@@ -12,7 +12,7 @@ class TextFieldView: UIView, UITextFieldDelegate {
         return containerView
     }()
 
-    private let textField: UITextField = {
+    let textField: UITextField = {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none

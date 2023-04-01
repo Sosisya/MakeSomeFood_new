@@ -1,7 +1,7 @@
 import UIKit
 import Kingfisher
 
-class AllRecipesTableViewController: UITableViewController {
+class AllRecipesTableViewController: UITableViewController, RecipePresenting {
     private var apiManager = ApiManager()
     var categoryName: String!
     private var recipe: [Recipe] = []
@@ -30,6 +30,11 @@ class AllRecipesTableViewController: UITableViewController {
         cell.recipeView.areaTagLabel.text = item.area
         cell.recipeView.categoryTagLabel.text = item.category
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = recipe[indexPath.row]
+        showRecipe(item)
     }
 
     private func configure() {

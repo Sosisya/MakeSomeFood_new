@@ -20,6 +20,9 @@ class RecipeCardView: UIView {
         static let nameOfRecipeAndTagsStackViewSpasing: CGFloat = 8
     }
 
+
+    var recipe: Recipe?
+
     // - MARK: -
     private let shadowView: UIView = {
         let shadowView = UIView()
@@ -191,4 +194,23 @@ extension RecipeCardView {
             nameOfRecipeAndTagsStackView.bottomAnchor.constraint(equalTo: conteinerView.bottomAnchor, constant: -12)
         ])
     }
+
+    // - MARK: Configure
+    func configure(item: Recipe) {
+        recipe = item
+        nameOfRecipeLabel.text = item.name
+        recipeImageView.kf.setImage(with: URL(string: item.thumb ?? ""))
+        categoryTagLabel.text = item.category
+        areaTagLabel.text = item.area
+//        configureIsFavourite(recipeId: item.id)
+    }
+
+    func configure(item: RecipeOfCategory) {
+        recipe = .init(recipeOfCategory: item)
+        nameOfRecipeLabel.text = item.name
+        recipeImageView.kf.setImage(with: URL(string: item.thumb))
+//        tagsStackView.isHidden = true
+//        configureIsFavourite(recipeId: item.id)
+    }
+
 }

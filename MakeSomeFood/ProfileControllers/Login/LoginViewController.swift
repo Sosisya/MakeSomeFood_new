@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     // - MARK: Constants
@@ -32,7 +33,7 @@ class LoginViewController: UIViewController {
         return textfieldView
     }()
 
-    private let enterButton: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Sign in", for: .normal)
@@ -97,11 +98,11 @@ class LoginViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-           super.viewDidLayoutSubviews()
-           DispatchQueue.main.async {
-               self.createBottomLinks()
-           }
-       }
+        super.viewDidLayoutSubviews()
+        DispatchQueue.main.async {
+            self.createBottomLinks()
+        }
+    }
 }
 
 // -MARK: Extension
@@ -112,7 +113,7 @@ extension LoginViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(emailTextFieldView)
         contentView.addSubview(passwordTextFieldView)
-        contentView.addSubview(enterButton)
+        contentView.addSubview(loginButton)
         registrationStackView.addArrangedSubview(registrationLabel)
         registrationStackView.addArrangedSubview(registrationButton)
         contentView.addSubview(registrationStackView)
@@ -143,12 +144,12 @@ extension LoginViewController {
             passwordTextFieldView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwordTextFieldView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
-            enterButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 32),
-            enterButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            enterButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            enterButton.heightAnchor.constraint(equalToConstant: 56),
+            loginButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 32),
+            loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            loginButton.heightAnchor.constraint(equalToConstant: 56),
 
-            registrationStackView.topAnchor.constraint(equalTo: enterButton.bottomAnchor, constant: 34),
+            registrationStackView.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 34),
             registrationStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
             agreementBottom!,
@@ -160,12 +161,12 @@ extension LoginViewController {
 
     private func configureButton() {
         registrationButton.addTarget(self, action: #selector(registrationButtonAction), for: .touchUpInside)
-        enterButton.addTarget(self, action: #selector(enterButtonAction), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
     }
 
     private func configureTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-               view.addGestureRecognizer(tapGesture)
+        view.addGestureRecognizer(tapGesture)
     }
 
     @objc func registrationButtonAction() {
@@ -173,9 +174,16 @@ extension LoginViewController {
         self.show(registrationVC, sender: self)
     }
 
-    @objc func enterButtonAction() {
-        let profileVC = ProfileViewController()
-        self.show(profileVC, sender: self)
+    @objc func loginButtonAction() {
+
+        Auth.auth().signIn(withEmail: emailTextFieldView.textField.text ?? "", password: passwordTextFieldView.textField.text ?? "") { [weak self] authResult, error in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+                if authResult?.user != nil {
+                    self?.onAuth()
+                }
+            }
+        }
     }
 
     private func configurationNotificationCenter() {
@@ -200,7 +208,7 @@ extension LoginViewController {
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
-     }
+    }
 
     private func createBottomLinks() {
         let filledHeight = registrationStackView.frame.maxY
@@ -208,5 +216,10 @@ extension LoginViewController {
         let minOffset = 8 + agreementLabel.frame.height
         let realOffSet = fullHeight - filledHeight - 18
         agreementBottom?.constant = max(realOffSet, minOffset)
+    }
+
+    private func onAuth() {
+        let profileVC = ProfileViewController()
+        show(profileVC, sender: self)
     }
 }
