@@ -1,10 +1,9 @@
 import UIKit
 
-class AllTagsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class AllTagsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, RecipePresenting {
     let apiManager = ApiManager()
-    private var categoriesTag: [CategoryTag] = []
-    private var areasTag: [AreaTag] = []
-    private var ingredietsTag: [IngredientTag] = []
+    var tagsType: TagsType!
+    private var tags: [String] = []
 
     init() {
         super.init(collectionViewLayout: SearchCompositionalLayout())
@@ -16,67 +15,75 @@ class AllTagsCollectionViewController: UICollectionViewController, UICollectionV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = tagsType.title
         self.collectionView!.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
         getApi()
     }
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoriesTag.count
+        return tags.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
-        let item = categoriesTag[indexPath.row].category
+        let item = tags[indexPath.row]
         cell.tagLabel.text = item
+        cell.backgroundColor = tagsType?.color
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 42)
     }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showRecipes(tagsType, tags[indexPath.item])
+    }
 }
 
 extension AllTagsCollectionViewController {
     private func getApi() {
-        apiManager.getTagsOfCategories { [weak self] result in
-            switch result {
-            case .success(let categoriesTagsList):
-                DispatchQueue.main.async {
-                    self?.categoriesTag = categoriesTagsList.meals
-                    self?.collectionView.reloadData()
+        switch tagsType {
+        case .category:
+            apiManager.getTagsOfCategories { [weak self] result in
+                switch result {
+                case .success(let categoriesTagsList):
+                    DispatchQueue.main.async {
+                        self?.tags = categoriesTagsList.meals.map { $0.category }
+                        self?.collectionView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
             }
-        }
+        case .area:
+            apiManager.getTagsOfArea { [weak self] result in
+                switch result {
+                case .success(let areaTagsList):
+                    DispatchQueue.main.async {
+                        self?.tags = areaTagsList.meals.map { $0.area }
+                        self?.collectionView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
 
-        apiManager.getTagsOfArea { [weak self] result in
-            switch result {
-            case .success(let areasTagsList):
-                DispatchQueue.main.async {
-                    self?.areasTag = areasTagsList.meals
-                    self?.collectionView.reloadData()
+        case .ingredient:
+            apiManager.getTagsOfIngredients { [weak self] result in
+                switch result {
+                case .success(let ingredientsTagsList):
+                    DispatchQueue.main.async {
+                        self?.tags = ingredientsTagsList.meals.map { $0.ingredient }
+                        self?.collectionView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
             }
-        }
-
-        apiManager.getTagsOfIngredients { [weak self] result in
-            switch result {
-            case .success(let ingredientsTagsList):
-                DispatchQueue.main.async {
-                    self?.ingredietsTag = ingredientsTagsList.meals
-                    self?.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        default:
+            break
         }
     }
 }

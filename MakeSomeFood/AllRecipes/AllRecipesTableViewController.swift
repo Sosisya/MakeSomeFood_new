@@ -2,14 +2,28 @@ import UIKit
 import Kingfisher
 
 class AllRecipesTableViewController: UITableViewController, RecipePresenting {
+
+    enum Source {
+        case favourite
+        case allRecipes
+    }
+
+
     private var apiManager = ApiManager()
     var categoryName: String!
     private var recipe: [Recipe] = []
+    public var source: Source = .allRecipes
+    public var search: String = "" {
+        didSet {
+            refreshSearchResults()
+        }
+    }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        refreshSearchResults()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,6 +56,15 @@ class AllRecipesTableViewController: UITableViewController, RecipePresenting {
         configureNavigationBar()
         getAllRecipes()
     }
+
+    private func refreshSearchResults() {
+        switch source {
+        case .allRecipes: getAllRecipes()
+        default:
+            break
+//        case .favourite: getFavouriteRecipes()
+        }
+    }
 }
 
 extension AllRecipesTableViewController {
@@ -52,10 +75,16 @@ extension AllRecipesTableViewController {
 
     private func configureNavigationBar() {
         title = "All recipes"
+        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.tintColor = UIColor(named: "black")
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
     }
 
     private func getAllRecipes() {
-        apiManager.getAllRecipes(search: "") { [weak self] result in
+        apiManager.getAllRecipes(search: search) { [weak self] result in
             switch result {
             case .success(let recipes):
                 DispatchQueue.main.async {
@@ -66,5 +95,11 @@ extension AllRecipesTableViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+}
+
+extension AllRecipesTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        self.search = searchController.searchBar.text ?? ""
     }
 }

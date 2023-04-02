@@ -2,16 +2,26 @@ import UIKit
 
 class RecipesOfCategoryTableViewController: UITableViewController, RecipePresenting {
 
-    var categoryName: String?
+    var categoryName: String!
     var tagsType: TagsType!
     private var recipeOfCategory: [RecipeOfCategory] = []
     let apiManager = ApiManager()
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+
+        apiManager.getRecipes(filterId: tagsType.filterId, value: categoryName){ [weak self] result in
+            switch result {
+            case .success(let recipesOfCategoryList):
+                DispatchQueue.main.async {
+                    self?.recipeOfCategory = recipesOfCategoryList.meals
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,5 +67,11 @@ extension RecipesOfCategoryTableViewController {
 
     private func configureNavigationBar() {
         title = categoryName
+        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.tintColor = UIColor(named: "black")
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
     }
 }

@@ -4,7 +4,10 @@ class CookingHeaderView: UIView {
     
     struct Spec {
         static let alphaOfShadowView = 0.3
-        static let likeButtonImage = UIImage(systemName: "heart")
+        static let likeButtonImage = UIImage(
+            systemName: "heart",
+            withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+        )
         static let recipeImageView = UIImage(named: "recipe")
     }
 

@@ -106,6 +106,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     private func configureSearchController() {
         let searchResults = AllRecipesTableViewController()
         searchController = UISearchController(searchResultsController: searchResults)
+        searchController?.searchResultsUpdater = searchResults
         navigationItem.searchController = searchController
         searchController?.searchBar.placeholder = Spec.searchBarPlaceholder
     }
@@ -141,16 +142,19 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
             let item = categoriesTag[indexPath.row]
             cell.tagLabel.text = item.category
+            cell.backgroundColor = TagsType.category.color
             return cell
         case .area:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
             let item = areasTag[indexPath.row]
             cell.tagLabel.text = item.area
+            cell.backgroundColor = TagsType.area.color
             return cell
         case .ingredient:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
             let item = ingredietsTag[indexPath.row]
             cell.tagLabel.text = item.ingredient
+            cell.backgroundColor = TagsType.ingredient.color
             return cell
         case .allRecipes:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeCollectionViewCell", for: indexPath) as! RecipeCollectionViewCell
@@ -170,19 +174,16 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SearchHeaderView", for: indexPath) as! SearchHeaderView
         switch Section(rawValue: indexPath.section) {
         case .category:
-            header.configure(title: Spec.titleOfCategory, actionTitle: Spec.buttonTitleOfCategories) {
-                let allTagsVC = AllTagsCollectionViewController()
-                self.show(allTagsVC, sender: self)
+            header.configure(title: Spec.titleOfCategory, actionTitle: Spec.buttonTitleOfCategories) { [weak self] in
+                self?.showAllTags(.category)
             }
         case .area:
-            header.configure(title: Spec.titleOfArea, actionTitle: Spec.buttonTitleOfAreas) {
-                let allTagsVC = AllTagsCollectionViewController()
-                self.show(allTagsVC, sender: self)
+            header.configure(title: Spec.titleOfArea, actionTitle: Spec.buttonTitleOfAreas) { [weak self] in
+                self?.showAllTags(.area)
             }
         case .ingredient:
-            header.configure(title: Spec.titleOfIngredient, actionTitle: Spec.buttonTitleOfIngredients) {
-                let allTagsVC = AllTagsCollectionViewController()
-                self.show(allTagsVC, sender: self)
+            header.configure(title: Spec.titleOfIngredient, actionTitle: Spec.buttonTitleOfIngredients) { [weak self] in
+                self?.showAllTags(.ingredient)
             }
         case .allRecipes:
             header.configure(title: Spec.titleOfAllRecipes, offset: 16)
@@ -210,5 +211,11 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: Spec.collectionViewLayoutHeight)
+    }
+
+    func showAllTags(_ tag: TagsType) {
+        let allTagsVC = AllTagsCollectionViewController()
+        allTagsVC.tagsType = tag
+        show(allTagsVC, sender: self)
     }
 }

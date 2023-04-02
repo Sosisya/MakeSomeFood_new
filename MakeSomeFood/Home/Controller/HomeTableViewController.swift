@@ -98,6 +98,7 @@ extension HomeTableViewController {
     private func configureSearchController() {
         let searchResults = AllRecipesTableViewController()
         searchController = UISearchController(searchResultsController: searchResults)
+        searchController?.searchResultsUpdater = searchResults
         navigationItem.searchController = searchController
         searchController?.searchBar.placeholder = Spec.searchBarPlaceholder
     }
@@ -225,3 +226,5 @@ extension HomeTableViewController {
         }
     }
 }
+
+

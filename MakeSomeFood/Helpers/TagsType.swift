@@ -7,9 +7,9 @@ enum TagsType {
 
     var color: UIColor {
         switch self {
-        case .category: return UIColor(named: "orange")!
-        case .area: return UIColor(named: "green")!
-        case .ingredient: return UIColor(named: "orange")!
+        case .category: return .specialOrange
+        case .area: return .specialGreen
+        case .ingredient: return .specialOrange
         }
     }
 
