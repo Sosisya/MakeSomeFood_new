@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
         textfieldView.floatingLabel.text = "Password"
+        textfieldView.textField.isSecureTextEntry = true
         return textfieldView
     }()
 

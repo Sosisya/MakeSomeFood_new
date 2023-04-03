@@ -48,6 +48,7 @@ class RegistrationViewController: UIViewController {
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
         textfieldView.floatingLabel.text = "Password"
+        textfieldView.textField.isSecureTextEntry = true
         return textfieldView
     }()
 
@@ -184,7 +185,7 @@ extension RegistrationViewController {
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 if authResult?.user != nil {
-                    self?.onAuth()
+                    self?.setDisplayName()
                 }
             }
         }
@@ -193,5 +194,13 @@ extension RegistrationViewController {
     private func onAuth() {
         let profileVC = ProfileViewController()
         show(profileVC, sender: self)
+    }
+
+    private func setDisplayName() {
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        changeRequest?.displayName = nameTextFieldView.textField.text ?? ""
+        changeRequest?.commitChanges { [weak self] error in
+            self?.onAuth()
+        }
     }
 }

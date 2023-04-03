@@ -69,6 +69,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
         textfieldView.layer.borderWidth = 1
         textfieldView.floatingLabel.text = "Name"
+        textfieldView.textField.autocapitalizationType = .words
         return textfieldView
     }()
 
@@ -278,8 +279,8 @@ extension ProfileViewController {
     }
 
     private func configureTextField() {
-        emailTextFieldView.textField.text = initialValues.name
-        emailTextFieldView.textField.text = initialValues.email
+        nameTextFieldView.setText(initialValues.name)
+        emailTextFieldView.setText(initialValues.email)
     }
 }
 

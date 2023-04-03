@@ -16,6 +16,7 @@ class TextFieldView: UIView, UITextFieldDelegate {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
+        textfield.autocapitalizationType = .none
         return textfield
     }()
 
@@ -111,6 +112,15 @@ extension TextFieldView {
     private func configureEndEditing() {
         unfloatTitle()
         performAnimation(transform: CGAffineTransform(scaleX: 1, y: 1))
+    }
+
+    func setText(_ text: String) {
+        textField.text = text
+        if text.isEmpty {
+            unfloatTitle()
+        } else {
+            floatTitle()
+        }
     }
 }
 
