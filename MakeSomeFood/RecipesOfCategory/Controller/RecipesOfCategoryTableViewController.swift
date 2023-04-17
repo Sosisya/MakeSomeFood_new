@@ -63,6 +63,7 @@ class RecipesOfCategoryTableViewController: UITableViewController, RecipePresent
 extension RecipesOfCategoryTableViewController {
     private func configureTableView() {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
+        tableView.separatorStyle = .none
     }
 
     private func configureNavigationBar() {

@@ -66,7 +66,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
         textfieldView.layer.cornerRadius = 12
-        textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
         textfieldView.layer.borderWidth = 1
         textfieldView.floatingLabel.text = "Name"
         textfieldView.textField.autocapitalizationType = .words
@@ -77,7 +76,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let textfieldView = TextFieldView()
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
         textfieldView.layer.cornerRadius = 12
-        textfieldView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
         textfieldView.layer.borderWidth = 1
         textfieldView.floatingLabel.text = "E-mail"
         return textfieldView
@@ -237,17 +235,13 @@ extension ProfileViewController {
 
     @objc private func exitFromAccount() {
         let alert = UIAlertController(title: Spec.exitButtonMainAlertTitle, message: nil, preferredStyle: .actionSheet)
-
-//        alert.addAction(UIAlertAction(title: Spec.exitButtonFirstAlertTitle, style: .destructive , handler:{ (UIAlertAction) in
-//            do {
-//                try Auth.auth().signOut()
-//                self.onExit()
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//        }))
-        alert.addAction(UIAlertAction(title: Spec.exitButtonFirstAlertTitle, style: .destructive, handler:{ (UIAlertAction)in
-            print("User click Dismiss button")
+        alert.addAction(UIAlertAction(title: Spec.exitButtonFirstAlertTitle, style: .destructive , handler:{ (UIAlertAction) in
+            do {
+                try Auth.auth().signOut()
+                self.onExit()
+            } catch {
+                print(error.localizedDescription)
+            }
         }))
 
         alert.addAction(UIAlertAction(title: Spec.exitButtonCancelAlertTitle, style: .cancel, handler:{ (UIAlertAction)in
@@ -256,7 +250,8 @@ extension ProfileViewController {
 
         self.present(alert, animated: true, completion: {
             print("completion block")
-        })    }
+        })
+    }
 
     private func openCameraButton() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -282,10 +277,16 @@ extension ProfileViewController {
         nameTextFieldView.setText(initialValues.name)
         emailTextFieldView.setText(initialValues.email)
     }
+
+    private func onExit() {
+        let vc = LoginViewController()
+        let navVC = navigationController
+        navVC?.viewControllers = [vc]
+    }
 }
 
-//extension ProfileViewController: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        saveButton.isHidden = false
-//    }
-//}
+extension ProfileViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveButton.isHidden = false
+    }
+}
