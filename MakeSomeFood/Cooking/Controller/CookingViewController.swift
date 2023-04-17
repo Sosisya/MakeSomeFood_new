@@ -13,6 +13,7 @@ class CookingViewController: UIViewController {
     struct Spec {}
 
     var recipe: Recipe?
+    var activityViewController: UIActivityViewController? = nil
 
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
@@ -84,7 +85,25 @@ extension CookingViewController {
     }
 
     @objc func shareButtonPressed() {
-        print("Share")
+        self.activityViewController = UIActivityViewController(activityItems: [makeTextFromRecipe()], applicationActivities: nil)
+        self.present(self.activityViewController!, animated: true)
+    }
+
+    func makeTextFromRecipe() -> String {
+        guard let recipe else { return "" }
+        let title = recipe.name
+        let about = "Instructions:\n\(recipe.instruction ?? "")"
+        var ingredients = ["Ingredients:"]
+        for i in 0..<recipe.ingredients.count {
+            let ingredient = recipe.ingredients[i]
+            let measure = recipe.measures[i]
+            ingredients.append("\(ingredient) - \(measure)")
+        }
+        return [
+            title,
+            ingredients.joined(separator: "\n"),
+            about
+        ].joined(separator: "\n\n")
     }
 }
 
