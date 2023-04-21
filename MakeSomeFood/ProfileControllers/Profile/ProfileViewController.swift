@@ -1,7 +1,8 @@
 import UIKit
 import FirebaseAuth
+import FirebaseStorage
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     struct Spec {
         static var takePhotoButtonFirstAlertTitle = "Take photo"
         static var takePhotoButtonSecondAlertTitle = "Open gallery"
@@ -21,6 +22,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private var scrollViewBottom: NSLayoutConstraint?
     private var saveButtonBottom: NSLayoutConstraint?
     private var saveButtonTop: NSLayoutConstraint?
+    private let storage = Storage.storage()
+
 
     private var initialValues = {
         if let user = Auth.auth().currentUser {
@@ -284,9 +287,20 @@ extension ProfileViewController {
         navVC?.viewControllers = [vc]
     }
 }
-
+    //MARK: - UITextFieldDelegate
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         saveButton.isHidden = false
     }
 }
+
+    //MARK: - UIImagePickerControllerDelegate
+extension ProfileViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImageView.image = image
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+

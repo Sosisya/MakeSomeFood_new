@@ -74,6 +74,7 @@
 		8E88174429CA332A00CDDC7E /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88174329CA332A00CDDC7E /* UILabel+Extension.swift */; };
 		8E88174729CAC5D900CDDC7E /* AllTagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88174629CAC5D900CDDC7E /* AllTagsCollectionViewController.swift */; };
 		8E91DB4329ED091C0087DB00 /* FaouriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E91DB4229ED091C0087DB00 /* FaouriteManager.swift */; };
+		8E91DB8629F2D0EE0087DB00 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8E91DB8529F2D0EE0087DB00 /* FirebaseStorage */; };
 		8ECF034229BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */; };
 		8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */; };
 		8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */; };
@@ -163,6 +164,7 @@
 				8E76C2FE29D6A32200A96A34 /* FirebaseAnalyticsSwift in Frameworks */,
 				8E76C30829D6A32200A96A34 /* FirebaseRemoteConfigSwift in Frameworks */,
 				8E76C30229D6A32200A96A34 /* FirebaseCrashlytics in Frameworks */,
+				8E91DB8629F2D0EE0087DB00 /* FirebaseStorage in Frameworks */,
 				8E76C30029D6A32200A96A34 /* FirebaseAuth in Frameworks */,
 				8E0C8FCA29BB310E003104FB /* Kingfisher in Frameworks */,
 			);
@@ -220,6 +222,7 @@
 			children = (
 				8E41FA4729A47E6F0068C678 /* MakeSomeFood */,
 				8E41FA4629A47E6F0068C678 /* Products */,
+				8E91DB8429F2D0EE0087DB00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -414,6 +417,13 @@
 			path = FavouriteManger;
 			sourceTree = "<group>";
 		};
+		8E91DB8429F2D0EE0087DB00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8ECF034029BDDD2500A21A9D /* RecipesOfCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +543,7 @@
 				8E76C30329D6A32200A96A34 /* FirebaseDatabaseSwift */,
 				8E76C30529D6A32200A96A34 /* FirebaseMessaging */,
 				8E76C30729D6A32200A96A34 /* FirebaseRemoteConfigSwift */,
+				8E91DB8529F2D0EE0087DB00 /* FirebaseStorage */,
 			);
 			productName = MakeSomeFood;
 			productReference = 8E41FA4529A47E6F0068C678 /* MakeSomeFood.app */;
@@ -922,6 +933,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8E76C2FC29D6A32200A96A34 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfigSwift;
+		};
+		8E91DB8529F2D0EE0087DB00 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E76C2FC29D6A32200A96A34 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

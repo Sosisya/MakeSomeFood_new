@@ -1,5 +1,4 @@
 import UIKit
-//Как сделать плавающий текст филд если у меня нет констраинтов?
 class TextFieldView: UIView, UITextFieldDelegate {
 
     private let containerView: UIView = {
