@@ -5,7 +5,6 @@ class LoginViewController: UIViewController {
     // - MARK: Constants
     private var scrollViewBottom: NSLayoutConstraint?
     private var agreementBottom: NSLayoutConstraint?
-    public var onAuthAction: (() -> Void)?
 
 
     // -MARK: Properties
@@ -206,6 +205,12 @@ extension LoginViewController {
 
     private func configureNavigationBar() {
         navigationItem.title = ""
+        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.tintColor = UIColor(named: "black")
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
     }
 
     @objc func dismissKeyboard() {
@@ -221,12 +226,8 @@ extension LoginViewController {
     }
 
     private func onAuth() {
-        if let onAuthAction {
-            onAuthAction()
-        } else {
-            let vc = ProfileViewController()
-            let navVC = navigationController
-            navVC?.viewControllers = [vc]
-        }
+        let vc = ProfileViewController()
+        let navVC = navigationController
+        navVC?.viewControllers = [vc]
     }
 }

@@ -14,7 +14,6 @@ class HomeTableHeaderView: UIView {
      private let greetingLabel: UILabel = {
          let label = UILabel()
          label.translatesAutoresizingMaskIntoConstraints()
-//         label.text = Spec.greetingLabel
          label.textColor = .specialBlack
          label.font = .montserratSemibBold24()
          return label

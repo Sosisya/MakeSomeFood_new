@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         var email: String
     }
 
-// -MARK: Constants
+    // -MARK: Constants
     private var scrollViewBottom: NSLayoutConstraint?
     private var saveButtonBottom: NSLayoutConstraint?
     private var saveButtonTop: NSLayoutConstraint?
@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         return ProfileData(changedPhoto: false, name: "", email: "")
     }()
 
-// -MARK: Properties
+    // -MARK: Properties
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         button.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         button.backgroundColor = UIColor(named: "orange")
         button.layer.cornerRadius = 12
-//        button.isHidden = true
+        //        button.isHidden = true
         return button
     }()
 
@@ -118,25 +118,26 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         configurationNotificationCenter()
         configureButton()
         configureTapGesture()
-        configureTextField() 
+        configureTextField()
+        downloadImage() 
     }
 }
 
 // -MARK: Extension
 extension ProfileViewController {
-   private func setupLayout() {
-       view.addSubview(scrollView)
-       scrollView.addSubview(contentView)
-       contentView.addSubview(profileImageView)
-       contentView.addSubview(takePhotoButton)
-       contentView.addSubview(nameTextFieldView)
-       contentView.addSubview(emailTextFieldView)
-       contentView.addSubview(saveButton)
-       view.addSubview(exitButton)
+    private func setupLayout() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(profileImageView)
+        contentView.addSubview(takePhotoButton)
+        contentView.addSubview(nameTextFieldView)
+        contentView.addSubview(emailTextFieldView)
+        contentView.addSubview(saveButton)
+        view.addSubview(exitButton)
     }
 
-   private func setupConstraint() {
-       scrollViewBottom = scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+    private func setupConstraint() {
+        scrollViewBottom = scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -185,7 +186,7 @@ extension ProfileViewController {
 
     private func configureTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-               view.addGestureRecognizer(tapGesture)
+        view.addGestureRecognizer(tapGesture)
     }
 
     private func configurationNotificationCenter() {
@@ -286,19 +287,48 @@ extension ProfileViewController {
         let navVC = navigationController
         navVC?.viewControllers = [vc]
     }
+
+    private func uploadImage(_ image: UIImage) {
+        let data = image.jpegData(compressionQuality: 0.9) ?? Data()
+        let storageRef = storage.reference()
+        let id = Auth.auth().currentUser?.uid ?? "invalid"
+        let avatarRef = storageRef.child("images/\(id).jpg")
+        let uploadTask = avatarRef.putData(data, metadata: nil) { metadata, error in
+            guard let metadata = metadata else { return }
+            let size = metadata.size
+            avatarRef.downloadURL { url, error in
+                guard let downloadURL = url else { return }
+                print(downloadURL)
+            }
+        }
+    }
+
+    private func downloadImage() {
+        let storageRef = storage.reference()
+        let id = Auth.auth().currentUser?.uid ?? "invalid"
+        let avatarRef = storageRef.child("images/\(id).jpg")
+        avatarRef.downloadURL { [weak self] url, error in
+            guard let downloadURL = url else { return }
+            DispatchQueue.main.async {
+                self?.profileImageView.kf.setImage(with: downloadURL)
+            }
+        }
+    }
 }
-    //MARK: - UITextFieldDelegate
+
+//MARK: - UITextFieldDelegate
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         saveButton.isHidden = false
     }
 }
 
-    //MARK: - UIImagePickerControllerDelegate
+//MARK: - UIImagePickerControllerDelegate
 extension ProfileViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = image
+            uploadImage(image)
         }
         self.dismiss(animated: true, completion: nil)
     }

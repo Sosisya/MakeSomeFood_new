@@ -5,6 +5,7 @@ class RegistrationViewController: UIViewController {
     // - MARK: Constants
     private var scrollViewBottom: NSLayoutConstraint?
     private var agreementBottom: NSLayoutConstraint?
+    public var onAuthAction: (() -> Void)?
 
     // -MARK: Properties
     private let scrollView: UIScrollView = {
@@ -149,7 +150,7 @@ extension RegistrationViewController {
 
     private func configureTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-               view.addGestureRecognizer(tapGesture)
+        view.addGestureRecognizer(tapGesture)
     }
 
     private func configurationNotificationCenter() {
@@ -192,8 +193,13 @@ extension RegistrationViewController {
     }
 
     private func onAuth() {
-        let profileVC = ProfileViewController()
-        show(profileVC, sender: self)
+        if let onAuthAction {
+            onAuthAction()
+        } else {
+            let vc = ProfileViewController()
+            let navVC = navigationController
+            navVC?.viewControllers = [vc]
+        }
     }
 
     private func setDisplayName() {
