@@ -15,9 +15,9 @@ class AllTagsCollectionViewController: UICollectionViewController, UICollectionV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = tagsType.title
         self.collectionView!.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
         getApi()
+        configureNavigationBar()
     }
 
 
@@ -85,5 +85,15 @@ extension AllTagsCollectionViewController {
         default:
             break
         }
+    }
+
+    private func configureNavigationBar() {
+        title = tagsType.title
+        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.tintColor = UIColor(named: "black")
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
     }
 }

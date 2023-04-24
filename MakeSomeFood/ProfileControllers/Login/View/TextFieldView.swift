@@ -5,7 +5,7 @@ class TextFieldView: UIView, UITextFieldDelegate {
         let containerView = UIView()
         containerView.layer.masksToBounds = false
         containerView.layer.cornerRadius = 12
-        containerView.layer.borderColor = UIColor(named: "grayFill")?.cgColor
+        containerView.layer.borderColor = UIColor.specialLightGray.cgColor
         containerView.layer.borderWidth = 1
         containerView.translatesAutoresizingMaskIntoConstraints = false
         return containerView
@@ -24,7 +24,7 @@ class TextFieldView: UIView, UITextFieldDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.text = "Luiza"
-        label.tintColor = UIColor(named: "gray")
+        label.textColor = .specialGray
         label.font = UIFont(name: "Montserrat-Regular", size: 16)
         return label
     }()
@@ -105,7 +105,7 @@ extension TextFieldView {
         textField.placeholder = nil
         topLabelConstraint?.constant = 20
         floatingLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
-        containerView.layer.borderColor = UIColor(named: "grayTextField")?.cgColor
+        containerView.layer.borderColor = UIColor.specialLightGray.cgColor
     }
 
     private func configureEndEditing() {

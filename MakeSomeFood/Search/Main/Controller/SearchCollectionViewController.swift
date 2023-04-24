@@ -39,6 +39,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         configureCollectinView()
         getApi()
         configureSearchController()
+        configureNavigationBar()
     }
     // - MARK: Network
     private func getApi() {
@@ -217,5 +218,14 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         let allTagsVC = AllTagsCollectionViewController()
         allTagsVC.tagsType = tag
         show(allTagsVC, sender: self)
+    }
+
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "icon.left")
+        navigationController?.navigationBar.tintColor = UIColor(named: "black")
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
     }
 }

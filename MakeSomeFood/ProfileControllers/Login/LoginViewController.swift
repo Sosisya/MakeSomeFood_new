@@ -5,6 +5,8 @@ class LoginViewController: UIViewController {
     // - MARK: Constants
     private var scrollViewBottom: NSLayoutConstraint?
     private var agreementBottom: NSLayoutConstraint?
+    public var onAuthAction: (() -> Void)?
+
 
     // -MARK: Properties
     private let scrollView: UIScrollView = {
@@ -176,10 +178,9 @@ extension LoginViewController {
     }
 
     @objc func loginButtonAction() {
-
         Auth.auth().signIn(withEmail: emailTextFieldView.textField.text ?? "", password: passwordTextFieldView.textField.text ?? "") { [weak self] authResult, error in
             DispatchQueue.main.async {
-                guard let strongSelf = self else { return }
+                guard self != nil else { return }
                 if authResult?.user != nil {
                     self?.onAuth()
                 }
@@ -220,7 +221,12 @@ extension LoginViewController {
     }
 
     private func onAuth() {
-        let profileVC = ProfileViewController()
-        show(profileVC, sender: self)
+        if let onAuthAction {
+            onAuthAction()
+        } else {
+            let vc = ProfileViewController()
+            let navVC = navigationController
+            navVC?.viewControllers = [vc]
+        }
     }
 }

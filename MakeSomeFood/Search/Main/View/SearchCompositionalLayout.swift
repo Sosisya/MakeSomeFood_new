@@ -18,7 +18,7 @@ class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
         static var chipsSectionContentInsetsLeading: CGFloat = 0
         static var chipsSectionContentInsetsTrailing: CGFloat = 0
         static var chipsSectionContentInsetsBottom: CGFloat = 16
-        static var chipsSectionInterGroupSpacing: CGFloat = 0
+        static var chipsSectionInterGroupSpacing: CGFloat = 8
         static var chipsFooterHeaderSizeWidth = 1.0
         static var chipsFooterHeaderSizeHeight = 42.0
         static var recipeItemSizeWidth: CGFloat = 100
