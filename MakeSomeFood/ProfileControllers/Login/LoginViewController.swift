@@ -5,7 +5,7 @@ class LoginViewController: UIViewController {
     // - MARK: Constants
     private var scrollViewBottom: NSLayoutConstraint?
     private var agreementBottom: NSLayoutConstraint?
-
+    public var onAuthAction: (() -> Void)?
 
     // -MARK: Properties
     private let scrollView: UIScrollView = {
@@ -97,6 +97,13 @@ class LoginViewController: UIViewController {
         configureNavigationBar()
         configurationNotificationCenter()
         configureTapGesture()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Auth.auth().currentUser != nil {
+            onAuth()
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -226,8 +233,12 @@ extension LoginViewController {
     }
 
     private func onAuth() {
-        let vc = ProfileViewController()
-        let navVC = navigationController
-        navVC?.viewControllers = [vc]
+        if let onAuthAction {
+            onAuthAction()
+        } else {
+            let vc = ProfileViewController()
+            let navVC = navigationController
+            navVC?.viewControllers = [vc]
+        }
     }
 }

@@ -32,6 +32,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         return ProfileData(changedPhoto: false, name: "", email: "")
     }()
 
+    private var currentValues: ProfileData {
+        ProfileData(changedPhoto: false, name: nameTextFieldView.textField.text ?? "", email: emailTextFieldView.textField.text ?? "")
+    }
+
+    private var hasChanges: Bool {
+        initialValues != currentValues
+    }
+
     // -MARK: Properties
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -119,7 +127,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         configureButton()
         configureTapGesture()
         configureTextField()
-        downloadImage() 
+        downloadImage()
     }
 }
 
@@ -207,7 +215,7 @@ extension ProfileViewController {
 
     private func configureButton() {
         takePhotoButton.addTarget(self, action: #selector(takeAPhoto), for: .touchUpInside)
-        saveButton.addTarget(self, action: #selector(saveInformation), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitFromAccount), for: .touchUpInside)
     }
 
@@ -233,8 +241,25 @@ extension ProfileViewController {
         })
     }
 
-    @objc private func saveInformation() {
-        print("save")
+    @objc private func saveChanges() {
+        saveButton.isEnabled = false
+        if initialValues.name != currentValues.name {
+            setDisplayName()
+        }
+    }
+
+    private func setDisplayName() {
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        let newName = currentValues.name
+        changeRequest?.displayName = newName
+        changeRequest?.commitChanges { [weak self] error in
+            self?.initialValues.name = newName
+            self?.saveButton.isEnabled = true
+        }
+    }
+
+    private func reloadSaveButton() {
+        saveButton.isHidden = !hasChanges
     }
 
     @objc private func exitFromAccount() {
@@ -289,11 +314,15 @@ extension ProfileViewController {
     }
 
     private func uploadImage(_ image: UIImage) {
+        takePhotoButton.isHidden = true
         let data = image.jpegData(compressionQuality: 0.9) ?? Data()
         let storageRef = storage.reference()
         let id = Auth.auth().currentUser?.uid ?? "invalid"
         let avatarRef = storageRef.child("images/\(id).jpg")
-        let uploadTask = avatarRef.putData(data, metadata: nil) { metadata, error in
+        let uploadTask = avatarRef.putData(data, metadata: nil) { [weak self] metadata, error in
+            DispatchQueue.main.async {
+                self?.takePhotoButton.isHidden = false
+            }
             guard let metadata = metadata else { return }
             let size = metadata.size
             avatarRef.downloadURL { url, error in
@@ -304,12 +333,15 @@ extension ProfileViewController {
     }
 
     private func downloadImage() {
+        profileImageView.image = nil
+        takePhotoButton.isHidden = true
         let storageRef = storage.reference()
         let id = Auth.auth().currentUser?.uid ?? "invalid"
         let avatarRef = storageRef.child("images/\(id).jpg")
         avatarRef.downloadURL { [weak self] url, error in
-            guard let downloadURL = url else { return }
             DispatchQueue.main.async {
+                self?.takePhotoButton.isHidden = false
+                guard let downloadURL = url else { return }
                 self?.profileImageView.kf.setImage(with: downloadURL)
             }
         }
