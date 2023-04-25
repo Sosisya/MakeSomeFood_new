@@ -1,5 +1,5 @@
 import UIKit
-class TextFieldView: UIView, UITextFieldDelegate {
+class TextFieldView: UIView {
 
     private let containerView: UIView = {
         let containerView = UIView()
@@ -123,5 +123,9 @@ extension TextFieldView {
     }
 }
 
-
+extension TextFieldView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        onReturnButtonTapped()
+    }
+}
 

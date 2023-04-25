@@ -113,6 +113,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     }
     
     private func configureCollectinView() {
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
         collectionView.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: "RecipeCollectionViewCell")
         collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchHeaderView")

@@ -61,6 +61,7 @@ extension CookingViewController {
         cookingTableView.delegate = self
         cookingTableView.separatorStyle = .none
         cookingTableView.allowsSelection = false
+        cookingTableView.showsVerticalScrollIndicator = false
         cookingTableView.register(NameOfRecipeTableViewCell.self, forCellReuseIdentifier: "NameOfRecipeTableViewCell")
         cookingTableView.register(CookingFooterTableViewCell.self, forCellReuseIdentifier: "CookingFooterTableViewCell")
         cookingTableView.register(IngredientsTableViewCell.self, forCellReuseIdentifier: "IngredientsTableViewCell")

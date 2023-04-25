@@ -16,6 +16,7 @@ class AllTagsCollectionViewController: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
+        collectionView.showsVerticalScrollIndicator = false
         getApi()
         configureNavigationBar()
     }

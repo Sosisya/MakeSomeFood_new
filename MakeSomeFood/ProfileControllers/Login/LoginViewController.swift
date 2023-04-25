@@ -88,15 +88,11 @@ class LoginViewController: UIViewController {
     private let tap = UITapGestureRecognizer(target: LoginViewController.self, action: #selector(UIInputViewController.dismissKeyboard))
 
     // -MARK:
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupConstraint()
-        configureButton()
-        configureNavigationBar()
-        configurationNotificationCenter()
-        configureTapGesture()
+        configure()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -166,6 +162,14 @@ extension LoginViewController {
             agreementLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
             agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8)
         ])
+    }
+
+    private func configure() {
+        configureButton()
+        configureNavigationBar()
+        configurationNotificationCenter()
+        configureTapGesture()
+        setKeyboardButton()
     }
 
     private func configureButton() {
@@ -240,5 +244,20 @@ extension LoginViewController {
             let navVC = navigationController
             navVC?.viewControllers = [vc]
         }
+    }
+
+    private func setKeyboardButton() {
+        emailTextFieldView.textField.returnKeyType = .next
+        emailTextFieldView.onReturnButtonTapped = { [weak self] in
+            self?.passwordTextFieldView.textField.becomeFirstResponder()
+            return true
+        }
+        passwordTextFieldView.textField.returnKeyType = .done
+        passwordTextFieldView.onReturnButtonTapped = { [weak self] in
+            self?.passwordTextFieldView.textField.resignFirstResponder()
+            self?.loginButtonAction()
+            return true
+        }
+        passwordTextFieldView.textField.isSecureTextEntry = true
     }
 }

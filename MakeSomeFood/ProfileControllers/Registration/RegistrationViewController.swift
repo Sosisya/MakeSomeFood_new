@@ -50,6 +50,7 @@ class RegistrationViewController: UIViewController {
         textfieldView.translatesAutoresizingMaskIntoConstraints = false
         textfieldView.floatingLabel.text = "Password"
         textfieldView.textField.isSecureTextEntry = true
+        textfieldView.textField.textContentType = .oneTimeCode
         return textfieldView
     }()
 
@@ -80,7 +81,8 @@ class RegistrationViewController: UIViewController {
         setConstraints()
         configurationNotificationCenter()
         configureTapGesture()
-        conficgureButton()
+        configureButton()
+        setKeyboardButton()
     }
 
     override func viewDidLayoutSubviews() {
@@ -177,7 +179,7 @@ extension RegistrationViewController {
         agreementBottom?.constant = max(realOffSet, minOffset)
     }
 
-    private func conficgureButton() {
+    private func configureButton() {
         registrationButton.addTarget(self, action: #selector(registrationAction), for: .touchUpInside)
     }
 
@@ -208,5 +210,26 @@ extension RegistrationViewController {
         changeRequest?.commitChanges { [weak self] error in
             self?.onAuth()
         }
+    }
+
+    private func setKeyboardButton() {
+        nameTextFieldView.textField.returnKeyType = .next
+        nameTextFieldView.onReturnButtonTapped = { [weak self] in
+            self?.emailTextFieldView.textField.becomeFirstResponder()
+            return true
+        }
+
+        emailTextFieldView.textField.returnKeyType = .next
+        emailTextFieldView.onReturnButtonTapped = { [weak self] in
+            self?.passwordTextFieldView.textField.becomeFirstResponder()
+            return true
+        }
+        passwordTextFieldView.textField.returnKeyType = .done
+        passwordTextFieldView.onReturnButtonTapped = { [weak self] in
+            self?.passwordTextFieldView.textField.resignFirstResponder()
+            self?.registrationAction()
+            return true
+        }
+        passwordTextFieldView.textField.isSecureTextEntry = true
     }
 }

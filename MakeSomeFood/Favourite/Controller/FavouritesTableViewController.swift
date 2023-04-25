@@ -27,6 +27,7 @@ extension FavouritesTableViewController {
     private func configureTableView() {
         tableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeTableViewCell")
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
     }
 
     private func configureNavigationBar() {

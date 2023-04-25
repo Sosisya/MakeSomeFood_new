@@ -333,7 +333,7 @@ extension ProfileViewController {
     }
 
     private func downloadImage() {
-        profileImageView.image = nil
+        profileImageView.image = UIImage(named: "profile")
         takePhotoButton.isHidden = true
         let storageRef = storage.reference()
         let id = Auth.auth().currentUser?.uid ?? "invalid"

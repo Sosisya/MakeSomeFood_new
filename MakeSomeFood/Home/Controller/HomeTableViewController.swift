@@ -87,6 +87,7 @@ extension HomeTableViewController {
         tableView.register(CategorieTableViewCell.self, forCellReuseIdentifier: "CategorieTableViewCell")
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         tableView.refreshControl = specialRefreshControl
     }
 
