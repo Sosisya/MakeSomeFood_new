@@ -1,12 +1,13 @@
 import UIKit
 import FirebaseAuth
 import Kingfisher
+import FirebaseStorage
 
 class HomeTableHeaderView: UIView {
     // - MARK: -
     struct Spec {
         static let greetingLabel = "Hello, %@!"
-        static let profileImage = UIImage(named: "profile")
+        static let profileImageView = UIImage(named: "profile")
     }
 
     var handle: AuthStateDidChangeListenerHandle?
@@ -19,15 +20,17 @@ class HomeTableHeaderView: UIView {
          return label
      }()
 
-     private let profileImage: UIImageView = {
+     private let profileImageView: UIImageView = {
          let imageView = UIImageView()
          imageView.translatesAutoresizingMaskIntoConstraints()
-         imageView.image = Spec.profileImage
+         imageView.image = Spec.profileImageView
          imageView.contentMode = .scaleAspectFill
          imageView.setMasksToBounds()
          imageView.setCornerRadius()
          return imageView
      }()
+
+    private let storage = Storage.storage()
 
     // - MARK: -
     override init(frame: CGRect) {
@@ -44,6 +47,7 @@ class HomeTableHeaderView: UIView {
          setupLayout()
          setupConstraints()
          observeName()
+
      }
 
     private func observeName() {
@@ -58,7 +62,21 @@ class HomeTableHeaderView: UIView {
         let photoURL = user?.photoURL
         let name = user?.displayName ?? "guest"
         greetingLabel.text = String(format: Spec.greetingLabel, name)
-        profileImage.kf.setImage(with: photoURL, placeholder: Spec.profileImage)
+        profileImageView.kf.setImage(with: photoURL, placeholder: Spec.profileImageView)
+        downloadImage()
+    }
+
+    private func downloadImage() {
+        profileImageView.image = UIImage(named: "profile")
+        let storageRef = storage.reference()
+        let id = Auth.auth().currentUser?.uid ?? "invalid"
+        let avatarRef = storageRef.child("images/\(id).jpg")
+        avatarRef.downloadURL { [weak self] url, error in
+            DispatchQueue.main.async {
+                guard let downloadURL = url else { return }
+                self?.profileImageView.kf.setImage(with: downloadURL)
+            }
+        }
     }
  }
 
@@ -66,7 +84,7 @@ class HomeTableHeaderView: UIView {
 extension HomeTableHeaderView {
     private func setupLayout() {
         addSubview(greetingLabel)
-        addSubview(profileImage)
+        addSubview(profileImageView)
     }
 
     private func setupConstraints() {
@@ -75,10 +93,10 @@ extension HomeTableHeaderView {
             greetingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             greetingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
 
-            profileImage.centerYAnchor.constraint(equalTo: greetingLabel.centerYAnchor),
-            profileImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            profileImage.heightAnchor.constraint(equalToConstant: 42),
-            profileImage.widthAnchor.constraint(equalToConstant: 42)
+            profileImageView.centerYAnchor.constraint(equalTo: greetingLabel.centerYAnchor),
+            profileImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            profileImageView.heightAnchor.constraint(equalToConstant: 42),
+            profileImageView.widthAnchor.constraint(equalToConstant: 42)
         ])
     }
 }

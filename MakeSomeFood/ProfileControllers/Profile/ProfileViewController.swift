@@ -124,9 +124,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         setupLayout()
         setupConstraint()
         configurationNotificationCenter()
-        configureButton()
-        configureTapGesture()
         configureTextField()
+        configureButton()
+        reloadSaveButton()
+        configureTapGesture()
         downloadImage()
     }
 }
@@ -140,7 +141,7 @@ extension ProfileViewController {
         contentView.addSubview(takePhotoButton)
         contentView.addSubview(nameTextFieldView)
         contentView.addSubview(emailTextFieldView)
-        contentView.addSubview(saveButton)
+        view.addSubview(saveButton)
         view.addSubview(exitButton)
     }
 
@@ -243,10 +244,13 @@ extension ProfileViewController {
 
     @objc private func saveChanges() {
         saveButton.isEnabled = false
+        print("SAve")
         if initialValues.name != currentValues.name {
             setDisplayName()
         }
     }
+
+    
 
     private func setDisplayName() {
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -305,7 +309,16 @@ extension ProfileViewController {
     private func configureTextField() {
         nameTextFieldView.setText(initialValues.name)
         emailTextFieldView.setText(initialValues.email)
+        nameTextFieldView.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        emailTextFieldView.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
+
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        DispatchQueue.main.async {
+            self.reloadSaveButton()
+        }
+    }
+
 
     private func onExit() {
         let vc = LoginViewController()
