@@ -77,6 +77,8 @@ struct FavouritesManager {
             authNavVC?.dismiss(animated: true)
         }
         topVC?.present(authNavVC, animated: true)
+
+        
     }
 
     static func topViewController() -> UIViewController? {
