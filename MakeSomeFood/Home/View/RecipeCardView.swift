@@ -202,7 +202,10 @@ extension RecipeCardView {
     func setIsFavourite(_ value: Bool) {
         isFavourite = value
         let imageName = value ? Spec.likeSelectedButtonIconName : Spec.likeButtonIconName
-        let image = UIImage(systemName: imageName)
+        let image = UIImage(
+            systemName: imageName,
+            withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+        )
         likeButton.setImage(image, for: .normal)
     }
 
