@@ -12,23 +12,23 @@ class HomeTableHeaderView: UIView {
 
     var handle: AuthStateDidChangeListenerHandle?
     // - MARK: -
-     private let greetingLabel: UILabel = {
-         let label = UILabel()
-         label.translatesAutoresizingMaskIntoConstraints()
-         label.textColor = .specialBlack
-         label.font = .montserratSemibBold24()
-         return label
-     }()
+    private let greetingLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints()
+        label.textColor = .specialBlack
+        label.font = .montserratSemibBold24()
+        return label
+    }()
 
-     private let profileImageView: UIImageView = {
-         let imageView = UIImageView()
-         imageView.translatesAutoresizingMaskIntoConstraints()
-         imageView.image = Spec.profileImageView
-         imageView.contentMode = .scaleAspectFill
-         imageView.setMasksToBounds()
-         imageView.setCornerRadius()
-         return imageView
-     }()
+    private let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints()
+        imageView.image = Spec.profileImageView
+        imageView.contentMode = .scaleAspectFill
+        imageView.setMasksToBounds()
+        imageView.setCornerRadius()
+        return imageView
+    }()
 
     private let storage = Storage.storage()
 
@@ -43,12 +43,12 @@ class HomeTableHeaderView: UIView {
         commonInit()
     }
 
-     private func commonInit() {
-         setupLayout()
-         setupConstraints()
-         observeName()
+    private func commonInit() {
+        setupLayout()
+        setupConstraints()
+        observeName()
 
-     }
+    }
 
     private func observeName() {
         handle = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
@@ -58,27 +58,27 @@ class HomeTableHeaderView: UIView {
         }
     }
 
-    private func refreshUser(_ user: User?) {
-        let photoURL = user?.photoURL
+    func refreshUser(_ user: User?) {
         let name = user?.displayName ?? "guest"
         greetingLabel.text = String(format: Spec.greetingLabel, name)
-        profileImageView.kf.setImage(with: photoURL, placeholder: Spec.profileImageView)
         downloadImage()
     }
 
     private func downloadImage() {
-        profileImageView.image = UIImage(named: "profile")
         let storageRef = storage.reference()
         let id = Auth.auth().currentUser?.uid ?? "invalid"
         let avatarRef = storageRef.child("images/\(id).jpg")
         avatarRef.downloadURL { [weak self] url, error in
             DispatchQueue.main.async {
-                guard let downloadURL = url else { return }
+                guard let downloadURL = url else {
+                    self?.profileImageView.image = UIImage(named: "profile")
+                    return
+                }
                 self?.profileImageView.kf.setImage(with: downloadURL)
             }
         }
     }
- }
+}
 
 // - MARK: -
 extension HomeTableHeaderView {

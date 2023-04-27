@@ -6,7 +6,7 @@ class AllTagsCollectionViewController: UICollectionViewController, UICollectionV
     private var tags: [String] = []
 
     init() {
-        super.init(collectionViewLayout: SearchCompositionalLayout())
+        super.init(collectionViewLayout: SearchCompositionalLayout(showHeaders: false))
     }
 
     required init?(coder: NSCoder) {
@@ -34,9 +34,9 @@ class AllTagsCollectionViewController: UICollectionViewController, UICollectionV
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 42)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: collectionView.bounds.width, height: 42)
+//    }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         showRecipes(tagsType, tags[indexPath.item])

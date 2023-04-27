@@ -1,6 +1,6 @@
 import UIKit
 
-class FavouritesTableViewController: UITableViewController {
+class FavouritesTableViewController: UITableViewController, RecipePresenting {
 
     private var searchController: UISearchController?
 

@@ -18,10 +18,13 @@ class RecipeCardView: UIView {
         static let categoryTagLabelText = "Category"
         static let areaTagLabelText = "Area"
         static let nameOfRecipeAndTagsStackViewSpasing: CGFloat = 8
+        static var likeButtonIconName = "heart"
+        static var likeSelectedButtonIconName = "heart.fill"
     }
 
-
     var recipe: Recipe?
+    private var isFavourite = false
+
 
     // - MARK: -
     private let shadowView: UIView = {
@@ -54,13 +57,14 @@ class RecipeCardView: UIView {
         return imageView
     }()
 
-    private let likeButton: UIButton = {
+    private lazy var likeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints()
         button.setImage(Spec.likeButtonImage, for: .normal)
         button.tintColor = .specialWhite
         button.backgroundColor = .specialOrange
         button.setCornerRadius(radius: 22)
+        button.addTarget(self, action: #selector(likeButtonAction), for: .touchUpInside)
         return button
     }()
 
@@ -195,6 +199,13 @@ extension RecipeCardView {
         ])
     }
 
+    func setIsFavourite(_ value: Bool) {
+        isFavourite = value
+        let imageName = value ? Spec.likeSelectedButtonIconName : Spec.likeButtonIconName
+        let image = UIImage(systemName: imageName)
+        likeButton.setImage(image, for: .normal)
+    }
+
     // - MARK: Configure
     func configure(item: Recipe) {
         recipe = item
@@ -211,6 +222,19 @@ extension RecipeCardView {
         recipeImageView.kf.setImage(with: URL(string: item.thumb))
 //        tagsStackView.isHidden = true
 //        configureIsFavourite(recipeId: item.id)
+    }
+
+    @objc func likeButtonAction() {
+        toggleFavourites()
+    }
+
+    func toggleFavourites() {
+        if isFavourite {
+            print("delete")
+        } else {
+            guard let recipe = recipe else { return }
+            FavouritesManager.addFavourite(recipe)
+        }
     }
 
 }

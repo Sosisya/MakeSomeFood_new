@@ -73,7 +73,7 @@
 		8E88173F29C9AF7E00CDDC7E /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88173E29C9AF7D00CDDC7E /* SearchHeaderView.swift */; };
 		8E88174429CA332A00CDDC7E /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88174329CA332A00CDDC7E /* UILabel+Extension.swift */; };
 		8E88174729CAC5D900CDDC7E /* AllTagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88174629CAC5D900CDDC7E /* AllTagsCollectionViewController.swift */; };
-		8E91DB4329ED091C0087DB00 /* FaouriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E91DB4229ED091C0087DB00 /* FaouriteManager.swift */; };
+		8E91DB4329ED091C0087DB00 /* FavouriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E91DB4229ED091C0087DB00 /* FavouriteManager.swift */; };
 		8E91DB8629F2D0EE0087DB00 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8E91DB8529F2D0EE0087DB00 /* FirebaseStorage */; };
 		8ECF034229BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */; };
 		8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */; };
@@ -145,7 +145,7 @@
 		8E88173E29C9AF7D00CDDC7E /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		8E88174329CA332A00CDDC7E /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		8E88174629CAC5D900CDDC7E /* AllTagsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsCollectionViewController.swift; sourceTree = "<group>"; };
-		8E91DB4229ED091C0087DB00 /* FaouriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaouriteManager.swift; sourceTree = "<group>"; };
+		8E91DB4229ED091C0087DB00 /* FavouriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteManager.swift; sourceTree = "<group>"; };
 		8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesOfCategoryTableViewController.swift; sourceTree = "<group>"; };
 		8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		8E91DB4129ED08FB0087DB00 /* FavouriteManger */ = {
 			isa = PBXGroup;
 			children = (
-				8E91DB4229ED091C0087DB00 /* FaouriteManager.swift */,
+				8E91DB4229ED091C0087DB00 /* FavouriteManager.swift */,
 			);
 			path = FavouriteManger;
 			sourceTree = "<group>";
@@ -633,7 +633,7 @@
 				8E3E5EC029B737850063553B /* UIColor+Extension.swift in Sources */,
 				8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */,
 				8E76C30D29D8444A00A96A34 /* TagsType.swift in Sources */,
-				8E91DB4329ED091C0087DB00 /* FaouriteManager.swift in Sources */,
+				8E91DB4329ED091C0087DB00 /* FavouriteManager.swift in Sources */,
 				8E3E5EC229B737C40063553B /* UIFont+Extension.swift in Sources */,
 				8E40DF4229A76A7C001A7E8B /* AllRecipesTableViewController.swift in Sources */,
 				8E88173D29C8DCD600CDDC7E /* AreasTagList.swift in Sources */,

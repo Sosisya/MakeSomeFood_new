@@ -18,7 +18,7 @@ class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
         static var chipsSectionContentInsetsLeading: CGFloat = 0
         static var chipsSectionContentInsetsTrailing: CGFloat = 0
         static var chipsSectionContentInsetsBottom: CGFloat = 16
-        static var chipsSectionInterGroupSpacing: CGFloat = 8
+        static var chipsSectionInterGroupSpacing: CGFloat = 10
         static var chipsFooterHeaderSizeWidth = 1.0
         static var chipsFooterHeaderSizeHeight = 42.0
         static var recipeItemSizeWidth: CGFloat = 100
@@ -34,18 +34,18 @@ class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
         static var recipeFooterHeaderSizeHeight = 42.0
     }
 
-    private static func createLayout() -> ((Int, NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection?) {
+    private static func createLayout(showHeaders: Bool) -> ((Int, NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection?) {
         return { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
             if sectionKind == .allRecipes {
-                return createRecipeLayout(sectionIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
+                return createRecipeLayout(sectionIndex: sectionIndex, showHeaders: showHeaders, layoutEnvironment: layoutEnvironment)
             } else {
-                return createChipsLayout(sectionIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
+                return createChipsLayout(sectionIndex: sectionIndex, showHeaders: showHeaders, layoutEnvironment: layoutEnvironment)
             }
         }
     }
 
-    private static func createChipsLayout(sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
+    private static func createChipsLayout(sectionIndex: Int, showHeaders: Bool, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .estimated(Spec.chipsItemSizeWidth),
             heightDimension: .estimated(Spec.chipsItemSizeHeight)
@@ -72,11 +72,11 @@ class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
-        section.boundarySupplementaryItems = [header]
+        section.boundarySupplementaryItems = showHeaders ? [header] : []
         return section
     }
 
-    private static func createRecipeLayout(sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
+    private static func createRecipeLayout(sectionIndex: Int, showHeaders: Bool, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(Spec.chipsItemSizeWidth),
             heightDimension: .estimated(Spec.chipsItemSizeHeight)
@@ -103,16 +103,16 @@ class SearchCompositionalLayout: UICollectionViewCompositionalLayout {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
-        section.boundarySupplementaryItems = [header]
+        section.boundarySupplementaryItems = showHeaders ? [header] : []
         return section
     }
 
     // - MARK: -
-    init() {
-        super.init(sectionProvider: SearchCompositionalLayout.createLayout())
+    init(showHeaders: Bool = true) {
+        super.init(sectionProvider: SearchCompositionalLayout.createLayout(showHeaders: showHeaders))
     }
 
     required init?(coder: NSCoder) {
-        super.init(sectionProvider: SearchCompositionalLayout.createLayout())
+        super.init(sectionProvider: SearchCompositionalLayout.createLayout(showHeaders: true))
     }
 }

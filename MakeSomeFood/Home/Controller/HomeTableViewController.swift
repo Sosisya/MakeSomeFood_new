@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import FirebaseAuth
 
 class HomeTableViewController: UITableViewController, RecipePresenting {
     // - MARK: -
@@ -38,6 +39,20 @@ class HomeTableViewController: UITableViewController, RecipePresenting {
         getRecipe()
         configureRefreshControl()
         configureSearchController()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateHeader()
+    }
+
+    private func updateHeader() {
+        guard let user = Auth.auth().currentUser,
+              let header = tableView.tableHeaderView as? HomeTableHeaderView
+        else {
+            return
+        }
+        header.refreshUser(user)
     }
 }
 
@@ -152,6 +167,8 @@ extension HomeTableViewController {
             cell.recipeView.recipeImageView.kf.setImage(with: url)
             cell.recipeView.areaTagLabel.text = recipe?.area
             cell.recipeView.categoryTagLabel.text = recipe?.category
+            cell.recipeView.recipe = recipe
+            cell.recipeView.setIsFavourite(false)
             return cell
         case .categories:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategorieTableViewCell", for: indexPath) as! CategorieTableViewCell
