@@ -1,4 +1,6 @@
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class RecipeCardView: UIView {
 // - MARK: Constants
@@ -24,6 +26,10 @@ class RecipeCardView: UIView {
 
     var recipe: Recipe?
     private var isFavourite = false
+    private var isFavouriteRef: DatabaseReference?
+    private var isFavouriteHandle: UInt?
+    var authHandle: AuthStateDidChangeListenerHandle?
+    var userId: String?
 
 
     // - MARK: -
@@ -216,15 +222,15 @@ extension RecipeCardView {
         recipeImageView.kf.setImage(with: URL(string: item.thumb ?? ""))
         categoryTagLabel.text = item.category
         areaTagLabel.text = item.area
-//        configureIsFavourite(recipeId: item.id)
+        configureIsFavourite(recipeId: item.id)
     }
 
     func configure(item: RecipeOfCategory) {
         recipe = .init(recipeOfCategory: item)
         nameOfRecipeLabel.text = item.name
         recipeImageView.kf.setImage(with: URL(string: item.thumb))
-//        tagsStackView.isHidden = true
-//        configureIsFavourite(recipeId: item.id)
+        tagsStackView.isHidden = true
+        configureIsFavourite(recipeId: item.id)
     }
 
     @objc func likeButtonAction() {
@@ -240,4 +246,27 @@ extension RecipeCardView {
         }
     }
 
+    func cancelFavouriteSubscription() {
+        guard let isFavouriteRef, let isFavouriteHandle else { return }
+        FavouritesManager.cancelFavouriteSubscription(isFavouriteRef, isFavouriteHandle)
+    }
+
+    private func configureIsFavourite(recipeId: String) {
+        userId = Auth.auth().currentUser?.uid
+        authHandle = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            guard let self else { return }
+            if user == nil || user?.uid != self.userId,
+               let isFavouriteRef = self.isFavouriteRef,
+               let isFavouriteHandle = self.isFavouriteHandle {
+                self.setIsFavourite(false)
+                FavouritesManager.cancelFavouriteSubscription(isFavouriteRef, isFavouriteHandle)
+            }
+            if user != nil {
+                (self.isFavouriteRef, self.isFavouriteHandle) = FavouritesManager.isFavourite(recipeId: recipeId) { [weak self] isFavourite in
+                    self?.setIsFavourite(isFavourite)
+                }
+            }
+            self.userId = user?.uid
+        }
+    }
 }

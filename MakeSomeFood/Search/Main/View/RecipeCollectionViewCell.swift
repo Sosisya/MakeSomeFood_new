@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class RecipeCollectionViewCell: UICollectionViewCell {
     // - MARK: -
@@ -22,6 +23,10 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         recipeView.recipeImageView.kf.cancelDownloadTask()
         recipeView.recipeImageView.image = nil
+        recipeView.cancelFavouriteSubscription()
+        if let authHandle = recipeView.authHandle {
+            Auth.auth().removeStateDidChangeListener(authHandle)
+        }
     }
 
     private func commonInit() {

@@ -60,9 +60,7 @@ class AllRecipesTableViewController: UITableViewController, RecipePresenting {
     private func refreshSearchResults() {
         switch source {
         case .allRecipes: getAllRecipes()
-        default:
-            break
-//        case .favourite: getFavouriteRecipes()
+        case .favourite: getFavouriteRecipes()
         }
     }
 }
@@ -94,6 +92,16 @@ extension AllRecipesTableViewController {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+            }
+        }
+    }
+
+    private func getFavouriteRecipes() {
+        FavouritesManager.getFavourites { [weak self] favourites in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.recipe = favourites.filter { $0.name.lowercased().contains(self.search.lowercased()) }
+                self.tableView.reloadData()
             }
         }
     }

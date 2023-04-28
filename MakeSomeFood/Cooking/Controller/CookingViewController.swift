@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import FirebaseDatabase
 
 enum Section: Int, CaseIterable {
     case nameOfrecipe
@@ -14,6 +15,9 @@ class CookingViewController: UIViewController {
 
     var recipe: Recipe?
     var activityViewController: UIActivityViewController? = nil
+    private var favouriteRef: DatabaseReference?
+    private var favouriteHandle: UInt?
+    private var isFavourite = false
 
     private let cookingTableView: UITableView = {
         let tableView = UITableView()
@@ -40,6 +44,10 @@ class CookingViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.tintColor = .specialBlack
     }
+//
+//    deinit {
+//        CookingHeaderView().cancelFavouriteSubscription()
+//    }
 }
 
 extension CookingViewController {

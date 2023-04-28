@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class RecipeTableViewCell: UITableViewCell {
     // - MARK: -
@@ -22,6 +23,16 @@ class RecipeTableViewCell: UITableViewCell {
     private func commonInit() {
         setupLayout()
         setupConstraits()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        recipeView.recipeImageView.kf.cancelDownloadTask()
+        recipeView.recipeImageView.image = nil
+        recipeView.cancelFavouriteSubscription()
+        if let authHandle = recipeView.authHandle {
+            Auth.auth().removeStateDidChangeListener(authHandle)
+        }
     }
 }
 
