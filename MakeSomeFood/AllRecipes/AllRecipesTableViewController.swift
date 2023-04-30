@@ -10,7 +10,6 @@ class AllRecipesTableViewController: UITableViewController, RecipePresenting {
 
 
     private var apiManager = ApiManager()
-    var categoryName: String!
     private var recipe: [Recipe] = []
     public var source: Source = .allRecipes
     public var search: String = "" {
@@ -43,6 +42,7 @@ class AllRecipesTableViewController: UITableViewController, RecipePresenting {
         cell.recipeView.nameOfRecipeLabel.text = item.name
         cell.recipeView.areaTagLabel.text = item.area
         cell.recipeView.categoryTagLabel.text = item.category
+        cell.recipeView.configure(item: item)
         return cell
     }
 

@@ -23,7 +23,6 @@ class HomeTableViewController: UITableViewController, RecipePresenting {
     private var categories: [Category] = []
     var recipe: Recipe?
     private var searchController: UISearchController?
-
     private let specialRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         return refreshControl
@@ -168,6 +167,9 @@ extension HomeTableViewController {
             cell.recipeView.areaTagLabel.text = recipe?.area
             cell.recipeView.categoryTagLabel.text = recipe?.category
             cell.recipeView.recipe = recipe
+            if let recipe {
+                cell.recipeView.configure(item: recipe)
+            }
             cell.recipeView.setIsFavourite(false)
             return cell
         case .categories:

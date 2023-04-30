@@ -1,7 +1,6 @@
 import UIKit
 
 class LabelWithInsets: UILabel {
-
     private struct Spec {
         static var insetTop: CGFloat = 4
         static var insetLeft: CGFloat = 8

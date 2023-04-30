@@ -1,10 +1,3 @@
-//
-//  CategoriesTagList.swift
-//  MakeSomeFood
-//
-//  Created by Луиза Самойленко on 20.03.2023.
-//
-
 import Foundation
 
 struct CategoriesTagList: Codable {

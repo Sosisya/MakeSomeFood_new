@@ -20,11 +20,6 @@ class RecipeTableViewCell: UITableViewCell {
         commonInit()
     }
 
-    private func commonInit() {
-        setupLayout()
-        setupConstraits()
-    }
-
     override func prepareForReuse() {
         super.prepareForReuse()
         recipeView.recipeImageView.kf.cancelDownloadTask()
@@ -34,6 +29,21 @@ class RecipeTableViewCell: UITableViewCell {
             Auth.auth().removeStateDidChangeListener(authHandle)
         }
     }
+
+    private func commonInit() {
+        setupLayout()
+        setupConstraits()
+    }
+
+    func setHasLargeImage(_ hasLargeImage: Bool) {
+        recipeView.hasLargeImage = hasLargeImage
+    }
+
+    func hideTags(_ hide: Bool) {
+        recipeView.tagsStackView.isHidden = hide
+    }
+
+
 }
 
 // - MARK: -
@@ -49,13 +59,5 @@ extension RecipeTableViewCell {
             recipeView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             recipeView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
-    }
-
-    func setHasLargeImage(_ hasLargeImage: Bool) {
-        recipeView.hasLargeImage = hasLargeImage
-    }
-
-    func hideTags(_ hide: Bool) {
-        recipeView.tagsStackView.isHidden = hide
     }
 }

@@ -78,7 +78,6 @@
 		8ECF034229BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */; };
 		8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */; };
 		8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */; };
-		8EFF463829B1F27B00AD3CC9 /* GreetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF463729B1F27B00AD3CC9 /* GreetingTableViewCell.swift */; };
 		8EFF463B29B22F0D00AD3CC9 /* CookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF463A29B22F0D00AD3CC9 /* CookingViewController.swift */; };
 		8EFF463F29B22FCB00AD3CC9 /* CookingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -149,7 +148,6 @@
 		8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesOfCategoryTableViewController.swift; sourceTree = "<group>"; };
 		8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
-		8EFF463729B1F27B00AD3CC9 /* GreetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingTableViewCell.swift; sourceTree = "<group>"; };
 		8EFF463A29B22F0D00AD3CC9 /* CookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingViewController.swift; sourceTree = "<group>"; };
 		8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -344,12 +342,11 @@
 		8E46D24829A6921E001D1106 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8E46D24929A69251001D1106 /* RecipeCardView.swift */,
-				8E46D24B29A69AB5001D1106 /* RecipeTableViewCell.swift */,
 				8E46D24F29A69EF1001D1106 /* CategorieTableViewCell.swift */,
-				8EFF463729B1F27B00AD3CC9 /* GreetingTableViewCell.swift */,
 				8E40DF4329A770A3001A7E8B /* HeaderView.swift */,
 				8E0C8FCF29BB968E003104FB /* HomeTableHeaderView.swift */,
+				8E46D24929A69251001D1106 /* RecipeCardView.swift */,
+				8E46D24B29A69AB5001D1106 /* RecipeTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -651,7 +648,6 @@
 				8E3E5ED629BA40F80063553B /* CategoriesList.swift in Sources */,
 				8E3E5EC829B79B390063553B /* LabelWithInsets.swift in Sources */,
 				8E46D23C29A4CB2C001D1106 /* TextFieldView.swift in Sources */,
-				8EFF463829B1F27B00AD3CC9 /* GreetingTableViewCell.swift in Sources */,
 				8E0C8FCC29BB3F2F003104FB /* ReсipeList.swift in Sources */,
 				8E88173F29C9AF7E00CDDC7E /* SearchHeaderView.swift in Sources */,
 				8E41FA4929A47E6F0068C678 /* AppDelegate.swift in Sources */,

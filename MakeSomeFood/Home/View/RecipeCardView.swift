@@ -215,7 +215,6 @@ extension RecipeCardView {
         likeButton.setImage(image, for: .normal)
     }
 
-    // - MARK: Configure
     func configure(item: Recipe) {
         recipe = item
         nameOfRecipeLabel.text = item.name
@@ -239,10 +238,9 @@ extension RecipeCardView {
 
     func toggleFavourites() {
         if isFavourite {
-            print("delete")
+            FavouritesManager.removeFavourites(recipeId: recipe!.id)
         } else {
-            guard let recipe = recipe else { return }
-            FavouritesManager.addFavourite(recipe)
+            FavouritesManager.addFavourite(recipe!)
         }
     }
 

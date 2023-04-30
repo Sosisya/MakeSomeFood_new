@@ -11,9 +11,10 @@ enum Section: Int, CaseIterable {
 }
 
 class CookingViewController: UIViewController {
-    struct Spec {}
 
     var recipe: Recipe?
+    var recipeHeader: CookingHeaderView?
+
     var activityViewController: UIActivityViewController? = nil
     private var favouriteRef: DatabaseReference?
     private var favouriteHandle: UInt?
@@ -33,6 +34,7 @@ class CookingViewController: UIViewController {
         configureTableView()
         configureStrechyHeader()
         addShareBarButtonItem()
+        makeHeader()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -44,9 +46,9 @@ class CookingViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.tintColor = .specialBlack
     }
-//
+
 //    deinit {
-//        CookingHeaderView().cancelFavouriteSubscription()
+//        recipeHeader?.cancelFavouriteSubscription()
 //    }
 }
 
@@ -81,6 +83,10 @@ extension CookingViewController {
         let url = URL(string: recipe?.thumb ?? "")
         headerView.recipeImageView.kf.setImage(with: url)
         cookingTableView.tableHeaderView = headerView
+        if let recipe {
+            headerView.configure(item: recipe)
+        }
+        headerView.setIsFavourite(false)
     }
 
     private func updateNavigationBarTint() {
@@ -113,6 +119,12 @@ extension CookingViewController {
             ingredients.joined(separator: "\n"),
             about
         ].joined(separator: "\n\n")
+    }
+
+    func makeHeader() {
+        if let recipe {
+            recipeHeader?.configure(item: recipe)
+        }
     }
 }
 
