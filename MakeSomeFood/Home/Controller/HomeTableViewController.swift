@@ -40,11 +40,6 @@ class HomeTableViewController: UITableViewController, RecipePresenting {
         configureSearchController()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateHeader()
-    }
-
     private func updateHeader() {
         guard let user = Auth.auth().currentUser,
               let header = tableView.tableHeaderView as? HomeTableHeaderView
@@ -170,7 +165,6 @@ extension HomeTableViewController {
             if let recipe {
                 cell.recipeView.configure(item: recipe)
             }
-            cell.recipeView.setIsFavourite(false)
             return cell
         case .categories:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategorieTableViewCell", for: indexPath) as! CategorieTableViewCell

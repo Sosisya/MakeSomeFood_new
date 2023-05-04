@@ -184,6 +184,7 @@ extension LoginViewController {
 
     @objc func registrationButtonAction() {
         let registrationVC = RegistrationViewController()
+        registrationVC.onAuthAction = onAuthAction
         self.show(registrationVC, sender: self)
     }
 

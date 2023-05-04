@@ -166,6 +166,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
             cell.recipeView.areaTagLabel.text = item.area
             let url = URL(string: item.thumb ?? "")
             cell.recipeView.recipeImageView.kf.setImage(with: url)
+            cell.recipeView.configure(item: item)
             return cell
         default:
             fatalError()

@@ -253,10 +253,8 @@ extension ProfileViewController {
     
 
     private func setDisplayName() {
-        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         let newName = currentValues.name
-        changeRequest?.displayName = newName
-        changeRequest?.commitChanges { [weak self] error in
+        UserManager.shared.changeDisplayName(name: newName) { [weak self] in
             self?.initialValues.name = newName
             self?.saveButton.isEnabled = true
         }

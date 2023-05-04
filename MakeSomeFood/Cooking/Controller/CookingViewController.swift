@@ -47,9 +47,9 @@ class CookingViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .specialBlack
     }
 
-//    deinit {
-//        recipeHeader?.cancelFavouriteSubscription()
-//    }
+    deinit {
+        recipeHeader?.cancelFavouriteSubscription()
+    }
 }
 
 extension CookingViewController {
@@ -86,7 +86,6 @@ extension CookingViewController {
         if let recipe {
             headerView.configure(item: recipe)
         }
-        headerView.setIsFavourite(false)
     }
 
     private func updateNavigationBarTint() {

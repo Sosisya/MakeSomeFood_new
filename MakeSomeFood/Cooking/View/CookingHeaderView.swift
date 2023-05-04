@@ -35,6 +35,7 @@ class CookingHeaderView: UIView {
         imageView.image = Spec.recipeImageView
         imageView.contentMode = .scaleAspectFill
         imageView.setMasksToBounds()
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
@@ -53,7 +54,6 @@ class CookingHeaderView: UIView {
         button.tintColor = .specialWhite
         button.backgroundColor = .specialOrange
         button.setCornerRadius(radius: 21)
-        button.addTarget(self, action: #selector(likeButtonAction), for: .touchUpInside)
         return button
     }()
 
@@ -83,6 +83,7 @@ class CookingHeaderView: UIView {
     private func commonInit() {
         setupLayout()
         setupConstraints()
+        likeButton.addTarget(self, action: #selector(likeButtonAction), for: .touchUpInside)
     }
 }
 
@@ -137,6 +138,7 @@ extension CookingHeaderView {
 }
 // - MARK: Favourite
 extension CookingHeaderView {
+
     func setIsFavourite(_ value: Bool) {
         isFavourite = value
         let imageName = value ? Spec.likeSelectedButtonIconName : Spec.likeButtonIconName
@@ -145,17 +147,6 @@ extension CookingHeaderView {
             withConfiguration: UIImage.SymbolConfiguration(scale: .large)
         )
         likeButton.setImage(image, for: .normal)
-    }
-
-    func configure(item: Recipe) {
-        recipe = item
-        recipeImageView.kf.setImage(with: URL(string: item.thumb ?? ""))
-        configureIsFavourite(recipeId: item.id)
-    }
-
-    func cancelFavouriteSubscription() {
-        guard let isFavouriteRef, let isFavouriteHandle else { return }
-        FavouritesManager.cancelFavouriteSubscription(isFavouriteRef, isFavouriteHandle)
     }
 
     @objc func likeButtonAction() {
@@ -169,6 +160,17 @@ extension CookingHeaderView {
         } else {
             FavouritesManager.addFavourite(recipe!)
         }
+    }
+
+    func configure(item: Recipe) {
+        recipe = item
+        recipeImageView.kf.setImage(with: URL(string: item.thumb ?? ""))
+        configureIsFavourite(recipeId: item.id)
+    }
+
+    func cancelFavouriteSubscription() {
+        guard let isFavouriteRef, let isFavouriteHandle else { return }
+        FavouritesManager.cancelFavouriteSubscription(isFavouriteRef, isFavouriteHandle)
     }
 
     private func configureIsFavourite(recipeId: String) {

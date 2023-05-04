@@ -205,9 +205,7 @@ extension RegistrationViewController {
     }
 
     private func setDisplayName() {
-        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-        changeRequest?.displayName = nameTextFieldView.textField.text ?? ""
-        changeRequest?.commitChanges { [weak self] error in
+        UserManager.shared.changeDisplayName(name: nameTextFieldView.textField.text ?? "") { [weak self] in
             self?.onAuth()
         }
     }

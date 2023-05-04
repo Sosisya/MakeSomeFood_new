@@ -56,6 +56,7 @@
 		8E46D24C29A69AB5001D1106 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E46D24B29A69AB5001D1106 /* RecipeTableViewCell.swift */; };
 		8E46D25029A69EF1001D1106 /* CategorieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E46D24F29A69EF1001D1106 /* CategorieTableViewCell.swift */; };
 		8E4F4A5C29B5AF9700678DE2 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F4A5B29B5AF9700678DE2 /* TagCollectionViewCell.swift */; };
+		8E52259A2A02AE4A0065D763 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5225992A02AE4A0065D763 /* UserManager.swift */; };
 		8E76C2FB29D69E5800A96A34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E76C2FA29D69E5800A96A34 /* GoogleService-Info.plist */; };
 		8E76C2FE29D6A32200A96A34 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E76C2FD29D6A32200A96A34 /* FirebaseAnalyticsSwift */; };
 		8E76C30029D6A32200A96A34 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8E76C2FF29D6A32200A96A34 /* FirebaseAuth */; };
@@ -134,6 +135,7 @@
 		8E46D24B29A69AB5001D1106 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		8E46D24F29A69EF1001D1106 /* CategorieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieTableViewCell.swift; sourceTree = "<group>"; };
 		8E4F4A5B29B5AF9700678DE2 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		8E5225992A02AE4A0065D763 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		8E76C2FA29D69E5800A96A34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E76C30A29D83F1600A96A34 /* RecipePresenting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePresenting.swift; sourceTree = "<group>"; };
 		8E76C30C29D8444A00A96A34 /* TagsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsType.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				8E91DB4129ED08FB0087DB00 /* FavouriteManger */,
 				8E91DB4029ED08F00087DB00 /* NetworkManager */,
+				8E5225992A02AE4A0065D763 /* UserManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				8E3E5ED029B7A9160063553B /* CookingFooterTableViewCell.swift in Sources */,
 				8ECF034229BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift in Sources */,
 				8EFF463F29B22FCB00AD3CC9 /* CookingHeaderView.swift in Sources */,
+				8E52259A2A02AE4A0065D763 /* UserManager.swift in Sources */,
 				8E3E5ECA29B7A58D0063553B /* IngredientsTableViewCell.swift in Sources */,
 				8E46D24029A5D1C4001D1106 /* RegistrationViewController.swift in Sources */,
 				8E46D24A29A69251001D1106 /* RecipeCardView.swift in Sources */,

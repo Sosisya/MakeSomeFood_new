@@ -70,8 +70,8 @@ struct FavouritesManager {
 
     static private func showAuth(_ onAuth: @escaping () -> Void) {
         let topVC = topViewController()
-        let authNavVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "authTab") as! UINavigationController
-        let authVC = authNavVC.viewControllers.first as! LoginViewController
+        let authVC = LoginViewController()
+        let authNavVC = UINavigationController(rootViewController: authVC)
         authVC.onAuthAction = { [weak authNavVC] in
             onAuth()
             authNavVC?.dismiss(animated: true)

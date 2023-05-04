@@ -43,6 +43,10 @@ class HomeTableHeaderView: UIView {
         commonInit()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .onUserNameChanged, object: nil)
+    }
+
     private func commonInit() {
         setupLayout()
         setupConstraints()
@@ -56,6 +60,11 @@ class HomeTableHeaderView: UIView {
                 self?.refreshUser(user)
             }
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(onNameChanged), name: .onUserNameChanged, object: nil)
+    }
+
+    @objc func onNameChanged() {
+        refreshUser(Auth.auth().currentUser)
     }
 
     func refreshUser(_ user: User?) {
