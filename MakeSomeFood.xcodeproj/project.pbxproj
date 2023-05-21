@@ -79,6 +79,7 @@
 		8ECF034229BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */; };
 		8EDB32A129AF9B9700DA5B61 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */; };
 		8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */; };
+		8EF09B6B2A1A2DF5005AA21A /* UITextView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF09B6A2A1A2DF5005AA21A /* UITextView+extension.swift */; };
 		8EFF463B29B22F0D00AD3CC9 /* CookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF463A29B22F0D00AD3CC9 /* CookingViewController.swift */; };
 		8EFF463F29B22FCB00AD3CC9 /* CookingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -150,6 +151,7 @@
 		8ECF034129BDDD5900A21A9D /* RecipesOfCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesOfCategoryTableViewController.swift; sourceTree = "<group>"; };
 		8EDB32A029AF9B9700DA5B61 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		8EDB32A529AF9C6400DA5B61 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
+		8EF09B6A2A1A2DF5005AA21A /* UITextView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+extension.swift"; sourceTree = "<group>"; };
 		8EFF463A29B22F0D00AD3CC9 /* CookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingViewController.swift; sourceTree = "<group>"; };
 		8EFF463E29B22FCB00AD3CC9 /* CookingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				8E3E5EC729B79B390063553B /* LabelWithInsets.swift */,
+				8EF09B6A2A1A2DF5005AA21A /* UITextView+extension.swift */,
 				8E76C30A29D83F1600A96A34 /* RecipePresenting.swift */,
 				8E76C30C29D8444A00A96A34 /* TagsType.swift */,
 				8E3E5EBF29B737850063553B /* UIColor+Extension.swift */,
@@ -631,6 +634,7 @@
 				8E3E5EC629B7998C0063553B /* NameOfRecipeTableViewCell.swift in Sources */,
 				8E88173B29C8DCC900CDDC7E /* IngredientsTagList.swift in Sources */,
 				8E3E5EC029B737850063553B /* UIColor+Extension.swift in Sources */,
+				8EF09B6B2A1A2DF5005AA21A /* UITextView+extension.swift in Sources */,
 				8EDB32A629AF9C6400DA5B61 /* FavouritesTableViewController.swift in Sources */,
 				8E76C30D29D8444A00A96A34 /* TagsType.swift in Sources */,
 				8E91DB4329ED091C0087DB00 /* FavouriteManager.swift in Sources */,

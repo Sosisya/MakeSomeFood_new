@@ -64,15 +64,18 @@ class RegistrationViewController: UIViewController {
         button.layer.cornerRadius = 12
         return button
     }()
-
-    private let agreementLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "By registering, I agree to the terms and conditions"
-        label.textAlignment = .center
-        label.tintColor = UIColor(named: "black")
-        label.font = UIFont(name: "Montserrat-Medium", size: 13)
-        return label
+    
+    private let agreementTextView: UITextView = {
+        let textView = UITextView()
+        textView.contentInsetAdjustmentBehavior = .automatic
+        textView.textAlignment = .justified
+        textView.textColor = .specialBlack
+        textView.font = .montserratMedium13()
+        textView.backgroundColor = .clear
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.text = "By registering, I agree to the terms and conditions"
+        textView.addHyperLinksToText(originalText: "By registering, I agree to the terms and conditions", hyperLinks: ["terms and conditions" : "http://makesomefood.tilda.ws/"])
+        return textView
     }()
 
     override func viewDidLoad() {
@@ -103,12 +106,12 @@ extension RegistrationViewController {
         contentView.addSubview(emailTextFieldView)
         contentView.addSubview(passwordTextFieldView)
         contentView.addSubview(registrationButton)
-        contentView.addSubview(agreementLabel)
+        contentView.addSubview(agreementTextView)
     }
 
     private func setConstraints() {
         scrollViewBottom = scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        agreementBottom = agreementLabel.bottomAnchor.constraint(equalTo: registrationButton.bottomAnchor, constant: 50)
+        agreementBottom = agreementTextView.bottomAnchor.constraint(equalTo: registrationButton.bottomAnchor, constant: 50)
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -144,9 +147,10 @@ extension RegistrationViewController {
             registrationButton.heightAnchor.constraint(equalToConstant: 56),
             
             agreementBottom!,
-            agreementLabel.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
-            agreementLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
-            agreementLabel.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8)
+            agreementTextView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
+            agreementTextView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
+            agreementTextView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -8),
+            agreementTextView.heightAnchor.constraint(equalToConstant: 38)
         ])
     }
 
@@ -174,7 +178,7 @@ extension RegistrationViewController {
     private func createBottomLinks() {
         let filledHeight = registrationButton.frame.maxY
         let fullHeight = scrollView.frame.height
-        let minOffset = 8 + agreementLabel.frame.height
+        let minOffset = 8 + agreementTextView.frame.height
         let realOffSet = fullHeight - filledHeight - 18
         agreementBottom?.constant = max(realOffSet, minOffset)
     }
