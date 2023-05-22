@@ -83,7 +83,7 @@ class LoginViewController: UIViewController {
         textView.backgroundColor = .clear
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.text = "By logging into my account, I agree to the terms and conditions"
-        textView.addHyperLinksToText(originalText: "By logging into my account, I agree to the terms and conditions", hyperLinks: ["terms and conditions" : "http://makesomefood.tilda.ws/"])
+        textView.addHyperLinksToText(originalText: "By logging into my account, I agree to the terms and conditions", hyperLinks: ["terms and conditions" : "http://makesomefood.tilda.ws/useragreement"])
         return textView
     }()
 
