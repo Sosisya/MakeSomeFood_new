@@ -74,13 +74,13 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    private let agreementTextView: UITextView = {
+    private lazy var agreementTextView: UITextView = {
         let textView = UITextView()
-        textView.contentInsetAdjustmentBehavior = .automatic
-        textView.textAlignment = .justified
         textView.textColor = .specialBlack
         textView.font = .montserratMedium13()
         textView.backgroundColor = .clear
+        textView.delegate = self
+        textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.text = "By logging into my account, I agree to the terms and conditions"
         textView.addHyperLinksToText(originalText: "By logging into my account, I agree to the terms and conditions", hyperLinks: ["terms and conditions" : "http://makesomefood.tilda.ws/useragreement"])
@@ -264,4 +264,14 @@ extension LoginViewController {
         }
         passwordTextFieldView.textField.isSecureTextEntry = true
     }
+}
+
+extension LoginViewController: UITextViewDelegate {
+    func textViewDidChangeSelection(_ textView: UITextView) {
+          if #available(iOS 13, *) {
+              textView.selectedTextRange = nil
+          } else {
+              view.endEditing(true)
+          }
+      }
 }

@@ -65,16 +65,16 @@ class RegistrationViewController: UIViewController {
         return button
     }()
     
-    private let agreementTextView: UITextView = {
+    private lazy var agreementTextView: UITextView = {
         let textView = UITextView()
-        textView.contentInsetAdjustmentBehavior = .automatic
-        textView.textAlignment = .justified
         textView.textColor = .specialBlack
         textView.font = .montserratMedium13()
+        textView.delegate = self
+        textView.isEditable = false
         textView.backgroundColor = .clear
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.text = "By registering, I agree to the terms and conditions"
-        textView.addHyperLinksToText(originalText: "By registering, I agree to the terms and conditions", hyperLinks: ["terms and conditions" : "http://makesomefood.tilda.ws/"])
+        textView.addHyperLinksToText(originalText: "By registering, I agree to the terms and conditions", hyperLinks: ["terms and conditions" : "http://makesomefood.tilda.ws/useragreement"])
         return textView
     }()
 
@@ -234,4 +234,14 @@ extension RegistrationViewController {
         }
         passwordTextFieldView.textField.isSecureTextEntry = true
     }
+}
+
+extension RegistrationViewController: UITextViewDelegate {
+    func textViewDidChangeSelection(_ textView: UITextView) {
+          if #available(iOS 13, *) {
+              textView.selectedTextRange = nil
+          } else {
+              view.endEditing(true)
+          }
+      }
 }
