@@ -197,6 +197,8 @@ extension LoginViewController {
                 guard self != nil else { return }
                 if authResult?.user != nil {
                     self?.onAuth()
+                } else {
+                    self?.showUserNotFoundAlert()
                 }
             }
         }
@@ -263,6 +265,12 @@ extension LoginViewController {
             return true
         }
         passwordTextFieldView.textField.isSecureTextEntry = true
+    }
+
+    private func showUserNotFoundAlert() {
+        let alert = UIAlertController(title: "User not found", message: "Invalid e-mail or password", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
 }
 

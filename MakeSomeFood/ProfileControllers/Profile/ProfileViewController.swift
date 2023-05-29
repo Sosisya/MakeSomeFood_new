@@ -244,7 +244,10 @@ extension ProfileViewController {
 
     @objc private func takeAPhoto() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
+        if let popoverPresentationController = alert.popoverPresentationController {
+            popoverPresentationController.sourceView = view
+            popoverPresentationController.sourceRect = takePhotoButton.frame
+        }
         alert.addAction(UIAlertAction(title: Spec.takePhotoButtonFirstAlertTitle, style: .default , handler:{ (UIAlertAction) in
             self.openCameraButton()
             print("User click Take a photo button")
@@ -287,7 +290,7 @@ extension ProfileViewController {
     }
 
     @objc private func exitFromAccount() {
-        let alert = UIAlertController(title: Spec.exitButtonMainAlertTitle, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Spec.exitButtonMainAlertTitle, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Spec.exitButtonFirstAlertTitle, style: .destructive , handler:{ (UIAlertAction) in
             do {
                 try Auth.auth().signOut()
@@ -307,7 +310,7 @@ extension ProfileViewController {
     }
 
     @objc private func deletedAccount() {
-        let alert = UIAlertController(title: Spec.deleteButtonMainAlertTitle, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Spec.deleteButtonMainAlertTitle, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Spec.deleteButtonFirstAlertTitle, style: .destructive , handler:{ (UIAlertAction) in
             Auth.auth().currentUser?.delete { _ in
                 self.onExit()
