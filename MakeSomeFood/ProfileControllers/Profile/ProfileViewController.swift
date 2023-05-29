@@ -8,7 +8,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         static var takePhotoButtonSecondAlertTitle = "Open gallery"
         static var takePhotoButtonCancelAlertTitle = "Cancel"
         static var exitButtonMainAlertTitle = "Are you sure you want to log out of your profile?"
+        static var deleteButtonMainAlertTitle = "Are you sure you want to delete your account? When you delete your account, all the recipes you have saved will be deleted."
         static var exitButtonFirstAlertTitle = "Log out"
+        static var deleteButtonFirstAlertTitle = "Delete"
         static var exitButtonCancelAlertTitle = "Cancel"
     }
 
@@ -104,6 +106,20 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         return button
     }()
 
+    private lazy var deleteAccount: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Delete account", for: .normal)
+        button.setImage(UIImage(systemName: "trash"), for: .normal)
+        button.tintColor =  UIColor(named: "white")
+        button.setTitleColor(UIColor(named: "white"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
+        button.backgroundColor = UIColor(named: "orange")
+        button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(deletedAccount), for: .touchUpInside)
+        return button
+    }()
+
     private let exitButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -142,6 +158,7 @@ extension ProfileViewController {
         contentView.addSubview(nameTextFieldView)
         contentView.addSubview(emailTextFieldView)
         view.addSubview(saveButton)
+        view.addSubview(deleteAccount)
         view.addSubview(exitButton)
     }
 
@@ -185,6 +202,11 @@ extension ProfileViewController {
             saveButton.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
             saveButton.heightAnchor.constraint(equalToConstant: 56),
             saveButton.bottomAnchor.constraint(equalTo: scrollView.frameLayoutGuide.bottomAnchor, constant: -16),
+
+            deleteAccount.bottomAnchor.constraint(equalTo: exitButton.topAnchor, constant: -16),
+            deleteAccount.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            deleteAccount.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            deleteAccount.heightAnchor.constraint(equalToConstant: 56),
 
             exitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -272,6 +294,23 @@ extension ProfileViewController {
                 self.onExit()
             } catch {
                 print(error.localizedDescription)
+            }
+        }))
+
+        alert.addAction(UIAlertAction(title: Spec.exitButtonCancelAlertTitle, style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
+
+    @objc private func deletedAccount() {
+        let alert = UIAlertController(title: Spec.deleteButtonMainAlertTitle, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: Spec.deleteButtonFirstAlertTitle, style: .destructive , handler:{ (UIAlertAction) in
+            Auth.auth().currentUser?.delete { _ in
+                self.onExit()
             }
         }))
 

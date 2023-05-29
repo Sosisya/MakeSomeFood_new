@@ -1,13 +1,14 @@
 import UIKit
+import AppTrackingTransparency
 
 class ScreensaverViewController: UIViewController {
-// - MARK: Constants
+    // - MARK: Constants
     struct Spec {
         static let upperNameLabelText = "make some"
         static let lowerNameLabelText = "food"
         static let screensaverImageView = UIImage(named: "screensaver")
     }
-// - MARK: -
+    // - MARK: -
     private let screensaverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints()
@@ -38,7 +39,7 @@ class ScreensaverViewController: UIViewController {
 
     var completionHandler = {}
 
-// - MARK: -
+    // - MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -48,9 +49,7 @@ class ScreensaverViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.completionHandler()
-        }
+        requestTrackingAuthorization()
     }
 }
 
@@ -73,5 +72,13 @@ extension ScreensaverViewController {
             lowerNameLabel.trailingAnchor.constraint(equalTo: upperNameLabel.trailingAnchor),
             lowerNameLabel.topAnchor.constraint(equalTo: upperNameLabel.bottomAnchor),
         ])
+    }
+
+    private func requestTrackingAuthorization() {
+        ATTrackingManager.requestTrackingAuthorization { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.completionHandler()
+            }
+        }
     }
 }
