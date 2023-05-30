@@ -5,7 +5,7 @@
 	<key>NSUserTrackingUsageDescription</key>
 	<string>If you allow it, advertising MakeSomeFood on websites and in other applications will be more relevant.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Take a photo</string>
+	<string>A camera is required to take a photo for the avatar</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.ttf</string>
