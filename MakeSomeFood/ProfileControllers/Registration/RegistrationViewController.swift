@@ -188,9 +188,9 @@ extension RegistrationViewController {
     }
 
     @objc private func registrationAction() {
+        guard checkPassword() else { return }
         Auth.auth().createUser(withEmail: emailTextFieldView.textField.text ?? "", password: passwordTextFieldView.textField.text ?? "") { [weak self] authResult, error in
             DispatchQueue.main.async {
-                guard let strongSelf = self else { return }
                 if authResult?.user != nil {
                     self?.setDisplayName()
                 }
@@ -211,6 +211,17 @@ extension RegistrationViewController {
     private func setDisplayName() {
         UserManager.shared.changeDisplayName(name: nameTextFieldView.textField.text ?? "") { [weak self] in
             self?.onAuth()
+        }
+    }
+
+    private func checkPassword() -> Bool {
+        if passwordTextFieldView.textField.text?.count ?? 0 < 6 {
+            let alert = UIAlertController(title: "The password must contain at least 6 characters", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            self.present(alert, animated: true)
+            return false
+        } else {
+            return true
         }
     }
 
