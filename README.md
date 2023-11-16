@@ -6,8 +6,6 @@
 <img src="https://img.shields.io/badge/KingFisher-gray" alt="MVC" /></a>
 <img src="https://img.shields.io/badge/URLSession-yellow" alt="MVC" /></a>
 <img src="https://img.shields.io/badge/REST API-red" alt="MVC" /></a>
-
-### Description
 * Favorite dishes from all over the world in the new mobile app. A detailed description of the recipes for each dish is completely free!
 * Learn the world cuisine and subtleties of cooking every day!
 * Our application allows you to:
