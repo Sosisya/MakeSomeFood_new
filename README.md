@@ -9,9 +9,11 @@
 <img src="https://img.shields.io/badge/URLSession-yellow" alt="MVC" /></a>
 <img src="https://img.shields.io/badge/REST API-red" alt="MVC" /></a>
 <img src="https://img.shields.io/badge/HIG-blue" alt="MVC" /></a>
-* Favorite dishes from all over the world in the new mobile app. A detailed description of the recipes for each dish is completely free!
-* Learn the world cuisine and subtleties of cooking every day!
-* Our application allows you to:
+
+Favorite dishes from all over the world in the new mobile app. A detailed description of the recipes for each dish is completely free!
+Learn the world cuisine and subtleties of cooking every day!
+
+Our application allows you to:
 * Unique recipes in various categories ("Breakfast", "Dessert", "Starter"), including many original dishes.
 * Convenient search allows you to select a dish according to the category, area and ingredient.
 * Turn to keyword search.
