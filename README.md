@@ -21,4 +21,4 @@ Our application allows you to:
 * Share your favorite recipes with friends and family.
 * Create a list of your favorite recipes by adding a recipe you like.
 
-<img width="1200" alt="Снимок экрана 2023-11-16 в 19 52 23" src="https://github.com/Sosisya/MakeSomeFood_new/assets/96905634/855fa122-c40f-4abd-b51c-811ea3d6e635">
+<img width="1200" alt="Снимок экрана 2023-11-16 в 19 52 23" src="https://github.com/Sosisya/MakeSomeFood_new/assets/96905634/7df160a8-5102-4fd1-aea0-625c6f53ab04">
