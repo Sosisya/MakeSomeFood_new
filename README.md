@@ -1,5 +1,7 @@
 ### [MakeSomeFood](https://apps.apple.com/ru/app/makesomefood/id6449434835)
 
+[Take a look at the AppStore](https://apps.apple.com/ru/app/makesomefood/id6449434835)
+
 <img src="https://img.shields.io/badge/MVC-ff69b4" alt="MVC" /></a>
 <img src="https://img.shields.io/badge/No storyboard-purple" alt="MVC" /></a>
 <img src="https://img.shields.io/badge/Firebase-green" alt="MVC" /></a>
